@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Robot : MonoBehaviour
+public class Robot : MonoBehaviour, IRobot
 {
     //Actions which robot can do
     public void Jump()

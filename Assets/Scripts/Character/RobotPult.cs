@@ -7,14 +7,9 @@ public class RobotPult : MonoBehaviour, IInvoker
     {
         Command = command;
     }
-
-    public void Cancel()
-    {
-        Command.Execute();
-    }
-
+    
     public void Run()
     {
-        Command.Undo();
+        Command.Execute();
     }
 }

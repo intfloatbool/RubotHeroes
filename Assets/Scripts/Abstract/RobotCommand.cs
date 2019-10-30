@@ -8,6 +8,9 @@ namespace Abstract
             this._robot = robot;
         }
 
-        public abstract void Execute();
+        public virtual void Execute()
+        {
+            this._robot.IsCommandsRunning = true;
+        }
     }
 }

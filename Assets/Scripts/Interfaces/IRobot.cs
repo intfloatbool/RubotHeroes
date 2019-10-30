@@ -1,5 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
+
 public interface IRobot
 {
+    bool IsCommandsRunning { get; set; }
     void Jump();
 
     void MoveY(float value);

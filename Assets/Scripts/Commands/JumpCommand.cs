@@ -10,6 +10,7 @@ namespace Commands
 
         public override void Execute()
         {
+            base.Execute();
             _robot.Jump();
         }
     }

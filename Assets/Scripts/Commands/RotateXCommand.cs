@@ -12,6 +12,7 @@ namespace Commands
 
         public override void Execute()
         {
+            base.Execute();
             _robot.RotateX(this._value);
         }
     }

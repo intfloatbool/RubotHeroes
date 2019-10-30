@@ -4,8 +4,16 @@ using UnityEngine;
 public class Robot : MonoBehaviour, IRobot
 {
     //Actions which robot can do
+    [SerializeField] private float _robotMoveSpeed = 4f;
     public bool IsCommandsRunning { get; set; }
     private Coroutine _currentAction;
+
+    public Rigidbody Rigidbody { get; private set; }
+
+    private void Awake()
+    {
+        this.Rigidbody = GetComponent<Rigidbody>();
+    }
     public void Jump()
     {
         StopActionIfExists();
@@ -87,6 +95,15 @@ public class Robot : MonoBehaviour, IRobot
     public IEnumerator MoveXCoroutine(float value)
     {
         Debug.Log($"Move X to {value}");
+
+        Vector3 currentPos = transform.position;
+        Vector3 reachedPos = currentPos += Vector3.forward * value;
+
+        while (Vector3.Distance(currentPos, reachedPos) >= 0)
+        {
+            Rigidbody.MovePosition(transform.position + transform.forward * _robotMoveSpeed * Time.fixedDeltaTime);
+            yield return null;
+        }
         
         //TODO Complete func
         yield return new WaitForSeconds(1);

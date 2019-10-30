@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4909883989876067647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4914722925613965199}
+  m_Layer: 0
+  m_Name: body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4914722925613965199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4909883989876067647}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_Children:
+  - {fileID: 8980252232093824452}
+  - {fileID: 8988816987751830712}
+  - {fileID: 8980506669773624076}
+  - {fileID: 8989052326207409964}
+  m_Father: {fileID: 8989114974135694866}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &8982486076417385634
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,6 +44,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8989114974135694866}
   - component: {fileID: 7154617012696959509}
+  - component: {fileID: 3836964614203584346}
+  - component: {fileID: 2724525586086404182}
   m_Layer: 0
   m_Name: RubotPlayer
   m_TagString: Untagged
@@ -25,13 +61,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8982486076417385634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.82, y: 1.65, z: -0.01}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalPosition: {x: 0.49447107, y: 2.3279524, z: 2.4890563}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8980252232093824452}
-  - {fileID: 8988816987751830712}
-  - {fileID: 8980506669773624076}
-  - {fileID: 8989052326207409964}
+  - {fileID: 4914722925613965199}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,6 +80,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89444b3fbf22a1161951b9789026f667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &3836964614203584346
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982486076417385634}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.87, y: 1.39, z: 0.8}
+  m_Center: {x: 0, y: 2.3, z: 0}
+--- !u!54 &2724525586086404182
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982486076417385634}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1 &8982487441426315482
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +138,7 @@ Transform:
   m_LocalPosition: {x: -6.1201485e-18, y: 5.048969e-16, z: -0.024974804}
   m_LocalScale: {x: 0.002185392, y: 0.002185392, z: 0.002185392}
   m_Children: []
-  m_Father: {fileID: 8989114974135694866}
+  m_Father: {fileID: 4914722925613965199}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8996111475460725312
@@ -154,7 +216,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
-  m_Father: {fileID: 8989114974135694866}
+  m_Father: {fileID: 4914722925613965199}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8996874921970000254
@@ -232,7 +294,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0.025}
   m_LocalScale: {x: 0.002185392, y: 0.002185392, z: 0.002185392}
   m_Children: []
-  m_Father: {fileID: 8989114974135694866}
+  m_Father: {fileID: 4914722925613965199}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8996788340221735046
@@ -312,7 +374,7 @@ Transform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 8980645406219009254}
-  m_Father: {fileID: 8989114974135694866}
+  m_Father: {fileID: 4914722925613965199}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8996388271914245924

@@ -8,6 +8,9 @@ public class Robot : MonoBehaviour, IRobot
     [SerializeField] private float _moveSpeed = 0.4f;
     [SerializeField] private float _rotSpeed = 4f;
     [SerializeField] private float _jumpStrength = 500f;
+
+
+    [SerializeField] private float _distanceFromDestiny;
     
     //Actions which robot can do
     public bool IsCommandsRunning { get; set; }
@@ -38,8 +41,8 @@ public class Robot : MonoBehaviour, IRobot
         {
             Vector3 targetPos = new Vector3(_randomPos.x, _botBody.position.y, _randomPos.z);
             Vector3 direction = (targetPos - _botBody.position).normalized;
-            
-            if (Vector3.Distance(_botBody.position, targetPos) <= 0.1f)
+            _distanceFromDestiny = Vector3.Distance(_botBody.position, targetPos);
+            if (_distanceFromDestiny <= 0.5f)
             {
                 return;
             }
@@ -101,9 +104,18 @@ public class Robot : MonoBehaviour, IRobot
     {
         Debug.Log("Jump!");
         
-        //Rigidbody.AddForce(Vector3.down * _jumpStrength);
+        Rigidbody.AddForce(Vector3.up * _jumpStrength);
         
         //TODO Complete func
+        yield return new WaitForFixedUpdate();
+        yield return new WaitForFixedUpdate();
+
+        while (!Mathf.Approximately(Rigidbody.velocity.y, 0f))
+        {
+            yield return null;
+        }
+        
+        yield return new WaitForFixedUpdate();
         yield return new WaitForSeconds(1);
         IsCommandsRunning = false;
 

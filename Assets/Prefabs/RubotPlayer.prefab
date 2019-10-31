@@ -146,6 +146,7 @@ MonoBehaviour:
   _moveSpeed: 150
   _rotSpeed: 3
   _jumpStrength: 500
+  _distanceFromDestiny: 0
   _enemyRobot: {fileID: 0}
   _botBody: {fileID: 2435803873142678868}
   _botHead: {fileID: 64107943912117922}

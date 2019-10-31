@@ -7,6 +7,7 @@ public class Robot : MonoBehaviour, IRobot
 
     [SerializeField] private float _moveSpeed = 0.4f;
     [SerializeField] private float _rotSpeed = 4f;
+    [SerializeField] private float _jumpStrength = 500f;
     
     //Actions which robot can do
     public bool IsCommandsRunning { get; set; }
@@ -35,14 +36,16 @@ public class Robot : MonoBehaviour, IRobot
 
         if (_isRandomMove)
         {
-            if (Mathf.Approximately(Vector3.Distance(transform.position, basePosByZero), 0.2f))
+            Vector3 targetPos = new Vector3(_randomPos.x, _botBody.position.y, _randomPos.z);
+            Vector3 direction = (targetPos - _botBody.position).normalized;
+            
+            if (Vector3.Distance(_botBody.position, targetPos) <= 0.1f)
             {
                 return;
             }
-            Vector3 targetPos = new Vector3(_randomPos.x, _botBody.position.y, _randomPos.z);
-            Vector3 direction = (targetPos - _botBody.position).normalized;
-            Rigidbody.MovePosition(transform.position + direction * _moveSpeed * Time.fixedDeltaTime);
             
+            Rigidbody.velocity = direction * _moveSpeed * Time.fixedDeltaTime;
+
             //face bot body to position
             Vector3 relativeBodyPos = targetPos - transform.position;
             Quaternion bodyRotation = Quaternion.LookRotation(relativeBodyPos, Vector3.up);
@@ -97,6 +100,8 @@ public class Robot : MonoBehaviour, IRobot
     public IEnumerator JumpCoroutine()
     {
         Debug.Log("Jump!");
+        
+        //Rigidbody.AddForce(Vector3.down * _jumpStrength);
         
         //TODO Complete func
         yield return new WaitForSeconds(1);

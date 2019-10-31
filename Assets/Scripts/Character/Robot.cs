@@ -25,7 +25,8 @@ public class Robot : MonoBehaviour, IRobot
     }
 
     private void FixedUpdate()
-    {
+    {   
+        Vector3 basePosByZero = new Vector3(transform.position.x, 0, transform.position.z);
         //Face head to enemy 
         Vector3 enemyTargetPos = new Vector3(_enemyRobot.transform.position.x, 0, _enemyRobot.transform.position.z);
         Vector3 relativeHeadPos = enemyTargetPos - transform.position;
@@ -34,8 +35,12 @@ public class Robot : MonoBehaviour, IRobot
 
         if (_isRandomMove)
         {
-            Vector3 targetPos = new Vector3(_randomPos.x, 0, _randomPos.z);
-            Vector3 direction = (targetPos - transform.position).normalized;
+            if (Mathf.Approximately(Vector3.Distance(transform.position, basePosByZero), 0.2f))
+            {
+                return;
+            }
+            Vector3 targetPos = new Vector3(_randomPos.x, _botBody.position.y, _randomPos.z);
+            Vector3 direction = (targetPos - _botBody.position).normalized;
             Rigidbody.MovePosition(transform.position + direction * _moveSpeed * Time.fixedDeltaTime);
             
             //face bot body to position
@@ -131,7 +136,7 @@ public class Robot : MonoBehaviour, IRobot
     {
         Debug.Log($"RandomMoveCoroutine");
         _isRandomMove = true;
-        _randomPos = _enemyRobot.transform.position;
+        _randomPos = WorldPositionsGenerator.Instance.RandomPosition;
         //TODO Complete func
         yield return new WaitForSeconds(3);
         _isRandomMove = false;

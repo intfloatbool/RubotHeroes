@@ -824,6 +824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1118918402}
+  - component: {fileID: 1118918403}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -859,6 +860,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1118918403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118918401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a4f1a31629b3339a1921871b94635b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _randomPositions: []
 --- !u!1 &1142186321 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1755522722992770, guid: 18353bbdf23cf024cb6e7ccbf0f18af6,
@@ -1635,7 +1649,7 @@ PrefabInstance:
     - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.12
+      value: 1.38
       objectReference: {fileID: 0}
     - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
@@ -1687,6 +1701,36 @@ PrefabInstance:
       propertyPath: _enemyRobot
       value: 
       objectReference: {fileID: 600132947}
+    - target: {fileID: 4914722925613965199, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914722925613965199, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914722925613965199, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914722925613965199, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914722925613965199, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435803873142678868, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca, type: 3}
 --- !u!114 &2724525586086404180 stripped

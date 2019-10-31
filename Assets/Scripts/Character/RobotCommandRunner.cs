@@ -18,6 +18,9 @@ public class RobotCommandRunner : MonoBehaviour
             new JumpCommand(_robot),
             new LaunchMissleCommand(_robot), 
             new RandomMoveCommand(_robot),
+            new RandomMoveCommand(_robot),
+            new RandomMoveCommand(_robot),
+            new RandomMoveCommand(_robot),
             new MeeleAttackCommand(_robot),
             new ProtectionShieldCommand(_robot)
         };

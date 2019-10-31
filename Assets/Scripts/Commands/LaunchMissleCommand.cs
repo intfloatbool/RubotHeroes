@@ -4,16 +4,14 @@ namespace Commands
 {
     public class LaunchMissleCommand: RobotCommand
     {
-        private float _offset;
-        public LaunchMissleCommand(IRobot robot, float offset) : base(robot)
+        public LaunchMissleCommand(IRobot robot) : base(robot)
         {
-            this._offset = offset;
         }
 
         public override void Execute()
         {
             base.Execute();
-            _robot.LaunchMissle(this._offset);
+            _robot.LaunchMissle();
         }
     }
 }

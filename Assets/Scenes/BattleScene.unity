@@ -374,13 +374,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393531851}
-  m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: 0, y: 19.59, z: -16.07}
+  m_LocalRotation: {x: 0.3535534, y: -0.61237246, z: 0.3535534, w: 0.61237246}
+  m_LocalPosition: {x: 11.48, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: -90, z: 0}
 --- !u!114 &393531856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +393,127 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &600132943
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_Name
+      value: RubotPlayer2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154617012696959509, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: _enemyRobot
+      value: 
+      objectReference: {fileID: 2724525586086404180}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca, type: 3}
+--- !u!1 &600132944 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 600132943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &600132945 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8989052326207409964, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 600132943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &600132946 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8980506669773624076, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 600132943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &600132947 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7154617012696959509, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 600132943}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600132944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89444b3fbf22a1161951b9789026f667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &600132948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600132944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4ce11e5c4e2c10a69970a069324f4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robot: {fileID: 600132947}
+  _leftWheel: {fileID: 600132946}
+  _rightWheel: {fileID: 600132945}
+  _speed: 4
+  _forwardVelocity: 0
 --- !u!1001 &616448050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1500,7 +1621,7 @@ PrefabInstance:
     - target: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
       propertyPath: m_Name
-      value: RubotPlayer
+      value: RubotPlayer1
       objectReference: {fileID: 0}
     - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
@@ -1515,7 +1636,7 @@ PrefabInstance:
     - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
@@ -1557,6 +1678,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7154617012696959509, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: _enemyRobot
+      value: 
+      objectReference: {fileID: 600132947}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca, type: 3}
 --- !u!1 &2724525586086404179 stripped
@@ -1590,10 +1716,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _robot: {fileID: 2724525586086404180}
-  _robotPult: {fileID: 873514318}
   _leftWheel: {fileID: 7054049540859910851}
   _rightWheel: {fileID: 7060422539229103843}
   _speed: 4
+  _forwardVelocity: 0
 --- !u!4 &7054049540859910851 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8980506669773624076, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,

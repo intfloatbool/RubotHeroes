@@ -2,16 +2,16 @@ using Abstract;
 
 namespace Commands
 {
-    public class LookAtEnemyCommand: RobotCommand
+    public class RandomMoveCommand: RobotCommand
     {
-        public LookAtEnemyCommand(IRobot robot) : base(robot)
+        public RandomMoveCommand(IRobot robot) : base(robot)
         {
         }
-
+        
         public override void Execute()
         {
             base.Execute();
-            _robot.LookAtEnemy();
+            this._robot.RandomMove();
         }
     }
 }

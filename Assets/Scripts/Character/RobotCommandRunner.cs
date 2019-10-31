@@ -15,14 +15,11 @@ public class RobotCommandRunner : MonoBehaviour
         //TEST Commands
         ICommand[] testCommands =
         {
-            new JumpCommand(_robot), 
-            new GunAttackCommand(_robot, 50),
-            new LaunchMissleCommand(_robot, 25), 
-            new LookAtEnemyCommand(_robot), 
-            new MoveXCommand(_robot, 250),  
-            new MoveYCommand(_robot, 250),  
-            new RotateXCommand(_robot, 500),
-            new RotateYCommand(_robot, 600)
+            new JumpCommand(_robot),
+            new LaunchMissleCommand(_robot), 
+            new RandomMoveCommand(_robot),
+            new MeeleAttackCommand(_robot),
+            new ProtectionShieldCommand(_robot)
         };
         
         RunCommands(testCommands);

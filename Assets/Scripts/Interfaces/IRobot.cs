@@ -5,18 +5,9 @@ public interface IRobot
 {
     bool IsCommandsRunning { get; set; }
     void Jump();
+    void LaunchMissle();
+    void ProtectionShield();
+    void MeeleAttack();
+    void RandomMove();
 
-    void MoveY(float value);
-
-    void MoveX(float value);
-
-    void LaunchMissle(float offset);
-
-    void GunAttack(float offset);
-
-    void RotateX(float value);
-
-    void RotateY(float value);
-
-    void LookAtEnemy();
 }

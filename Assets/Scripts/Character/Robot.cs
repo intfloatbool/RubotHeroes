@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Robot : MonoBehaviour, IRobot
@@ -9,58 +10,55 @@ public class Robot : MonoBehaviour, IRobot
     private Coroutine _currentAction;
 
     public Rigidbody Rigidbody { get; private set; }
+    [SerializeField] private Robot _enemyRobot;
 
     private void Awake()
     {
         this.Rigidbody = GetComponent<Rigidbody>();
     }
+
+    private void FixedUpdate()
+    {
+        Vector3 relativePos = _enemyRobot.transform.position - transform.position;
+
+        // the second argument, upwards, defaults to Vector3.up
+        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        Rigidbody.rotation = rotation;
+        
+    }
+
+    //*** COMMANDS ***
     public void Jump()
     {
         StopActionIfExists();
         _currentAction = StartCoroutine(JumpCoroutine());
     }
+    
 
-    public void MoveY(float value)
+    public void LaunchMissle()
     {
         StopActionIfExists();
-        _currentAction = StartCoroutine(MoveYCoroutine(value));
+        _currentAction = StartCoroutine(LaunchMissleCoroutine());
     }
 
-    public void MoveX(float value)
+    public void ProtectionShield()
     {
         StopActionIfExists();
-        _currentAction = StartCoroutine(MoveXCoroutine(value));
+        _currentAction = StartCoroutine(ProtectionShieldCoroutine());
     }
 
-    public void LaunchMissle(float offset)
+    public void MeeleAttack()
     {
         StopActionIfExists();
-        _currentAction = StartCoroutine(LaunchMissleCoroutine(offset));
+        _currentAction = StartCoroutine(MeeleAttackCoroutine());
     }
 
-    public void GunAttack(float offset)
+    public void RandomMove()
     {
         StopActionIfExists();
-        _currentAction = StartCoroutine(GunAttackCoroutine(offset));
+        _currentAction = StartCoroutine(RandomMoveCoroutine());
     }
 
-    public void RotateX(float value)
-    {
-        StopActionIfExists();
-        _currentAction = StartCoroutine(RotateXCoroutine(value));
-    }
-
-    public void RotateY(float value)
-    {
-        StopActionIfExists();
-        _currentAction = StartCoroutine(RotateYCoroutine(value));
-    }
-
-    public void LookAtEnemy()
-    {
-        StopActionIfExists();
-        _currentAction = StartCoroutine(LookAtEnemyCoroutine());
-    }
 
     private void StopActionIfExists()
     {
@@ -82,76 +80,40 @@ public class Robot : MonoBehaviour, IRobot
 
         yield return null;
     }
-
-    public IEnumerator MoveYCoroutine(float value)
+    
+    public IEnumerator LaunchMissleCoroutine()
     {
-        Debug.Log($"Move Y to {value}");
+        Debug.Log($"Launch missle");
         
         //TODO Complete func
         yield return new WaitForSeconds(1);
         IsCommandsRunning = false;
     }
     
-    public IEnumerator MoveXCoroutine(float value)
+    public IEnumerator ProtectionShieldCoroutine()
     {
-        Debug.Log($"Move X to {value}");
-
-        Vector3 currentPos = transform.position;
-        Vector3 reachedPos = currentPos += Vector3.forward * value;
-
-        while (Vector3.Distance(currentPos, reachedPos) >= 0)
-        {
-            Rigidbody.MovePosition(transform.position + transform.forward * _robotMoveSpeed * Time.fixedDeltaTime);
-            yield return null;
-        }
+        Debug.Log($"ProtectionShieldCoroutine");
         
         //TODO Complete func
         yield return new WaitForSeconds(1);
         IsCommandsRunning = false;
     }
 
-    public IEnumerator LaunchMissleCoroutine(float offset)
+    public IEnumerator MeeleAttackCoroutine()
     {
-        Debug.Log($"Launch missle with offset: {offset}");
+        Debug.Log($"MeeleAttackCoroutine");
         
         //TODO Complete func
         yield return new WaitForSeconds(1);
         IsCommandsRunning = false;
     }
 
-    public IEnumerator GunAttackCoroutine(float offset)
+    public IEnumerator RandomMoveCoroutine()
     {
-        Debug.Log($"Gun attack with offset: {offset}");
+        Debug.Log($"RandomMoveCoroutine");
         
         //TODO Complete func
         yield return new WaitForSeconds(1);
         IsCommandsRunning = false;
-    }
-
-    public IEnumerator RotateXCoroutine(float value)
-    {
-        Debug.Log($"Rotate X to {value}");
-        
-        //TODO Complete func
-        yield return new WaitForSeconds(1);
-        IsCommandsRunning = false;
-    }
-    
-    public IEnumerator RotateYCoroutine(float value)
-    {
-        Debug.Log($"Rotate Y to {value}");
-        
-        //TODO Complete func
-        yield return new WaitForSeconds(1);
-        IsCommandsRunning = false;
-    }
-
-    public IEnumerator LookAtEnemyCoroutine()
-    {
-        Debug.Log($"Look at enemy!");
-        
-        //TODO Complete func
-        yield return new WaitForSeconds(1);
-        IsCommandsRunning = false;
-    }
+    } 
 }

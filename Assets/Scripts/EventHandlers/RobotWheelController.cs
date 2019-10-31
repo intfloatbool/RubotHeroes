@@ -20,8 +20,11 @@ public class RobotWheelController : MonoBehaviour
         {
             return;
         }
-        _leftWheel.Rotate(Vector3.right * _speed * _forwardVelocity * Time.deltaTime);
-        _rightWheel.Rotate(Vector3.right * _speed * _forwardVelocity * Time.deltaTime);
+
+        _forwardVelocity = _robot.Rigidbody.velocity.z > 0 ? -1f : 1f;
+        
+        _leftWheel.Rotate(Vector3.up * _speed * _forwardVelocity * Time.fixedDeltaTime);
+        _rightWheel.Rotate(Vector3.up * _speed * _forwardVelocity * Time.fixedDeltaTime);
     }
     
 }

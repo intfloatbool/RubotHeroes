@@ -59,7 +59,11 @@ public class Missle : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, _detectionDistance))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-
+            if (hit.collider.tag.Contains("MISSLE"))
+            {
+                OnExplode(null);
+                return;
+            }
             RobotStatus status = hit.collider.GetComponent<RobotStatus>();
             if (status != null)
             {

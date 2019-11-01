@@ -1,5 +1,96 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &709304387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 709304388}
+  m_Layer: 8
+  m_Name: RocketHolder_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &709304388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709304387}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 0, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 64107943912117922}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1118674334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1118674335}
+  m_Layer: 8
+  m_Name: RocketHolder_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1118674335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118674334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7, y: 0, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 64107943912117922}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1216919956673842660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1712802686488725763}
+  m_Layer: 8
+  m_Name: Weapons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1712802686488725763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216919956673842660}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 601232663586203445}
+  m_Father: {fileID: 8989114974135694866}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1709223412306382204
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 64107943912117922}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: botHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,6 +119,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8988816987751830712}
+  - {fileID: 709304388}
+  - {fileID: 1118674335}
   m_Father: {fileID: 8989114974135694866}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -40,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2435803873142678868}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4914722925613965199}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,6 +188,53 @@ Transform:
   m_Father: {fileID: 2435803873142678868}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &8711536535258117447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 601232663586203445}
+  - component: {fileID: 6348327125523365931}
+  m_Layer: 8
+  m_Name: RocketLauncher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &601232663586203445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8711536535258117447}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1712802686488725763}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6348327125523365931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8711536535258117447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3853fdd68f27e509fe539caba7dff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sourceOfLaunch: {fileID: 709304388}
+  _secondSourceOfLaunch: {fileID: 1118674335}
+  _misslePrefab: {fileID: 4510331408149661584, guid: 2c37398cb237a2131aa0626de58fd8cd,
+    type: 3}
 --- !u!1 &8982486076417385634
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,9 +248,10 @@ GameObject:
   - component: {fileID: 3836964614203584346}
   - component: {fileID: 2724525586086404182}
   - component: {fileID: 2724525586086404181}
-  m_Layer: 0
+  - component: {fileID: 1618053896}
+  m_Layer: 8
   m_Name: RubotPlayer
-  m_TagString: Untagged
+  m_TagString: Player_1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,6 +269,7 @@ Transform:
   m_Children:
   - {fileID: 64107943912117922}
   - {fileID: 2435803873142678868}
+  - {fileID: 1712802686488725763}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -150,6 +292,8 @@ MonoBehaviour:
   _enemyRobot: {fileID: 0}
   _botBody: {fileID: 2435803873142678868}
   _botHead: {fileID: 64107943912117922}
+  _rocketLauncher: {fileID: 6348327125523365931}
+  _fireGun: {fileID: 0}
 --- !u!65 &3836964614203584346
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -196,6 +340,21 @@ MonoBehaviour:
   _rightWheel: {fileID: 8989052326207409964}
   _speed: 90
   _forwardVelocity: 0
+--- !u!114 &1618053896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982486076417385634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3375f74c59c72520fa5b4770dd53a43e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthPoints: 200
+  _isOnShield: 0
+  _isDead: 0
 --- !u!1 &8982487441426315482
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +366,7 @@ GameObject:
   - component: {fileID: 8989052326207409964}
   - component: {fileID: 8996111475460725312}
   - component: {fileID: 9006197437673883936}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: rightWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +444,7 @@ GameObject:
   - component: {fileID: 8980252232093824452}
   - component: {fileID: 8996874921970000254}
   - component: {fileID: 9006932771902484108}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: axle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +522,7 @@ GameObject:
   - component: {fileID: 8980506669773624076}
   - component: {fileID: 8996788340221735046}
   - component: {fileID: 9006490617534900942}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leftWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -442,7 +601,7 @@ GameObject:
   - component: {fileID: 8996388271914245924}
   - component: {fileID: 9005760114793809550}
   - component: {fileID: 9078210485752326118}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: botBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +699,7 @@ GameObject:
   - component: {fileID: 8980645406219009254}
   - component: {fileID: 8995499600340922508}
   - component: {fileID: 9006944764087282714}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: guns
   m_TagString: Untagged
   m_Icon: {fileID: 0}

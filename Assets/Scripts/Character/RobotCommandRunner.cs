@@ -12,6 +12,8 @@ public class RobotCommandRunner : MonoBehaviour
 
     private Coroutine _runCommandsCoroutine;
 
+    [SerializeField] private bool _isEnabled;
+    
     [SerializeField] private bool _isRandomCommands;
     [SerializeField] private int _countOfRandomCommands = 10;
 
@@ -19,6 +21,9 @@ public class RobotCommandRunner : MonoBehaviour
     
     private void Start()
     {
+        if (!_isEnabled)
+            return;
+        
         IEnumerable<ICommand> commands =
             _isRandomCommands ? GetRandomCommands() : _commandsProvider.GetCommands(_robot);
         
@@ -80,7 +85,7 @@ public class RobotCommandRunner : MonoBehaviour
         //TODO realize more commands!
         
         //READY COMMANDS!
-        int commandsCount = 2;
+        int commandsCount = 3;
         int random = Random.Range(0, commandsCount);
 
         switch (random)
@@ -92,6 +97,10 @@ public class RobotCommandRunner : MonoBehaviour
             case 1:
             {
                 return new RandomMoveCommand(_robot);
+            }
+            case 2:
+            {
+                return new LaunchMissleCommand(_robot);
             }
             default:
             {

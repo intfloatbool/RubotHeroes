@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(RobotStatus))]
 public class Robot : MonoBehaviour, IRobot
 {
 
@@ -9,6 +10,8 @@ public class Robot : MonoBehaviour, IRobot
     [SerializeField] private float _rotSpeed = 4f;
     [SerializeField] private float _jumpStrength = 500f;
 
+    private RobotStatus _robotStatus;
+    public RobotStatus RobotStatus => _robotStatus;
 
     [SerializeField] private float _distanceFromDestiny;
     
@@ -22,17 +25,20 @@ public class Robot : MonoBehaviour, IRobot
     [SerializeField] private Transform _botHead;
     private bool _isRandomMove;
     private Vector3 _randomPos;
+
+    [SerializeField] private WeaponLauncherBase _rocketLauncher;
+    [SerializeField] private WeaponLauncherBase _fireGun;
     
     private void Awake()
     {
+        this._robotStatus = GetComponent<RobotStatus>();
         this.Rigidbody = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
-    {   
-        Vector3 basePosByZero = new Vector3(transform.position.x, 0, transform.position.z);
+    {
         //Face head to enemy 
-        Vector3 enemyTargetPos = new Vector3(_enemyRobot.transform.position.x, 0, _enemyRobot.transform.position.z);
+        Vector3 enemyTargetPos = new Vector3(_enemyRobot.transform.position.x, transform.position.y, _enemyRobot.transform.position.z);
         Vector3 relativeHeadPos = enemyTargetPos - transform.position;
         Quaternion headRotation = Quaternion.LookRotation(relativeHeadPos, Vector3.up);
         _botHead.rotation = Quaternion.Lerp(_botHead.rotation, headRotation, _rotSpeed * Time.fixedDeltaTime);
@@ -126,9 +132,13 @@ public class Robot : MonoBehaviour, IRobot
     {
         Debug.Log($"Launch missle");
         
-        //TODO Complete func
-        yield return new WaitForSeconds(1);
-        IsCommandsRunning = false;
+        _rocketLauncher.LaunchWeapon(gameObject);
+        while (_rocketLauncher.IsInProcess)
+        {
+            yield return null;
+        }
+        yield return new WaitForEndOfFrame();
+        ResetCommandsRunning();
     }
     
     public IEnumerator ProtectionShieldCoroutine()
@@ -137,7 +147,7 @@ public class Robot : MonoBehaviour, IRobot
         
         //TODO Complete func
         yield return new WaitForSeconds(1);
-        IsCommandsRunning = false;
+        ResetCommandsRunning();
     }
 
     public IEnumerator MeeleAttackCoroutine()
@@ -146,7 +156,7 @@ public class Robot : MonoBehaviour, IRobot
         
         //TODO Complete func
         yield return new WaitForSeconds(1);
-        IsCommandsRunning = false;
+        ResetCommandsRunning();
     }
 
     public IEnumerator RandomMoveCoroutine()
@@ -157,6 +167,12 @@ public class Robot : MonoBehaviour, IRobot
         //TODO Complete func
         yield return new WaitForSeconds(3);
         _isRandomMove = false;
+        ResetCommandsRunning();
+    }
+
+
+    private void ResetCommandsRunning()
+    {
         IsCommandsRunning = false;
-    } 
+    }
 }

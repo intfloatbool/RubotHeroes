@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 393531855}
   - component: {fileID: 393531854}
   - component: {fileID: 393531853}
-  - component: {fileID: 393531856}
+  - component: {fileID: 393531852}
   m_Layer: 10
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -317,6 +317,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!81 &393531852
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393531851}
+  m_Enabled: 1
 --- !u!124 &393531853
 Behaviour:
   m_ObjectHideFlags: 0
@@ -382,18 +390,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 60, y: -90, z: 0}
---- !u!114 &393531856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 393531851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &491976505
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,8 +436,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _robot: {fileID: 984311763}
   _robotPult: {fileID: 491976508}
+  _isEnabled: 1
   _isRandomCommands: 1
-  _countOfRandomCommands: 10
+  _countOfRandomCommands: 20
   _commandsProvider: {fileID: 0}
 --- !u!114 &491976508
 MonoBehaviour:
@@ -653,8 +650,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _robot: {fileID: 2724525586086404180}
   _robotPult: {fileID: 873514318}
+  _isEnabled: 1
   _isRandomCommands: 1
-  _countOfRandomCommands: 10
+  _countOfRandomCommands: 20
   _commandsProvider: {fileID: 0}
 --- !u!114 &873514318
 MonoBehaviour:
@@ -679,6 +677,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RubotPlayer2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player_2
       objectReference: {fileID: 0}
     - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}

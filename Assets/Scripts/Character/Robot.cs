@@ -23,6 +23,9 @@ public class Robot : MonoBehaviour, IRobot
     [SerializeField] private Robot _enemyRobot;
     [SerializeField] private Transform _botBody;
     [SerializeField] private Transform _botHead;
+
+    public Transform BotHead => _botHead;
+
     private bool _isRandomMove;
     private Vector3 _randomPos;
 

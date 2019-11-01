@@ -28,6 +28,10 @@ public class Robot : MonoBehaviour, IRobot
 
     [SerializeField] private WeaponLauncherBase _rocketLauncher;
     [SerializeField] private WeaponLauncherBase _fireGun;
+
+    private bool _isStunned = false;
+
+    public bool IsLanding => Mathf.Approximately(Rigidbody.velocity.y, 0f);
     
     private void Awake()
     {
@@ -45,6 +49,9 @@ public class Robot : MonoBehaviour, IRobot
 
         if (_isRandomMove)
         {
+            if (_isStunned)
+                return;
+            
             Vector3 targetPos = new Vector3(_randomPos.x, _botBody.position.y, _randomPos.z);
             Vector3 direction = (targetPos - _botBody.position).normalized;
             _distanceFromDestiny = Vector3.Distance(_botBody.position, targetPos);
@@ -120,6 +127,11 @@ public class Robot : MonoBehaviour, IRobot
         {
             yield return null;
         }
+
+        while (_isStunned)
+        {
+            yield return null;
+        }
         
         yield return new WaitForFixedUpdate();
         yield return new WaitForSeconds(1);
@@ -174,5 +186,19 @@ public class Robot : MonoBehaviour, IRobot
     private void ResetCommandsRunning()
     {
         IsCommandsRunning = false;
+    }
+
+    public void MakeStun()
+    {
+        if (!_isStunned)
+            StartCoroutine(MakeStunCoroutine());
+    }
+
+    private IEnumerator MakeStunCoroutine()
+    {
+        _isStunned = true;
+        float time = 2f;
+        yield return new WaitForSeconds(time);
+        _isStunned = false;
     }
 }

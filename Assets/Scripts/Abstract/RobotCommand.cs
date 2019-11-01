@@ -2,6 +2,7 @@ namespace Abstract
 {
     public abstract class RobotCommand: ICommand
     {
+        public CommandType CommandType { get; protected set; }
         protected IRobot _robot;
         public RobotCommand(IRobot robot)
         {

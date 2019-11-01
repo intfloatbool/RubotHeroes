@@ -6,6 +6,7 @@ namespace Commands
     {
         public ProtectionShieldCommand(IRobot robot) : base(robot)
         {
+            this.CommandType = CommandType.PROTECTED_SHIELD;
         }
         
         public override void Execute()

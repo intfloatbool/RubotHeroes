@@ -6,6 +6,7 @@ namespace Commands
     {
         public RandomMoveCommand(IRobot robot) : base(robot)
         {
+            this.CommandType = CommandType.RANDOM_MOVE;
         }
         
         public override void Execute()

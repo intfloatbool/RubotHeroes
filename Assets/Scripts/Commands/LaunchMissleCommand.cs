@@ -6,6 +6,8 @@ namespace Commands
     {
         public LaunchMissleCommand(IRobot robot) : base(robot)
         {
+            this.CommandType = CommandType.LAUNCH_MISSLE;
+
         }
 
         public override void Execute()

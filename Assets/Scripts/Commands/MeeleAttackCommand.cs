@@ -6,6 +6,8 @@ namespace Commands
     {
         public MeeleAttackCommand(IRobot robot) : base(robot)
         {
+            this.CommandType = CommandType.MEELE_ATTACK;
+
         }
         
         public override void Execute()

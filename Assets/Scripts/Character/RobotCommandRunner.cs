@@ -47,8 +47,9 @@ public class RobotCommandRunner : MonoBehaviour
         {
             _robotPult.SetCommand(command);
             _robotPult.Run();
-
-            while (_robot.IsCommandsRunning)
+            
+            //Wait until commands execute
+            while (_robot.IsCommandsRunning )
             {
                 yield return null;
             }

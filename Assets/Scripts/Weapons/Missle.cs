@@ -14,14 +14,19 @@ public class Missle : MonoBehaviour
     [SerializeField] private float _maxSpeed = 7f;
     [SerializeField] private float _randomedSpeed;
 
-    [SerializeField] private float _detectionDistance = 1f;
+    [SerializeField] private float _detectionDistance = 0.5f;
 
     [SerializeField] private float _lifeTime = 15f;
-    
+
+    [SerializeField] private float _explodePower = 60f;
+    private Collider _collider;
     private bool _isExploded;
+
+    private Vector3 _lastPosition;
     
     private void Awake()
     {
+        _collider = GetComponent<Collider>();
         CalculateRandomValues();
     }
 
@@ -56,18 +61,20 @@ public class Missle : MonoBehaviour
     private void DetectionLoop()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, _detectionDistance))
+        Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
+        if (Physics.SphereCast(ray, 0.3f, out hit, _detectionDistance))
         {
+            _lastPosition = hit.point;
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             if (hit.collider.tag.Contains("MISSLE"))
             {
                 OnExplode(null);
                 return;
             }
-            RobotStatus status = hit.collider.GetComponent<RobotStatus>();
-            if (status != null)
+            Robot robot = hit.collider.GetComponent<Robot>();
+            if (robot != null)
             {
-                OnExplode(status);
+                OnExplode(robot);
             }
             
             Debug.Log("Did Hit : " + hit.collider.gameObject.name);
@@ -79,11 +86,19 @@ public class Missle : MonoBehaviour
         }
     }    
 
-    private void OnExplode(RobotStatus robotStatus)
+    private void OnExplode(Robot robot)
     {
+        _collider.enabled = false;
         _isExploded = true;
-        if(robotStatus != null)
-            robotStatus.AddDamage(_randomedDamage);
+        if (robot != null)
+        {
+            robot.RobotStatus.AddDamage(_randomedDamage);
+            Vector3 relativePos = _lastPosition - transform.position;
+            Vector3 positionToForce = new Vector3(transform.position.x, robot.transform.position.y, transform.position.z).normalized;
+            robot.MakeStun();
+            robot.Rigidbody.AddForce(relativePos.normalized * _explodePower * _randomedDamage);
+        }
+            
         _missleBody.SetActive(false);
         _missleExposionEffect.SetActive(true);
         Destroy(this.gameObject, 2f);

@@ -6,6 +6,7 @@ namespace Commands
     {
         public JumpCommand(IRobot robot) : base(robot)
         {
+            this.CommandType = CommandType.JUMP;
         }
 
         public override void Execute()

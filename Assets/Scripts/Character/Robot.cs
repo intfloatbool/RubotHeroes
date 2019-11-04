@@ -87,23 +87,28 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
         {
             if (_isStunned)
                 return;
-            
-            Vector3 targetPos = new Vector3(_randomPos.x, _botBody.position.y, _randomPos.z);
-            Vector3 direction = (targetPos - _botBody.position).normalized;
-            _distanceFromDestiny = Vector3.Distance(_botBody.position, targetPos);
-            if (_distanceFromDestiny <= 0.5f)
-            {
-                return;
-            }
-            
-            Rigidbody.velocity = direction * _moveSpeed * Time.fixedDeltaTime;
 
-            //face bot body to position
-            Vector3 relativeBodyPos = targetPos - transform.position;
-            Quaternion bodyRotation = Quaternion.LookRotation(relativeBodyPos, Vector3.up);
-            _botBody.rotation = Quaternion.Lerp(_botBody.rotation, bodyRotation, _rotSpeed * Time.fixedDeltaTime);
+            MoveLoop(_randomPos);
         }
         
+    }
+
+    private void MoveLoop(Vector3 target)
+    {
+        Vector3 targetPos = new Vector3(target.x, _botBody.position.y, target.z);
+        Vector3 direction = (targetPos - _botBody.position).normalized;
+        _distanceFromDestiny = Vector3.Distance(_botBody.position, targetPos);
+        if (_distanceFromDestiny <= 0.5f)
+        {
+            return;
+        }
+            
+        Rigidbody.velocity = direction * _moveSpeed * Time.fixedDeltaTime;
+
+        //face bot body to position
+        Vector3 relativeBodyPos = targetPos - transform.position;
+        Quaternion bodyRotation = Quaternion.LookRotation(relativeBodyPos, Vector3.up);
+        _botBody.rotation = Quaternion.Lerp(_botBody.rotation, bodyRotation, _rotSpeed * Time.fixedDeltaTime);
     }
 
     //*** COMMANDS ***
@@ -194,8 +199,19 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
 
     public IEnumerator MeeleAttackCoroutine()
     {
-        //TODO Complete func
-        yield return new WaitForSeconds(1);
+        _distanceFromDestiny = 2.5f;
+        while (_distanceFromDestiny >= 2.5f)
+        {
+            MoveLoop(EnemyRobot.transform.position);
+            yield return null;
+        }
+        
+        _fireGun.LaunchWeapon(gameObject);
+        while (_fireGun.IsInProcess)
+        {
+            yield return null;
+        }
+        yield return new WaitForEndOfFrame();
         ResetCommandsRunning();
     }
 

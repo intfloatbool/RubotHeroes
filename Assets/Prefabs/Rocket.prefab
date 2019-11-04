@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e543721baa278f5ea78973400277239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxDamage: 200
+  _maxDamage: 30
   _randomedDamage: 0
   _missleBody: {fileID: 5887275397059980329}
   _missleExposionEffect: {fileID: 3158633558629274863}

@@ -72,20 +72,6 @@ public class RobotCommandRunner : MonoBehaviour
     
     private IEnumerable<ICommand> GetRandomCommands()
     {
-        //TEST Commands
-        ICommand[] testCommands =
-        {
-            new JumpCommand(_robot),
-            new LaunchMissleCommand(_robot), 
-            new RandomMoveCommand(_robot),
-            new JumpCommand(_robot),
-            new RandomMoveCommand(_robot),
-            new JumpCommand(_robot),
-            new RandomMoveCommand(_robot),
-            new MeeleAttackCommand(_robot),
-            new ProtectionShieldCommand(_robot)
-        };
-
         for (int i = 0; i < _countOfRandomCommands; i++)
         {
             yield return GetRandomCommand();
@@ -98,7 +84,7 @@ public class RobotCommandRunner : MonoBehaviour
         //TODO realize more commands!
         
         //READY COMMANDS!
-        int commandsCount = 3;
+        int commandsCount = 4;
         int random = Random.Range(0, commandsCount);
 
         switch (random)
@@ -114,6 +100,10 @@ public class RobotCommandRunner : MonoBehaviour
             case 2:
             {
                 return new LaunchMissleCommand(_robot);
+            }
+            case 3:
+            {
+                return new MeeleAttackCommand(_robot);
             }
             default:
             {

@@ -216,6 +216,8 @@ MonoBehaviour:
   _commandsWithSounds:
   - CommandType: 0
     AudioClip: {fileID: 8300000, guid: 233fc0adbb227c194a75c1e267f83db9, type: 3}
+  - CommandType: 3
+    AudioClip: {fileID: 8300000, guid: c984ce1688394a699b43159d8a6cec9a, type: 3}
 --- !u!114 &58684489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005,11 +1007,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RubotPlayer2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player_2
       objectReference: {fileID: 0}
     - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}

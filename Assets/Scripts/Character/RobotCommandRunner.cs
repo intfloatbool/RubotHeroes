@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 public class RobotCommandRunner : MonoBehaviour
 {
     [SerializeField] private Robot _robot;
+    public Robot Robot => _robot;
+
     [SerializeField] private RobotPult _robotPult;
 
     private Coroutine _runCommandsCoroutine;
@@ -34,8 +36,8 @@ public class RobotCommandRunner : MonoBehaviour
     {
         if (_runCommandsCoroutine != null)
         {
-            Debug.LogError("Cannot run commands coroutine! Commands already executed!");
-            return;
+            Debug.Log($" {gameObject.name} : Commands changed!");
+            StopCoroutine(_runCommandsCoroutine);
         }
 
         _runCommandsCoroutine = StartCoroutine(RunCommandsCoroutine(commands));

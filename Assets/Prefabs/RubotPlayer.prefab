@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 1847959807983819339}
   - component: {fileID: 6923666765582619954}
   - component: {fileID: 6836343781366585861}
+  - component: {fileID: 5460767372857679953}
   m_Layer: 8
   m_Name: RubotPlayer
   m_TagString: Player_1
@@ -571,6 +572,21 @@ MonoBehaviour:
   _audioSource: {fileID: 1847959807983819339}
   _robot: {fileID: 7154617012696959509}
   _blowEffect: {fileID: 2375947362845702751}
+--- !u!114 &5460767372857679953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982486076417385634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62312aed980b1acdaa2e9333e0a5232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robot: {fileID: 7154617012696959509}
+  _distance: 2
+  _power: 500
 --- !u!1 &8982487441426315482
 GameObject:
   m_ObjectHideFlags: 0

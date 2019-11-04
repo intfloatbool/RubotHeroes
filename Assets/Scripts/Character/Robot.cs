@@ -23,6 +23,8 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
     public Rigidbody Rigidbody { get; private set; }
     private Collider _collider;
     [SerializeField] private Robot _enemyRobot;
+    public Robot EnemyRobot => _enemyRobot;
+    
     [SerializeField] private Transform _botBody;
     [SerializeField] private Transform _botHead;
 
@@ -58,8 +60,8 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
     private void OnDead()
     {
         StopActionIfExists();
-        this._collider.enabled = false;
-
+        SphereCollider col = (SphereCollider) this._collider;
+        col.radius /= 3f;
     }
 
     private void FixedUpdate()
@@ -68,11 +70,19 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
             return;
         
         //Face head to enemy 
-        Vector3 enemyTargetPos = new Vector3(_enemyRobot.transform.position.x, transform.position.y, _enemyRobot.transform.position.z);
-        Vector3 relativeHeadPos = enemyTargetPos - transform.position;
-        Quaternion headRotation = Quaternion.LookRotation(relativeHeadPos, Vector3.up);
-        _botHead.rotation = Quaternion.Lerp(_botHead.rotation, headRotation, _rotSpeed * Time.fixedDeltaTime);
-
+        if (!_enemyRobot._robotStatus.IsDead)
+        {
+            Vector3 enemyTargetPos = new Vector3(_enemyRobot.transform.position.x, transform.position.y, _enemyRobot.transform.position.z);
+            Vector3 relativeHeadPos = enemyTargetPos - transform.position;
+            Quaternion headRotation = Quaternion.LookRotation(relativeHeadPos, Vector3.up);
+            _botHead.rotation = Quaternion.Lerp(_botHead.rotation, headRotation, _rotSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            //Rotate a robot head becouse the enemy is dead and its funny!!
+            _botHead.Rotate(Vector3.up * (_rotSpeed * 50f) * Time.deltaTime);
+        }
+        
         if (_isRandomMove)
         {
             if (_isStunned)
@@ -141,8 +151,6 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
     // * * * COROUTINES * * *
     public IEnumerator JumpCoroutine()
     {
-        Debug.Log("Jump!");
-        
         Rigidbody.AddForce(Vector3.up * _jumpStrength);
         
         //TODO Complete func
@@ -168,8 +176,6 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
     
     public IEnumerator LaunchMissleCoroutine()
     {
-        Debug.Log($"Launch missle");
-        
         _rocketLauncher.LaunchWeapon(gameObject);
         while (_rocketLauncher.IsInProcess)
         {
@@ -181,8 +187,6 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
     
     public IEnumerator ProtectionShieldCoroutine()
     {
-        Debug.Log($"ProtectionShieldCoroutine");
-        
         //TODO Complete func
         yield return new WaitForSeconds(1);
         ResetCommandsRunning();
@@ -190,8 +194,6 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
 
     public IEnumerator MeeleAttackCoroutine()
     {
-        Debug.Log($"MeeleAttackCoroutine");
-        
         //TODO Complete func
         yield return new WaitForSeconds(1);
         ResetCommandsRunning();
@@ -199,7 +201,6 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
 
     public IEnumerator RandomMoveCoroutine()
     {
-        Debug.Log($"RandomMoveCoroutine");
         _isRandomMove = true;
         _randomPos = WorldPositionsGenerator.Instance.RandomPosition;
         //TODO Complete func

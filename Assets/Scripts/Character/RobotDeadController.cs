@@ -36,6 +36,7 @@ public class RobotDeadController : MonoBehaviour, IDeadController
         _blowEffect.SetActive(true);
         _audioSource.volume = 1f;
         _audioSource.PlayOneShot(_exposionClip);
+        _audioSource.loop = false;
     }
     
     private IEnumerable<Rigidbody> GetRobotBody()

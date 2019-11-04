@@ -77,6 +77,11 @@ public class Missle : MonoBehaviour
             Robot robot = hit.collider.GetComponent<Robot>();
             if (robot != null)
             {
+                if (robot.RobotStatus.IsOnShield)
+                {
+                    Inverse();
+                    return;
+                }
                 OnExplode(robot);
             }
         }
@@ -102,6 +107,11 @@ public class Missle : MonoBehaviour
         _missleBody.SetActive(false);
         _missleExposionEffect.SetActive(true);
         Destroy(this.gameObject, 2f);
+    }
+
+    private void Inverse()
+    {
+        transform.rotation = Quaternion.Euler(-transform.eulerAngles);
     }
     
     

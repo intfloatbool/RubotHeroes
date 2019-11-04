@@ -27,6 +27,7 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
     
     [SerializeField] private Transform _botBody;
     [SerializeField] private Transform _botHead;
+    [SerializeField] private GameObject _shieldEffect;
 
     public Transform BotHead => _botHead;
 
@@ -192,8 +193,11 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
     
     public IEnumerator ProtectionShieldCoroutine()
     {
-        //TODO Complete func
-        yield return new WaitForSeconds(1);
+        _robotStatus.IsOnShield = true;
+        _shieldEffect.SetActive(true);
+        yield return new WaitForSeconds(2);
+        _shieldEffect.SetActive(false);
+        _robotStatus.IsOnShield = false;
         ResetCommandsRunning();
     }
 

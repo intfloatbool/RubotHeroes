@@ -84,7 +84,7 @@ public class RobotCommandRunner : MonoBehaviour
         //TODO realize more commands!
         
         //READY COMMANDS!
-        int commandsCount = 4;
+        int commandsCount = 5;
         int random = Random.Range(0, commandsCount);
 
         switch (random)
@@ -104,6 +104,10 @@ public class RobotCommandRunner : MonoBehaviour
             case 3:
             {
                 return new MeeleAttackCommand(_robot);
+            }
+            case 4:
+            {
+                return new ProtectionShieldCommand(_robot);
             }
             default:
             {

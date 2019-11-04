@@ -17,6 +17,9 @@ public class RobotWheelController : MonoBehaviour
     [SerializeField] private float _forwardVelocity;
     private void FixedUpdate()
     {
+        if (_robot.RobotStatus.IsDead)
+            return;
+        
         _engineSource.volume = Mathf.Abs(_robot.Rigidbody.velocity.normalized.z);
         _forwardVelocity = _robot.Rigidbody.velocity.z;
         if (Mathf.Approximately(_forwardVelocity, 0f))

@@ -3,8 +3,9 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(RobotStatus))]
-public class Robot : MonoBehaviour, IRobot
+public class Robot : MonoBehaviour, IRobot, IDeadable
 {
+    public event Action OnDeath = () => { };
 
     [SerializeField] private float _moveSpeed = 0.4f;
     [SerializeField] private float _rotSpeed = 4f;
@@ -20,6 +21,7 @@ public class Robot : MonoBehaviour, IRobot
     private Coroutine _currentAction;
 
     public Rigidbody Rigidbody { get; private set; }
+    private Collider _collider;
     [SerializeField] private Robot _enemyRobot;
     [SerializeField] private Transform _botBody;
     [SerializeField] private Transform _botHead;
@@ -35,15 +37,36 @@ public class Robot : MonoBehaviour, IRobot
     private bool _isStunned = false;
 
     public bool IsLanding => Mathf.Approximately(Rigidbody.velocity.y, 0f);
-    
+
     private void Awake()
     {
         this._robotStatus = GetComponent<RobotStatus>();
         this.Rigidbody = GetComponent<Rigidbody>();
+        this._collider = GetComponent<Collider>();
+        this._robotStatus.OnDamaged += DeadControlListening;
+    }
+
+    private void DeadControlListening(float currentHP)
+    {
+        if (this._robotStatus.IsDead)
+        {
+            OnDead();
+            OnDeath.Invoke();
+        }
+    }
+
+    private void OnDead()
+    {
+        StopActionIfExists();
+        this._collider.enabled = false;
+
     }
 
     private void FixedUpdate()
     {
+        if (_robotStatus.IsDead)
+            return;
+        
         //Face head to enemy 
         Vector3 enemyTargetPos = new Vector3(_enemyRobot.transform.position.x, transform.position.y, _enemyRobot.transform.position.z);
         Vector3 relativeHeadPos = enemyTargetPos - transform.position;

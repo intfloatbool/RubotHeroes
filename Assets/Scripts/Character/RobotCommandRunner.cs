@@ -43,16 +43,26 @@ public class RobotCommandRunner : MonoBehaviour
 
     private IEnumerator RunCommandsCoroutine(IEnumerable<ICommand> commands)
     {
-        foreach (ICommand command in commands)
+        while (!_robot.RobotStatus.IsDead)
         {
-            _robotPult.SetCommand(command);
-            _robotPult.Run();
-            
-            //Wait until commands execute
-            while (_robot.IsCommandsRunning )
+            foreach (ICommand command in commands)
             {
-                yield return null;
+                if (_robot.RobotStatus.IsDead)
+                    yield break;
+                
+                _robotPult.SetCommand(command);
+                _robotPult.Run();
+                
+                //Wait until commands execute
+                while (_robot.IsCommandsRunning )
+                {
+                    if (_robot.RobotStatus.IsDead)
+                        yield break;
+                    yield return null;
+                }
             }
+
+            yield return null;
         }
 
         _runCommandsCoroutine = null;

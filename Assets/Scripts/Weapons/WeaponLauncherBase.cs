@@ -5,8 +5,9 @@ using UnityEngine;
 public abstract class WeaponLauncherBase : MonoBehaviour
 {
     [SerializeField] protected Transform _sourceOfLaunch;
-
     [SerializeField] protected bool _isInProcess;
+
+    protected Coroutine _currentCoroutine;
 
     public bool IsInProcess
     {
@@ -30,9 +31,19 @@ public abstract class WeaponLauncherBase : MonoBehaviour
 
     protected virtual IEnumerator WeaponProcessCoroutine()
     {
-        yield return StartCoroutine(OnLaunchedCoroutine(this._sender));
+        _currentCoroutine = StartCoroutine(OnLaunchedCoroutine(this._sender));
+        yield return _currentCoroutine;
+        _currentCoroutine = null;
         IsInProcess = false;
     }
 
     protected abstract IEnumerator OnLaunchedCoroutine(GameObject sender);
+
+    public void StopWeapon()
+    {
+        if(_currentCoroutine != null)
+            StopCoroutine(_currentCoroutine);
+        IsInProcess = false;
+        
+    }
 }

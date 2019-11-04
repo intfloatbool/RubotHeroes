@@ -777,9 +777,9 @@ MonoBehaviour:
   _robot: {fileID: 984311763}
   _robotPult: {fileID: 491976508}
   _isEnabled: 1
-  _isRandomCommands: 0
+  _isRandomCommands: 1
   _countOfRandomCommands: 30
-  _commandsProvider: {fileID: 521802413}
+  _commandsProvider: {fileID: 0}
 --- !u!114 &491976508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1074,9 +1074,9 @@ MonoBehaviour:
   _robot: {fileID: 2724525586086404180}
   _robotPult: {fileID: 873514318}
   _isEnabled: 1
-  _isRandomCommands: 0
+  _isRandomCommands: 1
   _countOfRandomCommands: 30
-  _commandsProvider: {fileID: 1355254397}
+  _commandsProvider: {fileID: 0}
 --- !u!114 &873514318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1359,7 +1359,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1028030321}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1664045535}
+        m_MethodName: GoToMenuScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1028030321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2029,6 +2040,87 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1663660188}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1664045534
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7448410462179199900, guid: 9e105f51f081fc8e4b88f658fc751293,
+        type: 3}
+      propertyPath: m_Name
+      value: ScenesSwitcher
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448410462179199902, guid: 9e105f51f081fc8e4b88f658fc751293,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448410462179199902, guid: 9e105f51f081fc8e4b88f658fc751293,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448410462179199902, guid: 9e105f51f081fc8e4b88f658fc751293,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448410462179199902, guid: 9e105f51f081fc8e4b88f658fc751293,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448410462179199902, guid: 9e105f51f081fc8e4b88f658fc751293,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448410462179199902, guid: 9e105f51f081fc8e4b88f658fc751293,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448410462179199902, guid: 9e105f51f081fc8e4b88f658fc751293,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448410462179199902, guid: 9e105f51f081fc8e4b88f658fc751293,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448410462179199902, guid: 9e105f51f081fc8e4b88f658fc751293,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448410462179199902, guid: 9e105f51f081fc8e4b88f658fc751293,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448410462179199902, guid: 9e105f51f081fc8e4b88f658fc751293,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9e105f51f081fc8e4b88f658fc751293, type: 3}
+--- !u!114 &1664045535 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7448410462179199903, guid: 9e105f51f081fc8e4b88f658fc751293,
+    type: 3}
+  m_PrefabInstance: {fileID: 1664045534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca77e931b48de2edf8e0eed1fe2d8e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1689615801
 PrefabInstance:
   m_ObjectHideFlags: 0

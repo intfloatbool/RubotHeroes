@@ -3,11 +3,11 @@ using Commands;
 
 public class SecondTestCommandsProvider : CommandsProviderBase
 {
-    public override IEnumerable<ICommand> GetCommands(Robot robot)
+    public override IEnumerable<CommandType> GetCommands(Robot robot)
     {
         return new[]
         {
-            new LaunchMissleCommand(robot)
+            CommandType.MEELE_ATTACK
         };
     }
 }

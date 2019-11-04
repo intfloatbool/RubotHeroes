@@ -3,5 +3,5 @@ using UnityEngine;
 
 public abstract class CommandsProviderBase : MonoBehaviour
 {
-    public abstract IEnumerable<ICommand> GetCommands(Robot robot);
+    public abstract IEnumerable<CommandType> GetCommands(Robot robot);
 }

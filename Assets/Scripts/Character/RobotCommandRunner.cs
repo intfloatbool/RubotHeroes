@@ -25,9 +25,25 @@ public class RobotCommandRunner : MonoBehaviour
     {
         if (!_isEnabled)
             return;
-        
-        IEnumerable<ICommand> commands =
-            _isRandomCommands ? GetRandomCommands() : _commandsProvider.GetCommands(_robot);
+
+        IEnumerable<CommandType> commandTypes =
+            _commandsProvider != null ? _commandsProvider.GetCommands(_robot) : null;
+        IEnumerable<ICommand> commands = null;
+        if (_isRandomCommands)
+        {
+            commands = GetRandomCommands();
+        }
+        else
+        {
+            if (commandTypes == null)
+            {
+                commands = GetRandomCommands();
+            }
+            else
+            {
+                commands = GetCommandsByTypes(commandTypes);
+            }
+        }
         
         RunCommands(commands);
     }
@@ -79,10 +95,45 @@ public class RobotCommandRunner : MonoBehaviour
 
     }
 
+    private IEnumerable<ICommand> GetCommandsByTypes(IEnumerable<CommandType> commandTypes)
+    {
+        foreach (CommandType type in commandTypes)
+        {
+            yield return GetCommandByType(type);
+        }
+    }
+    private ICommand GetCommandByType(CommandType commandType)
+    {
+        switch (commandType)
+        {
+            case CommandType.JUMP:
+            {
+               return new JumpCommand(_robot); 
+            }
+            case CommandType.RANDOM_MOVE:
+            {
+                return new RandomMoveCommand(_robot); 
+            }
+            case CommandType.MEELE_ATTACK:
+            {
+                return new MeeleAttackCommand(_robot); 
+            }
+            case CommandType.LAUNCH_MISSLE:
+            {
+                return new LaunchMissleCommand(_robot); 
+            }
+            case CommandType.PROTECTED_SHIELD:
+            {
+                return new ProtectionShieldCommand(_robot); 
+            }
+            default:
+                throw new Exception($"Command with type {commandType} not found!!!");
+        }
+    }
+    
     private ICommand GetRandomCommand()
     {
         //TODO realize more commands!
-        
         //READY COMMANDS!
         int commandsCount = 5;
         int random = Random.Range(0, commandsCount);

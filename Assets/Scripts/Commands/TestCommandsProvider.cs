@@ -3,11 +3,11 @@ using Commands;
 
 public class TestCommandsProvider : CommandsProviderBase
 {
-    public override IEnumerable<ICommand> GetCommands(Robot robot)
+    public override IEnumerable<CommandType> GetCommands(Robot robot)
     {
         return new[]
         {
-            new ProtectionShieldCommand(robot) 
+            CommandType.PROTECTED_SHIELD
         };
     }
 }

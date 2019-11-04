@@ -68,6 +68,9 @@ public class Missle : MonoBehaviour
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             if (hit.collider.tag.Contains("MISSLE"))
             {
+                Missle crossMissle = hit.collider.GetComponent<Missle>();
+                
+                crossMissle.OnExplode(null);
                 OnExplode(null);
                 return;
             }
@@ -76,13 +79,10 @@ public class Missle : MonoBehaviour
             {
                 OnExplode(robot);
             }
-            
-            Debug.Log("Did Hit : " + hit.collider.gameObject.name);
         }
         else
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-            Debug.Log("Did not Hit");
         }
     }    
 

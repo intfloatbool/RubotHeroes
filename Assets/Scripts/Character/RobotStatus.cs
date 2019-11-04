@@ -29,12 +29,12 @@ public class RobotStatus : MonoBehaviour
         }
     }
 
-    public event Action OnDamaged = () => { };
+    public event Action<float> OnDamaged = (currHp) => { };
 
     public void AddDamage(float dmg)
     {
         this._healthPoints -= dmg;
-        OnDamaged.Invoke();
+        OnDamaged.Invoke(_healthPoints);
     }
 
 }

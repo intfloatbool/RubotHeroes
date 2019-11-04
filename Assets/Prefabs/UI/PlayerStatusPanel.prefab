@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2993296110780342701}
   - component: {fileID: 2993296110780342691}
   - component: {fileID: 2993296110780342690}
+  - component: {fileID: 6851140186446203548}
   m_Layer: 5
   m_Name: PlayerStatusPanel
   m_TagString: Untagged
@@ -75,6 +76,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6851140186446203548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2993296110780342700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078efd661cb443967ab378a0b3e52d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hpBar: {fileID: 2993296111723049453}
+  _colorIdentyIcon: {fileID: 2993296112315994259}
+  _robotStatus: {fileID: 0}
+  _changeSpeed: 4
 --- !u!1 &2993296111450001801
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +200,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.00008392334, y: 0}
-  m_SizeDelta: {x: 406.7, y: 100}
+  m_SizeDelta: {x: 400.67, y: 98.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2993296111723049442
 CanvasRenderer:
@@ -232,6 +249,7 @@ GameObject:
   - component: {fileID: 2993296111823151284}
   - component: {fileID: 2993296111823151178}
   - component: {fileID: 2993296111823151285}
+  - component: {fileID: 5493800228424430949}
   m_Layer: 5
   m_Name: hpBarBack
   m_TagString: Untagged
@@ -295,6 +313,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5493800228424430949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2993296111823151287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2993296112315994269
 GameObject:
   m_ObjectHideFlags: 0

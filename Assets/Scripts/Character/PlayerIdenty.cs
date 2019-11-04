@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerIdenty : MonoBehaviour
 {
+    public static PlayerIdenty Instance { get; private set; }
     public enum PlayerOwner
     {
         PLAYER_1,
@@ -16,6 +17,14 @@ public class PlayerIdenty : MonoBehaviour
     [SerializeField] private Robot[] _robots;
     [SerializeField] private Dictionary<PlayerOwner, Color> _playerIdentyDict = new Dictionary<PlayerOwner, Color>();
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+    
     private void Start()
     {
         InitializeDict();
@@ -38,7 +47,7 @@ public class PlayerIdenty : MonoBehaviour
         }
     }
      
-    private Color GetColorByOwner(PlayerOwner owner)
+    public Color GetColorByOwner(PlayerOwner owner)
     {
         switch (owner)
         {

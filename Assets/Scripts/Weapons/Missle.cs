@@ -79,7 +79,7 @@ public class Missle : MonoBehaviour
             {
                 if (robot.RobotStatus.IsOnShield)
                 {
-                    Inverse();
+                    Inverse(robot);
                     return;
                 }
                 OnExplode(robot);
@@ -109,9 +109,9 @@ public class Missle : MonoBehaviour
         Destroy(this.gameObject, 2f);
     }
 
-    private void Inverse()
+    private void Inverse(Robot target)
     {
-        transform.rotation = Quaternion.Euler(-transform.eulerAngles);
+        transform.rotation = Quaternion.Inverse(target.transform.rotation);
     }
     
     

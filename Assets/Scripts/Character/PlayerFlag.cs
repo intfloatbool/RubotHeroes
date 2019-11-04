@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerFlag : MonoBehaviour
 {
-    [SerializeField] private SkinnedMeshRenderer _meshRenderer;
+    [SerializeField] private MeshRenderer _meshRenderer;
 
     public void InitializeFlag(Color color)
     {

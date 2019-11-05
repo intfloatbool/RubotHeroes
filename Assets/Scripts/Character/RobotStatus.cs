@@ -35,7 +35,6 @@ public class RobotStatus : MonoBehaviour
     {
         if (IsDead)
             return;
-        
         this._healthPoints -= dmg;
         OnDamaged.Invoke(_healthPoints);
     }

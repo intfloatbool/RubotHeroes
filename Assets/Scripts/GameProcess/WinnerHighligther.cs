@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class WinnerHighligther : OnGameEndTrigger
 {
-    private float _speed = 1f;
+    private float _speed = 0.5f;
     private Vector3 _neededLocalPos = new Vector3(5, 10, 0);
     private Vector3 _neededLocalEulers = new Vector3(60, -90, 0);
     [SerializeField] private ImageResizer _imgResizer;

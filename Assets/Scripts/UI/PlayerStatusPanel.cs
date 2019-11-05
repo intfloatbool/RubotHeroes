@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class PlayerStatusPanel : MonoBehaviour
 {
+    [SerializeField] private Text _nickName;
     [SerializeField] private Image _hpBar;
     [SerializeField] private Image _colorIdentyIcon;
     [SerializeField] private RobotStatus _robotStatus;
@@ -10,11 +11,6 @@ public class PlayerStatusPanel : MonoBehaviour
 
     private float _robotMaxHP;
     private float _neededValue = 1f;
-
-    private void Start()
-    {
-        InitializeStatusPanel();
-    }
 
     private void Update()
     {
@@ -24,18 +20,12 @@ public class PlayerStatusPanel : MonoBehaviour
         _hpBar.fillAmount = Mathf.Lerp(_hpBar.fillAmount, _neededValue, _changeSpeed * Time.deltaTime);
     }
 
-    public void InitializeStatusPanel()
+    public void InitializeStatusPanel(Player player)
     {
+        _nickName.text = player.NickName;
         _robotMaxHP = _robotStatus.HealthPoints;
+        _colorIdentyIcon.color = player.Color;
         this._robotStatus.OnDamaged += OnHpChanged;
-
-        InitializeColor();
-    }
-
-    private void InitializeColor()
-    {
-        Color colorForPlayer = PlayerIdenty.Instance.GetColorByOwner(_robotStatus.Owner);
-        _colorIdentyIcon.color = colorForPlayer;
     }
 
     private void OnHpChanged(float currentHP)

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Commands;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class RobotCommandRunner : MonoBehaviour
@@ -20,14 +21,20 @@ public class RobotCommandRunner : MonoBehaviour
     [SerializeField] private int _countOfRandomCommands = 10;
 
     [SerializeField] private CommandsProviderBase _commandsProvider;
-    
+
     private void Start()
+    {
+        if (_commandsProvider != null)
+        {
+            Initialize(_commandsProvider.GetCommands(_robot));
+        }
+    }
+    
+    public void Initialize(IEnumerable<CommandType> commandTypes)
     {
         if (!_isEnabled)
             return;
-
-        IEnumerable<CommandType> commandTypes =
-            _commandsProvider != null ? _commandsProvider.GetCommands(_robot) : null;
+        
         IEnumerable<ICommand> commands = null;
         if (_isRandomCommands)
         {

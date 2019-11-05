@@ -1,19 +1,33 @@
+using System.Collections;
 using Abstract;
+using Enums;
+using UnityEngine;
 
 namespace Commands
 {
-    public class MeeleAttackCommand: RobotCommand
+    public class MeeleAttackCommand: WeaponCommand
     {
-        public MeeleAttackCommand(IRobot robot) : base(robot)
+        public MeeleAttackCommand(Robot robot) : base(robot, WeaponType.FIREGUN)
         {
             this.CommandType = CommandType.MEELE_ATTACK;
-
         }
-        
-        public override void Execute()
+
+        protected override IEnumerator CommandEnumerator()
         {
-            base.Execute();
-            this._robot.MeeleAttack();
+            _robot.DistanceFromDestiny = 2.5f;
+            while (_robot.DistanceFromDestiny >= 2.5f)
+            {
+                _robot.MoveLoop(_robot.EnemyRobot.transform.position);
+                yield return null;
+            }
+            
+            _weapon.LaunchWeapon(_robot.gameObject);
+            while (_weapon.IsInProcess)
+            {
+                yield return null;
+            }
+            yield return new WaitForEndOfFrame();
+            _robot.ResetCommandsRunning();
         }
     }
 }

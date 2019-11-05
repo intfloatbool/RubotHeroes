@@ -1074,9 +1074,9 @@ MonoBehaviour:
   _robot: {fileID: 2724525586086404180}
   _robotPult: {fileID: 873514318}
   _isEnabled: 1
-  _isRandomCommands: 0
+  _isRandomCommands: 1
   _countOfRandomCommands: 30
-  _commandsProvider: {fileID: 1743595948}
+  _commandsProvider: {fileID: 1355254397}
 --- !u!114 &873514318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1686,6 +1686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a76b4a73310c877af8693a3b8f3e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _commands: 01000000
 --- !u!1 &1401190117
 GameObject:
   m_ObjectHideFlags: 0

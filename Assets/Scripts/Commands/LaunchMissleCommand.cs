@@ -1,19 +1,26 @@
+using System.Collections;
 using Abstract;
+using Enums;
+using UnityEngine;
 
 namespace Commands
 {
-    public class LaunchMissleCommand: RobotCommand
+    public class LaunchMissleCommand: WeaponCommand
     {
-        public LaunchMissleCommand(IRobot robot) : base(robot)
+        public LaunchMissleCommand(Robot robot) : base(robot, WeaponType.ROCKET_LAUNCHER)
         {
             this.CommandType = CommandType.LAUNCH_MISSLE;
-
         }
 
-        public override void Execute()
+        protected override IEnumerator CommandEnumerator()
         {
-            base.Execute();
-            _robot.LaunchMissle();
+            _weapon.LaunchWeapon(_robot.gameObject);
+            while (_weapon.IsInProcess)
+            {
+                yield return null;
+            }
+            yield return new WaitForEndOfFrame();
+            _robot.ResetCommandsRunning();
         }
     }
 }

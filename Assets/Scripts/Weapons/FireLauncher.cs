@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Enums;
 using UnityEngine;
 
 public class FireLauncher : WeaponLauncherBase
@@ -6,6 +7,8 @@ public class FireLauncher : WeaponLauncherBase
     [SerializeField] private float _fixedDamage = 15f;
     [SerializeField] private float _distance = 3f;
     [SerializeField] private GameObject _flameEffect;
+    public override WeaponType WeaponType { get; } = WeaponType.FIREGUN;
+
     protected override IEnumerator OnLaunchedCoroutine(GameObject sender)
     {
         _flameEffect.SetActive(true);

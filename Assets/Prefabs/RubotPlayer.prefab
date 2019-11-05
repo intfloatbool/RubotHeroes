@@ -24480,8 +24480,9 @@ MonoBehaviour:
   _botBody: {fileID: 2435803873142678868}
   _botHead: {fileID: 64107943912117922}
   _shieldEffect: {fileID: 5688369558275287340}
-  _rocketLauncher: {fileID: 6348327125523365931}
-  _fireGun: {fileID: 8607625721097625566}
+  _weapons:
+  - {fileID: 6348327125523365931}
+  - {fileID: 8607625721097625566}
 --- !u!54 &2724525586086404182
 Rigidbody:
   m_ObjectHideFlags: 0

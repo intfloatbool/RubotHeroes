@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Enums;
 using UnityEngine;
 
 [RequireComponent(typeof(RobotStatus))]
-public class Robot : MonoBehaviour, IRobot, IDeadable
+public class Robot : MonoBehaviour, IDeadable
 {
     public event Action OnDeath = () => { };
 
@@ -15,7 +18,12 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
     public RobotStatus RobotStatus => _robotStatus;
 
     [SerializeField] private float _distanceFromDestiny;
-    
+    public float DistanceFromDestiny
+    {
+        get => _distanceFromDestiny;
+        set => _distanceFromDestiny = value;
+    }
+
     //Actions which robot can do
     public bool IsCommandsRunning { get; set; }
     private Coroutine _currentAction;
@@ -28,25 +36,58 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
     [SerializeField] private Transform _botBody;
     [SerializeField] private Transform _botHead;
     [SerializeField] private GameObject _shieldEffect;
-
+    public GameObject ShieldEffect => _shieldEffect;
     public Transform BotHead => _botHead;
 
     private bool _isRandomMove;
-    private Vector3 _randomPos;
 
-    [SerializeField] private WeaponLauncherBase _rocketLauncher;
-    [SerializeField] private WeaponLauncherBase _fireGun;
+    public bool IsRandomMove
+    {
+        get => _isRandomMove;
+        set => _isRandomMove = value;
+    }
+
+    private Vector3 _randomPos;
+    public Vector3 RandomPos
+    {
+        get => _randomPos;
+        set => _randomPos = value;
+    }
+
+    [SerializeField] private List<WeaponLauncherBase> _weapons;
+    private Dictionary<WeaponType, WeaponLauncherBase> _weaponsDict = new Dictionary<WeaponType, WeaponLauncherBase>();
 
     private bool _isStunned = false;
-
-    public bool IsLanding => Mathf.Approximately(Rigidbody.velocity.y, 0f);
-
+    public bool IsStunned => _isStunned;
     private void Awake()
     {
         this._robotStatus = GetComponent<RobotStatus>();
         this.Rigidbody = GetComponent<Rigidbody>();
         this._collider = GetComponent<Collider>();
         this._robotStatus.OnDamaged += DeadControlListening;
+
+        InitializeWeaponsDict();
+    }
+
+    private void InitializeWeaponsDict()
+    {
+        foreach (WeaponLauncherBase weapon in _weapons)
+        {
+            if (!_weaponsDict.Keys.Contains(weapon.WeaponType))
+            {
+                _weaponsDict.Add(weapon.WeaponType, weapon);
+            }
+        }
+    }
+
+    public WeaponLauncherBase GetWeaponByType(WeaponType weaponType)
+    {
+        if (_weaponsDict.Keys.Contains(weaponType))
+        {
+            return _weaponsDict[weaponType];
+        }
+  
+        return null;
     }
 
     private void DeadControlListening(float currentHP)
@@ -94,7 +135,7 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
         
     }
 
-    private void MoveLoop(Vector3 target)
+    public void MoveLoop(Vector3 target)
     {
         Vector3 targetPos = new Vector3(target.x, _botBody.position.y, target.z);
         Vector3 direction = (targetPos - _botBody.position).normalized;
@@ -111,40 +152,7 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
         Quaternion bodyRotation = Quaternion.LookRotation(relativeBodyPos, Vector3.up);
         _botBody.rotation = Quaternion.Lerp(_botBody.rotation, bodyRotation, _rotSpeed * Time.fixedDeltaTime);
     }
-
-    //*** COMMANDS ***
-    public void Jump()
-    {
-        StopActionIfExists();
-        _currentAction = StartCoroutine(JumpCoroutine());
-    }
     
-
-    public void LaunchMissle()
-    {
-        StopActionIfExists();
-        _currentAction = StartCoroutine(LaunchMissleCoroutine());
-    }
-
-    public void ProtectionShield()
-    {
-        StopActionIfExists();
-        _currentAction = StartCoroutine(ProtectionShieldCoroutine());
-    }
-
-    public void MeeleAttack()
-    {
-        StopActionIfExists();
-        _currentAction = StartCoroutine(MeeleAttackCoroutine());
-    }
-
-    public void RandomMove()
-    {
-        StopActionIfExists();
-        _currentAction = StartCoroutine(RandomMoveCoroutine());
-    }
-
-
     private void StopActionIfExists()
     {
         if (this._currentAction != null)
@@ -153,84 +161,14 @@ public class Robot : MonoBehaviour, IRobot, IDeadable
             _currentAction = null;
         }
     }
-    
-    // * * * COROUTINES * * *
-    public IEnumerator JumpCoroutine()
+
+    public void SetCurrentCommand(IEnumerator commandEnumerator)
     {
-        Rigidbody.AddForce(Vector3.up * _jumpStrength);
-        
-        //TODO Complete func
-        yield return new WaitForFixedUpdate();
-        yield return new WaitForFixedUpdate();
-
-        while (!Mathf.Approximately(Rigidbody.velocity.y, 0f))
-        {
-            yield return null;
-        }
-
-        while (_isStunned)
-        {
-            yield return null;
-        }
-        
-        yield return new WaitForFixedUpdate();
-        yield return new WaitForSeconds(1);
-        IsCommandsRunning = false;
-
-        yield return null;
+        StopActionIfExists();
+        this._currentAction = StartCoroutine(commandEnumerator);
     }
     
-    public IEnumerator LaunchMissleCoroutine()
-    {
-        _rocketLauncher.LaunchWeapon(gameObject);
-        while (_rocketLauncher.IsInProcess)
-        {
-            yield return null;
-        }
-        yield return new WaitForEndOfFrame();
-        ResetCommandsRunning();
-    }
-    
-    public IEnumerator ProtectionShieldCoroutine()
-    {
-        _robotStatus.IsOnShield = true;
-        _shieldEffect.SetActive(true);
-        yield return new WaitForSeconds(2);
-        _shieldEffect.SetActive(false);
-        _robotStatus.IsOnShield = false;
-        ResetCommandsRunning();
-    }
-
-    public IEnumerator MeeleAttackCoroutine()
-    {
-        _distanceFromDestiny = 2.5f;
-        while (_distanceFromDestiny >= 2.5f)
-        {
-            MoveLoop(EnemyRobot.transform.position);
-            yield return null;
-        }
-        
-        _fireGun.LaunchWeapon(gameObject);
-        while (_fireGun.IsInProcess)
-        {
-            yield return null;
-        }
-        yield return new WaitForEndOfFrame();
-        ResetCommandsRunning();
-    }
-
-    public IEnumerator RandomMoveCoroutine()
-    {
-        _isRandomMove = true;
-        _randomPos = WorldPositionsGenerator.Instance.RandomPosition;
-        //TODO Complete func
-        yield return new WaitForSeconds(3);
-        _isRandomMove = false;
-        ResetCommandsRunning();
-    }
-
-
-    private void ResetCommandsRunning()
+    public void ResetCommandsRunning()
     {
         IsCommandsRunning = false;
     }

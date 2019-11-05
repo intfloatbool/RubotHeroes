@@ -1,18 +1,24 @@
+using System.Collections;
 using Abstract;
+using UnityEngine;
 
 namespace Commands
 {
     public class ProtectionShieldCommand: RobotCommand
     {
-        public ProtectionShieldCommand(IRobot robot) : base(robot)
+        public ProtectionShieldCommand(Robot robot) : base(robot)
         {
             this.CommandType = CommandType.PROTECTED_SHIELD;
         }
         
-        public override void Execute()
+        protected override IEnumerator CommandEnumerator()
         {
-            base.Execute();
-            this._robot.ProtectionShield();
+            _robot.RobotStatus.IsOnShield = true;
+            _robot.ShieldEffect.SetActive(true);
+            yield return new WaitForSeconds(2);
+            _robot.ShieldEffect.SetActive(false);
+            _robot.RobotStatus.IsOnShield = false;
+            _robot.ResetCommandsRunning();
         }
     }
 }

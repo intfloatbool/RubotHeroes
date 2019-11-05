@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Enums;
 using UnityEngine;
 
 public abstract class WeaponLauncherBase : MonoBehaviour
 {
+    public abstract WeaponType WeaponType { get; }
     [SerializeField] protected Transform _sourceOfLaunch;
     [SerializeField] protected bool _isInProcess;
 

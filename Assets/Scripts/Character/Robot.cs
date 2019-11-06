@@ -6,13 +6,12 @@ using Enums;
 using UnityEngine;
 
 [RequireComponent(typeof(RobotStatus))]
-public class Robot : MonoBehaviour, IDeadable
+public class Robot : MonoBehaviour, IDeadable, IPlayer
 {
+    [SerializeField] private List<InvokedActionByInitializeBase> _actionsOnStart;
     public event Action OnDeath = () => { };
-
     [SerializeField] private float _moveSpeed = 0.4f;
     [SerializeField] private float _rotSpeed = 4f;
-    [SerializeField] private float _jumpStrength = 500f;
 
     private RobotStatus _robotStatus;
     public RobotStatus RobotStatus => _robotStatus;
@@ -185,5 +184,13 @@ public class Robot : MonoBehaviour, IDeadable
         float time = 2f;
         yield return new WaitForSeconds(time);
         _isStunned = false;
+    }
+    
+    public void Initialize(Player player)
+    {
+        foreach (var action in _actionsOnStart)
+        {
+            action.OnInitialized(player);
+        }
     }
 }

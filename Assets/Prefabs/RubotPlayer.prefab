@@ -299,8 +299,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sourceOfLaunch: {fileID: 3756991412847354901}
   _isInProcess: 0
-  _fixedDamage: 15
-  _distance: 3
+  _fixedDamage: 20
+  _distance: 4
   _flameEffect: {fileID: 214738990577526396}
 --- !u!1 &3982806493816855520
 GameObject:
@@ -24434,6 +24434,7 @@ GameObject:
   - component: {fileID: 6923666765582619954}
   - component: {fileID: 6836343781366585861}
   - component: {fileID: 5460767372857679953}
+  - component: {fileID: 7536477599801720217}
   m_Layer: 8
   m_Name: RubotPlayer
   m_TagString: Player_2
@@ -24472,9 +24473,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89444b3fbf22a1161951b9789026f667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _actionsOnStart:
+  - {fileID: 7536477599801720217}
   _moveSpeed: 150
   _rotSpeed: 6
-  _jumpStrength: 3000
   _distanceFromDestiny: 0
   _enemyRobot: {fileID: 0}
   _botBody: {fileID: 2435803873142678868}
@@ -24674,6 +24676,24 @@ MonoBehaviour:
   _robot: {fileID: 7154617012696959509}
   _distance: 2
   _power: 500
+--- !u!114 &7536477599801720217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982486076417385634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a021b57230c25fda2d2a17493f9bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshRenderes:
+  - {fileID: 9005760114793809550}
+  - {fileID: 9006944764087282714}
+  - {fileID: 9006932771902484108}
+  - {fileID: 9006490617534900942}
+  - {fileID: 9006197437673883936}
 --- !u!1 &8982487441426315482
 GameObject:
   m_ObjectHideFlags: 0
@@ -25158,15 +25178,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21f6aea0c9b788c4b9b6275efc33d0f9, type: 3}
---- !u!4 &214738990577433180 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400002, guid: 21f6aea0c9b788c4b9b6275efc33d0f9,
-    type: 3}
-  m_PrefabInstance: {fileID: 214738990577557726}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &214738990577526396 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: 21f6aea0c9b788c4b9b6275efc33d0f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 214738990577557726}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &214738990577433180 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400002, guid: 21f6aea0c9b788c4b9b6275efc33d0f9,
     type: 3}
   m_PrefabInstance: {fileID: 214738990577557726}
   m_PrefabAsset: {fileID: 0}

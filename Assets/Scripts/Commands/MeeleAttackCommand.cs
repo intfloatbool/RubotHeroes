@@ -14,8 +14,8 @@ namespace Commands
 
         protected override IEnumerator CommandEnumerator()
         {
-            _robot.DistanceFromDestiny = 2.5f;
-            while (_robot.DistanceFromDestiny >= 2.5f)
+            _robot.DistanceFromDestiny = 4f;
+            while (_robot.DistanceFromDestiny >= 4f)
             {
                 _robot.MoveLoop(_robot.EnemyRobot.transform.position);
                 yield return null;

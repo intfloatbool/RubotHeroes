@@ -174,7 +174,6 @@ GameObject:
   m_Component:
   - component: {fileID: 58684487}
   - component: {fileID: 58684488}
-  - component: {fileID: 58684489}
   m_Layer: 0
   m_Name: PlayerPults
   m_TagString: Untagged
@@ -220,23 +219,6 @@ MonoBehaviour:
     AudioClip: {fileID: 8300000, guid: c984ce1688394a699b43159d8a6cec9a, type: 3}
   - CommandType: 2
     AudioClip: {fileID: 8300000, guid: c9066b5ce453969a2bad1308eac7a24a, type: 3}
---- !u!114 &58684489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58684486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b44a650e5fd5cf811bb6b003073ccaf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _flagPrefab: {fileID: 1721176112869879205, guid: 1e0c6192cc7d0716496dda03f0c8f163,
-    type: 3}
-  _robots:
-  - {fileID: 984311763}
-  - {fileID: 2724525586086404180}
 --- !u!1001 &91254234
 PrefabInstance:
   m_ObjectHideFlags: 0

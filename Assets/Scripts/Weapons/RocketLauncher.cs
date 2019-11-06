@@ -11,7 +11,7 @@ public class RocketLauncher : WeaponLauncherBase
 
     protected override IEnumerator OnLaunchedCoroutine(GameObject sender)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForEndOfFrame();
         Instantiate(_misslePrefab, _sourceOfLaunch.position, _sourceOfLaunch.transform.rotation);
         Instantiate(_misslePrefab, _secondSourceOfLaunch.position, _secondSourceOfLaunch.transform.rotation);
         yield return new WaitForSeconds(1);

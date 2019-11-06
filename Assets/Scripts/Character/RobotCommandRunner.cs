@@ -29,6 +29,11 @@ public class RobotCommandRunner : MonoBehaviour
             Initialize(_commandsProvider.GetCommands(_robot));
         }
     }
+
+    public void InitializeRobot(Player player)
+    {
+        _robot.Initialize(player);
+    }
     
     public void Initialize(IEnumerable<CommandType> commandTypes)
     {

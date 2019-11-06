@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class RobotStatus : MonoBehaviour
 {
-    [SerializeField] private PlayerIdenty.PlayerOwner _owner;
-    public PlayerIdenty.PlayerOwner Owner => _owner;
+    [SerializeField] private PlayerOwner _owner;
+    public PlayerOwner Owner => _owner;
 
     [SerializeField] private float _healthPoints = 100;
 

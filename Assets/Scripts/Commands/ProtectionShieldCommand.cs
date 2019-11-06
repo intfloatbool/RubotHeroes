@@ -6,6 +6,7 @@ namespace Commands
 {
     public class ProtectionShieldCommand: RobotCommand
     {
+        private float _duration = 2.5f;
         public ProtectionShieldCommand(Robot robot) : base(robot)
         {
             this.CommandType = CommandType.PROTECTED_SHIELD;
@@ -13,9 +14,10 @@ namespace Commands
         
         protected override IEnumerator CommandEnumerator()
         {
+            yield return new WaitForEndOfFrame();
             _robot.RobotStatus.IsOnShield = true;
             _robot.ShieldEffect.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(_duration);
             _robot.ShieldEffect.SetActive(false);
             _robot.RobotStatus.IsOnShield = false;
             _robot.ResetCommandsRunning();

@@ -15,8 +15,8 @@ public class GameStarter : MonoBehaviour
         public PlayerStatusPanel StatusPanel;
     }
 
-    private Dictionary<PlayerIdenty.PlayerOwner, PlayerContainer> _playersDict =
-        new Dictionary<PlayerIdenty.PlayerOwner, PlayerContainer>();
+    private Dictionary<PlayerOwner, PlayerContainer> _playersDict =
+        new Dictionary<PlayerOwner, PlayerContainer>();
     
     [SerializeField] private PlayerStatusPanel _userStatusPanel;
     [SerializeField] private PlayerStatusPanel _enemyStatusPanel;
@@ -27,7 +27,9 @@ public class GameStarter : MonoBehaviour
     private IEnumerator Start()
     {
         InitializePlayerContainers();
-        InitializeStatusPanels();
+        
+        OnBeforeStart();
+        
         _currentTimer = _timeToStart;
         while (_currentTimer > 0)
         {
@@ -37,16 +39,22 @@ public class GameStarter : MonoBehaviour
         StartCommandRunners();
     }
 
+    private void OnBeforeStart()
+    {
+        InitializeStatusPanels();
+        InitializeRobots();
+    }
+
     private void InitializePlayerContainers()
     {
-        _playersDict.Add(PlayerIdenty.PlayerOwner.PLAYER_1, new PlayerContainer()
+        _playersDict.Add(PlayerOwner.PLAYER_1, new PlayerContainer()
         {
             Player =  GlobalPlayersSide.UserPlayer,
             CommandRunner = _userCommandRunner,
             StatusPanel =  _userStatusPanel
         });
         
-        _playersDict.Add(PlayerIdenty.PlayerOwner.PLAYER_2, new PlayerContainer()
+        _playersDict.Add(PlayerOwner.PLAYER_2, new PlayerContainer()
         {
             Player =  GlobalPlayersSide.EnemyPlayer,
             CommandRunner = _enemyCommandRunner,
@@ -63,6 +71,14 @@ public class GameStarter : MonoBehaviour
         }
     }
 
+    private void InitializeRobots()
+    {
+        foreach (var playerContainer in _playersDict.Values)
+        {
+            playerContainer.CommandRunner.InitializeRobot(playerContainer.Player);
+        }
+    }
+
     private void InitializeStatusPanels()
     {
         foreach (var playerContainer in _playersDict.Values)
@@ -71,7 +87,7 @@ public class GameStarter : MonoBehaviour
         } 
     }
 
-    public PlayerContainer GetPlayer(PlayerIdenty.PlayerOwner owner)
+    public PlayerContainer GetPlayer(PlayerOwner owner)
     {
         return _playersDict[owner];
     }

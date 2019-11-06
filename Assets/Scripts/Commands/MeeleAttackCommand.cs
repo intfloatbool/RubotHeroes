@@ -20,7 +20,7 @@ namespace Commands
                 _robot.MoveLoop(_robot.EnemyRobot.transform.position);
                 yield return null;
             }
-            
+            yield return new WaitForSeconds(1f);
             _weapon.LaunchWeapon(_robot.gameObject);
             while (_weapon.IsInProcess)
             {

@@ -90,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nickName: {fileID: 2793532857854320779}
   _hpBar: {fileID: 2993296111723049453}
-  _colorIdentyIcon: {fileID: 2993296110780342690}
+  _colorIdentyIcon: {fileID: 2993296111723049453}
   _robotStatus: {fileID: 0}
   _changeSpeed: 4
 --- !u!1 &2993296111723049455

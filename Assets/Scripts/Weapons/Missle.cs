@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class Missle : MonoBehaviour
 {
+    [SerializeField] private MeshRenderer _meshRenderer;
+    
     [SerializeField] private float _maxDamage = 25f;
     [SerializeField] private float _randomedDamage;
     [SerializeField] private GameObject _missleBody;
@@ -21,13 +23,20 @@ public class Missle : MonoBehaviour
     [SerializeField] private float _explodePower = 60f;
     private Collider _collider;
     private bool _isExploded;
-
     private Vector3 _lastPosition;
     
     private void Awake()
     {
         _collider = GetComponent<Collider>();
         CalculateRandomValues();
+    }
+
+    public void SetColor(Color color)
+    {
+        foreach (Material mat in _meshRenderer.materials)
+        {
+            mat.SetColor("_Color", color);
+        }
     }
 
     private IEnumerator Start()
@@ -74,14 +83,17 @@ public class Missle : MonoBehaviour
                 OnExplode(null);
                 return;
             }
+
+            GameObject colGo = hit.collider.gameObject;
+            if (IsShielded(colGo))
+            {
+                Inverse(colGo);
+                return;
+            }
+
             Robot robot = hit.collider.GetComponent<Robot>();
             if (robot != null)
             {
-                if (robot.RobotStatus.IsOnShield)
-                {
-                    Inverse(robot);
-                    return;
-                }
                 OnExplode(robot);
             }
         }
@@ -89,7 +101,26 @@ public class Missle : MonoBehaviour
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
         }
-    }    
+    }
+
+    private bool IsShielded(GameObject target)
+    {
+        bool isShielded = false;
+        IProtectable protectable = target.GetComponent<IProtectable>();
+        if (protectable != null)
+        {
+            if (protectable.IsOnShield)
+            {
+                isShielded = true;
+
+                if (protectable is IProtectableContacted contacted)
+                {
+                    contacted.OnContact(transform.position);
+                }
+            }
+        }
+        return isShielded;
+    }
 
     private void OnExplode(Robot robot)
     {
@@ -109,9 +140,12 @@ public class Missle : MonoBehaviour
         Destroy(this.gameObject, 2f);
     }
 
-    private void Inverse(Robot target)
+    private void Inverse(GameObject target)
     {
-        transform.rotation = Quaternion.Inverse(target.transform.rotation);
+        Quaternion targetLookRot = Quaternion.LookRotation(transform.forward);
+        transform.rotation = Quaternion.Inverse(targetLookRot);
+
+        _randomedSpeed *= 1.5f;
     }
     
     

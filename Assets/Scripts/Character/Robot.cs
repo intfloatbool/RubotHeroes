@@ -27,6 +27,8 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer
     public bool IsCommandsRunning { get; set; }
     private Coroutine _currentAction;
 
+    public Color RobotColor { get; private set; } = Color.white;
+
     public Rigidbody Rigidbody { get; private set; }
     private Collider _collider;
     [SerializeField] private Robot _enemyRobot;
@@ -37,7 +39,6 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer
     [SerializeField] private GameObject _shieldEffect;
     public GameObject ShieldEffect => _shieldEffect;
     public Transform BotHead => _botHead;
-
     private bool _isRandomMove;
 
     public bool IsRandomMove
@@ -188,6 +189,7 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer
     
     public void Initialize(Player player)
     {
+        RobotColor = player.Color;
         foreach (var action in _actionsOnStart)
         {
             action.OnInitialized(player);

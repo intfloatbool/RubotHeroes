@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class RobotStatus : MonoBehaviour
+public class RobotStatus : MonoBehaviour, IProtectable
 {
     [SerializeField] private PlayerOwner _owner;
     public PlayerOwner Owner => _owner;

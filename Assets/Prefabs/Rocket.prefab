@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e543721baa278f5ea78973400277239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _meshRenderer: {fileID: 5300485817837951221}
   _maxDamage: 27
   _randomedDamage: 0
   _missleBody: {fileID: 5887275397059980329}
@@ -438,6 +439,12 @@ GameObject:
 --- !u!4 &7487397181226147386 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: ff4732b4c60f1a27fbe9e6f2edf2128c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2491089683869037856}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5300485817837951221 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: ff4732b4c60f1a27fbe9e6f2edf2128c,
     type: 3}
   m_PrefabInstance: {fileID: 2491089683869037856}
   m_PrefabAsset: {fileID: 0}

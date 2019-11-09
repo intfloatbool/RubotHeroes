@@ -12,6 +12,9 @@ public class RobotDownPusher : MonoBehaviour
     private Vector3 RandomVector => new Vector3(RandomValue, 0f, RandomValue);
     private void FixedUpdate()
     {
+        if (Enemy == null)
+            return;
+        
         RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.down));
         Debug.DrawRay(ray.origin, ray.direction,  Color.cyan, 1f);

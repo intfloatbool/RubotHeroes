@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CommandsAudioPlayer : MonoBehaviour
 {
-    [SerializeField] private RobotPult[] _robotPults;
+    [SerializeField] private Robot[] _robots;
 
     [System.Serializable]
     private class CommandWithSound
@@ -21,11 +21,11 @@ public class CommandsAudioPlayer : MonoBehaviour
     private void Awake()
     {
         InitializeDict();
-        foreach (RobotPult pult in _robotPults)
+        foreach (Robot robot in _robots)
         {
-            pult.OnCommandExecuted += (command) =>
+            robot.OnCommandExecuted += (command) =>
             {
-                PlayClipByCommand(pult.RobotAudioSource,command.CommandType);
+                PlayClipByCommand(robot.AudioSource,command.CommandType);
             };
         }
     }

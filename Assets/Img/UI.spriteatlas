@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 091b44a4003b2ed43aa5889cf0dac2a0, type: 3}
+    - {fileID: 2800000, guid: dfe4941cdf51cda0185b88b2028c105d, type: 3}
+    - {fileID: 2800000, guid: 5946111225e9c8ea8a4722db73ca0919, type: 3}
+    - {fileID: 2800000, guid: 0565f6c944aab6a2ba65bcc2cf289b9e, type: 3}
+    - {fileID: 2800000, guid: 3b319f34414ed3331907d9cee0dd34ab, type: 3}
+    - {fileID: 2800000, guid: 486046f210e4f13dea00b65b06e07fe1, type: 3}
+    - {fileID: 2800000, guid: 7df882794950b83d3b6f0d99632ff468, type: 3}
+    - {fileID: 2800000, guid: 5f641443756a76207a4d05435f9573ae, type: 3}
+    totalSpriteSurfaceArea: 5188704
+    bindAsDefault: 1
+    storedHash:
+      serializedVersion: 2
+      Hash: 00000000000000000000000000000000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 5946111225e9c8ea8a4722db73ca0919, type: 3}
+  - {fileID: 21300000, guid: 486046f210e4f13dea00b65b06e07fe1, type: 3}
+  - {fileID: 21300000, guid: 5f641443756a76207a4d05435f9573ae, type: 3}
+  - {fileID: 21300000, guid: 3b319f34414ed3331907d9cee0dd34ab, type: 3}
+  - {fileID: 21300000, guid: 091b44a4003b2ed43aa5889cf0dac2a0, type: 3}
+  - {fileID: 21300000, guid: 7df882794950b83d3b6f0d99632ff468, type: 3}
+  - {fileID: 21300000, guid: 0565f6c944aab6a2ba65bcc2cf289b9e, type: 3}
+  - {fileID: 21300000, guid: dfe4941cdf51cda0185b88b2028c105d, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - winner
+  - grey-circle-icon-8
+  - energy
+  - panel
+  - white_circle
+  - exitBtn
+  - remove
+  - whitr-glossy-rectangle-button-md
+  m_Tag: UI
+  m_IsVariant: 0

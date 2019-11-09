@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Abstract;
 using Commands;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -33,6 +34,7 @@ public class RobotCommandRunner : MonoBehaviour
     public void InitializeRobot(Player player)
     {
         _robot.Initialize(player);
+        _robot.InitializeRobotStatus(player.Properties);
     }
     
     public void Initialize(IEnumerable<CommandType> commandTypes)
@@ -77,25 +79,36 @@ public class RobotCommandRunner : MonoBehaviour
         {
             foreach (ICommand command in commands)
             {
-                if (_robot.RobotStatus.IsDead)
-                    yield break;
-                
-                _robotPult.SetCommand(command);
-                _robotPult.Run();
-                
-                //Wait until commands execute
-                while (_robot.IsCommandsRunning )
+                if (_robot.ExternalCommand != null)
                 {
-                    if (_robot.RobotStatus.IsDead)
-                        yield break;
-                    yield return null;
+                    yield return StartCoroutine(HandleCommand(_robot.ExternalCommand));
+                    _robot.ExternalCommand = null;
                 }
+                
+                yield return StartCoroutine(HandleCommand(command));
             }
 
             yield return null;
         }
 
         _runCommandsCoroutine = null;
+    }
+
+    private IEnumerator HandleCommand(ICommand command)
+    {
+        if (_robot.RobotStatus.IsDead)
+            yield break;
+        
+        _robotPult.SetCommand(command);
+        _robotPult.Run();
+                
+        //Wait until commands execute
+        while (_robot.IsCommandsRunning )
+        {
+            if (_robot.RobotStatus.IsDead)
+                yield break;
+            yield return null;
+        }
     }
     
     private IEnumerable<ICommand> GetRandomCommands()
@@ -147,7 +160,7 @@ public class RobotCommandRunner : MonoBehaviour
     {
         //TODO realize more commands!
         //READY COMMANDS!
-        int commandsCount = 5;
+        int commandsCount = 6;
         int random = Random.Range(0, commandsCount);
 
         switch (random)
@@ -171,6 +184,10 @@ public class RobotCommandRunner : MonoBehaviour
             case 4:
             {
                 return new ProtectionShieldCommand(_robot);
+            }
+            case 5:
+            {
+                return new RebootCommand(_robot);
             }
             default:
             {

@@ -14,7 +14,7 @@ namespace Abstract
         public virtual void Execute()
         {
             this._robot.IsCommandsRunning = true;
-            _robot.SetCurrentCommand(CommandEnumerator());
+            _robot.SetCurrentCommand(CommandEnumerator(), this);
         }
 
         protected abstract IEnumerator CommandEnumerator();

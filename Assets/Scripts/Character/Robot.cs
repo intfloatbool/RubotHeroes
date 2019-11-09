@@ -2,14 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Abstract;
 using Enums;
 using UnityEngine;
 
 [RequireComponent(typeof(RobotStatus))]
 public class Robot : MonoBehaviour, IDeadable, IPlayer
 {
+    [SerializeField] private AudioSource _audioSource;
+    public AudioSource AudioSource => _audioSource;
+
     [SerializeField] private List<InvokedActionByInitializeBase> _actionsOnStart;
     public event Action OnDeath = () => { };
+    public event Action<RobotCommand> OnCommandExecuted = (cmd) => {};
+    
     [SerializeField] private float _moveSpeed = 0.4f;
     [SerializeField] private float _rotSpeed = 4f;
 
@@ -59,6 +65,9 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer
 
     private bool _isStunned = false;
     public bool IsStunned => _isStunned;
+    
+    public RobotCommand ExternalCommand { get; set; }
+    
     private void Awake()
     {
         this._robotStatus = GetComponent<RobotStatus>();
@@ -90,6 +99,13 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer
         return null;
     }
 
+    public void InitializeRobotStatus(PlayerProperties properties)
+    {
+        _robotStatus.HealthPoints = properties.HealthPoints;
+        _robotStatus.EnergyCount = properties.EnergyCount;
+        _robotStatus.BasicEnergyCount = properties.EnergyCount;
+    }
+    
     private void DeadControlListening(float currentHP)
     {
         if (this._robotStatus.IsDead)
@@ -112,7 +128,7 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer
             return;
         
         //Face head to enemy 
-        if (!_enemyRobot._robotStatus.IsDead)
+        if ( _enemyRobot != null && !_enemyRobot._robotStatus.IsDead)
         {
             Vector3 enemyTargetPos = new Vector3(_enemyRobot.transform.position.x, transform.position.y, _enemyRobot.transform.position.z);
             Vector3 relativeHeadPos = enemyTargetPos - transform.position;
@@ -162,10 +178,11 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer
         }
     }
 
-    public void SetCurrentCommand(IEnumerator commandEnumerator)
+    public void SetCurrentCommand(IEnumerator commandEnumerator, RobotCommand cmd)
     {
         StopActionIfExists();
         this._currentAction = StartCoroutine(commandEnumerator);
+        OnCommandExecuted(cmd);
     }
     
     public void ResetCommandsRunning()

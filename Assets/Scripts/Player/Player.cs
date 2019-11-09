@@ -7,4 +7,6 @@ public class Player
     public string NickName { get; set; } = "Unknown";
     public Color Color { get; set; } = Color.red;
 
+    public PlayerProperties Properties { get; set; } = new PlayerProperties();
+
 }

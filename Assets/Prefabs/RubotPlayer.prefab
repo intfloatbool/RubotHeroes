@@ -24473,6 +24473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89444b3fbf22a1161951b9789026f667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 3603422184951232286}
   _actionsOnStart:
   - {fileID: 7536477599801720217}
   _moveSpeed: 150
@@ -24533,6 +24534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _owner: 0
   _healthPoints: 200
+  _energyCount: 0
   _isOnShield: 0
   _isDead: 0
 --- !u!82 &1847959807983819339

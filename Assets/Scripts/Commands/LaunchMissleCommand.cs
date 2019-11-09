@@ -5,8 +5,10 @@ using UnityEngine;
 
 namespace Commands
 {
-    public class LaunchMissleCommand: WeaponCommand
+    public class LaunchMissleCommand: WeaponCommand, IChargable
     {
+        public int ChargeCost { get; } = 2;
+
         public LaunchMissleCommand(Robot robot) : base(robot, WeaponType.ROCKET_LAUNCHER)
         {
             this.CommandType = CommandType.LAUNCH_MISSLE;

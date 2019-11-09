@@ -1,14 +1,40 @@
 ﻿using System;
+using Abstract;
 using UnityEngine;
 
+[RequireComponent(typeof(Robot))]
 public class RobotStatus : MonoBehaviour, IProtectable
 {
+    private Robot _robot;
     [SerializeField] private PlayerOwner _owner;
     public PlayerOwner Owner => _owner;
 
-    [SerializeField] private float _healthPoints = 100;
+    [SerializeField] private float _healthPoints = 200;
 
-    public float HealthPoints => _healthPoints;
+    public float HealthPoints
+    {
+        get => _healthPoints;
+        set => _healthPoints = value;
+    }
+
+    [SerializeField] private int _energyCount;
+
+    public int BasicEnergyCount { get; set; }
+    public int EnergyCount
+    {
+        get => _energyCount;
+        set
+        {
+            _energyCount = value;
+            if (_energyCount < 0)
+            {
+                OverLoad();
+            }
+            OnChargesChanged(_energyCount);
+        }
+    }
+
+    public event Action<int> OnChargesChanged = (chargeCount) => { };
 
     [SerializeField] private bool _isOnShield;
 
@@ -28,15 +54,53 @@ public class RobotStatus : MonoBehaviour, IProtectable
             return _isDead;
         }
     }
-
+    
     public event Action<float> OnDamaged = (currHp) => { };
 
+    private void Awake()
+    {
+        _robot = GetComponent<Robot>();
+    }
+    
+    private void Start()
+    {
+        _robot.OnCommandExecuted += OnCommandExecuted;
+    }
+
+    private void OnDestroy()
+    {
+        _robot.OnCommandExecuted -= OnCommandExecuted;
+    }
+
+    void OverLoad()
+    {
+        if (_robot.ExternalCommand == null)
+        {
+            Debug.Log($" {gameObject.name} OVERLOAD!");
+            _robot.ExternalCommand = new OverloadCommand(_robot);
+            EnergyCount = 0;
+        }
+    }
+
+    void OnCommandExecuted(RobotCommand cmd)
+    {
+        if (cmd is IChargable chargable)
+        {
+            EnergyCount -= chargable.ChargeCost;
+        }
+    }
+    
     public void AddDamage(float dmg)
     {
         if (IsDead)
             return;
         this._healthPoints -= dmg;
         OnDamaged.Invoke(_healthPoints);
+    }
+
+    public void ResetEnergy()
+    {
+        EnergyCount = BasicEnergyCount;
     }
 
 }

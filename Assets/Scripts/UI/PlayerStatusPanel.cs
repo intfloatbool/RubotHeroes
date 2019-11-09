@@ -8,6 +8,7 @@ public class PlayerStatusPanel : MonoBehaviour
     [SerializeField] private Image _colorIdentyIcon;
     [SerializeField] private RobotStatus _robotStatus;
     [SerializeField] private float _changeSpeed = 4f;
+    [SerializeField] private Text _energyCountText;
 
     private float _robotMaxHP;
     private float _neededValue = 1f;
@@ -26,10 +27,17 @@ public class PlayerStatusPanel : MonoBehaviour
         _robotMaxHP = _robotStatus.HealthPoints;
         _colorIdentyIcon.color = player.Color;
         this._robotStatus.OnDamaged += OnHpChanged;
+        this._robotStatus.OnChargesChanged += OnChargesChanged;
+
     }
 
     private void OnHpChanged(float currentHP)
     {
         _neededValue = 1f / (_robotMaxHP / currentHP);
+    }
+    
+    private void OnChargesChanged(int charges)
+    {
+        _energyCountText.text = charges.ToString();
     }
 }

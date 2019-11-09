@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameStarter : MonoBehaviour
 {
@@ -17,6 +19,11 @@ public class GameStarter : MonoBehaviour
 
     private Dictionary<PlayerOwner, PlayerContainer> _playersDict =
         new Dictionary<PlayerOwner, PlayerContainer>();
+
+    [SerializeField] private bool _isRandomGameEvent;
+    [SerializeField] private List<GameEventBase> _gameEvents;
+    private Dictionary<GameEventType, GameEventBase> _gameEventsDict = new Dictionary<GameEventType, GameEventBase>();
+    public event Action<GameEventBase> OnGameEventStarted = (gameEvent) => { };
     
     [SerializeField] private PlayerStatusPanel _userStatusPanel;
     [SerializeField] private PlayerStatusPanel _enemyStatusPanel;
@@ -27,6 +34,7 @@ public class GameStarter : MonoBehaviour
     private IEnumerator Start()
     {
         InitializePlayerContainers();
+        InitializeGameEvents();
         
         OnBeforeStart();
         
@@ -36,13 +44,40 @@ public class GameStarter : MonoBehaviour
             _currentTimer -= 1f;
             yield return new WaitForSeconds(1);
         }
-        StartCommandRunners();
+
+        OnAfterStart();
     }
 
     private void OnBeforeStart()
     {
         InitializeStatusPanels();
         InitializeRobots();
+    }
+
+    private void OnAfterStart()
+    {
+        StartCommandRunners();
+        
+        if(_isRandomGameEvent)
+            StartRandomGameEvent();
+    }
+
+    private void StartRandomGameEvent()
+    {
+        int eventCounts = Enum.GetNames(typeof(GameEventType)).Length;
+        GameEventType rndEvent = (GameEventType) Random.Range(0, eventCounts);
+        StartGameEvent(rndEvent);
+    }
+
+    private void StartGameEvent(GameEventType eventType)
+    {
+        GameEventBase gameEvent = GetGameEvent(eventType);
+        if (gameEvent != null)
+        {
+            gameEvent.SetActiveEvent(true);
+            OnGameEventStarted(gameEvent);
+        }
+        
     }
 
     private void InitializePlayerContainers()
@@ -60,6 +95,17 @@ public class GameStarter : MonoBehaviour
             CommandRunner = _enemyCommandRunner,
             StatusPanel =  _enemyStatusPanel
         });
+    }
+
+    private void InitializeGameEvents()
+    {
+        foreach (GameEventBase gameEvent in _gameEvents)
+        {
+            if (!_gameEventsDict.ContainsKey(gameEvent.EventType))
+            {
+                _gameEventsDict.Add(gameEvent.EventType, gameEvent);
+            }
+        }
     }
 
     private void StartCommandRunners()
@@ -90,5 +136,10 @@ public class GameStarter : MonoBehaviour
     public PlayerContainer GetPlayer(PlayerOwner owner)
     {
         return _playersDict[owner];
+    }
+
+    public GameEventBase GetGameEvent(GameEventType type)
+    {
+        return _gameEventsDict.ContainsKey(type) ? _gameEventsDict[type] : null;
     }
 }

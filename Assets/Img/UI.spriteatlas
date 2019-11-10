@@ -50,11 +50,18 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 486046f210e4f13dea00b65b06e07fe1, type: 3}
     - {fileID: 2800000, guid: 7df882794950b83d3b6f0d99632ff468, type: 3}
     - {fileID: 2800000, guid: 5f641443756a76207a4d05435f9573ae, type: 3}
-    totalSpriteSurfaceArea: 5188704
+    - {fileID: 2800000, guid: 629c1d1848a8f95deb7c90a79abe1fbf, type: 3}
+    - {fileID: 2800000, guid: 8059664faaae48dd390f689e9e2ee5d9, type: 3}
+    - {fileID: 2800000, guid: f9ae05d552a8b77a1b6f5a9760a16831, type: 3}
+    - {fileID: 2800000, guid: bfe0859c75f9902b991e944ecb18c37c, type: 3}
+    - {fileID: 2800000, guid: 6706a1ec5cda71037b3cdfb95508fe8b, type: 3}
+    - {fileID: 2800000, guid: eee5be5a316bf182c9a288d5054e1a99, type: 3}
+    - {fileID: 2800000, guid: 4a5c24661584833b0a848ffabaabde93, type: 3}
+    totalSpriteSurfaceArea: 5626204
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: 00000000000000000000000000000000
+      Hash: d7aa70e3df8e1401ab0749b7b200035d
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 5946111225e9c8ea8a4722db73ca0919, type: 3}
@@ -62,17 +69,31 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 5f641443756a76207a4d05435f9573ae, type: 3}
   - {fileID: 21300000, guid: 3b319f34414ed3331907d9cee0dd34ab, type: 3}
   - {fileID: 21300000, guid: 091b44a4003b2ed43aa5889cf0dac2a0, type: 3}
+  - {fileID: 21300000, guid: f9ae05d552a8b77a1b6f5a9760a16831, type: 3}
+  - {fileID: 21300000, guid: 4a5c24661584833b0a848ffabaabde93, type: 3}
+  - {fileID: 21300000, guid: 629c1d1848a8f95deb7c90a79abe1fbf, type: 3}
   - {fileID: 21300000, guid: 7df882794950b83d3b6f0d99632ff468, type: 3}
   - {fileID: 21300000, guid: 0565f6c944aab6a2ba65bcc2cf289b9e, type: 3}
+  - {fileID: 21300000, guid: eee5be5a316bf182c9a288d5054e1a99, type: 3}
   - {fileID: 21300000, guid: dfe4941cdf51cda0185b88b2028c105d, type: 3}
+  - {fileID: 21300000, guid: bfe0859c75f9902b991e944ecb18c37c, type: 3}
+  - {fileID: 21300000, guid: 6706a1ec5cda71037b3cdfb95508fe8b, type: 3}
+  - {fileID: 21300000, guid: 8059664faaae48dd390f689e9e2ee5d9, type: 3}
   m_PackedSpriteNamesToIndex:
   - winner
   - grey-circle-icon-8
   - energy
   - panel
   - white_circle
+  - move
+  - rocket
+  - jump
   - exitBtn
   - remove
+  - reload
   - whitr-glossy-rectangle-button-md
+  - overload
+  - protection
+  - meele
   m_Tag: UI
   m_IsVariant: 0

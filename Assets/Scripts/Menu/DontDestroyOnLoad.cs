@@ -2,7 +2,7 @@
 
 public class DontDestroyOnLoad : MonoBehaviour
 {
-   private void Awake()
+   protected virtual void Awake()
    {
       DontDestroyOnLoad(this.gameObject);
    }

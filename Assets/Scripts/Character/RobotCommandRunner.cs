@@ -151,6 +151,14 @@ public class RobotCommandRunner : MonoBehaviour
             {
                 return new ProtectionShieldCommand(_robot); 
             }
+            case CommandType.OVERLOAD:
+            {
+                return new ProtectionShieldCommand(_robot); 
+            }
+            case CommandType.REBOOT:
+            {
+                return new ProtectionShieldCommand(_robot); 
+            }
             default:
                 throw new Exception($"Command with type {commandType} not found!!!");
         }
@@ -160,40 +168,10 @@ public class RobotCommandRunner : MonoBehaviour
     {
         //TODO realize more commands!
         //READY COMMANDS!
-        int commandsCount = 6;
-        int random = Random.Range(0, commandsCount);
+        int commandsSize = Enum.GetNames(typeof(CommandType)).Length;
+        CommandType randomType = (CommandType) Random.Range(0, commandsSize);
 
-        switch (random)
-        {
-            case 0:
-            {
-                return new JumpCommand(_robot);
-            }
-            case 1:
-            {
-                return new RandomMoveCommand(_robot);
-            }
-            case 2:
-            {
-                return new LaunchMissleCommand(_robot);
-            }
-            case 3:
-            {
-                return new MeeleAttackCommand(_robot);
-            }
-            case 4:
-            {
-                return new ProtectionShieldCommand(_robot);
-            }
-            case 5:
-            {
-                return new RebootCommand(_robot);
-            }
-            default:
-            {
-                throw new Exception($"Command with index ${random} not found!");
-            }
-        }
+        return GetCommandByType(randomType);
     }
 
 }

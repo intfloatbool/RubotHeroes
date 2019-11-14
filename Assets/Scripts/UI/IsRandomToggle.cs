@@ -23,7 +23,7 @@ public class IsRandomToggle : MonoBehaviour
 
         if (isActive)
         {
-            PlayerCommands.SetCommands(null);
+            
         }
     }
 }

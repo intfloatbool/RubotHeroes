@@ -3,7 +3,14 @@ using UnityEngine;
 
 public class Player
 {
-    public IEnumerable<CommandType> RobotCommands { get; set; } = null;
+    private List<CommandType> _robotCommands = new List<CommandType>();
+
+    public List<CommandType> RobotCommands
+    {
+        get => _robotCommands;
+        set => _robotCommands = value;
+    }
+
     public string NickName { get; set; } = "Unknown";
     public Color Color { get; set; } = Color.red;
 

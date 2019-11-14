@@ -21,23 +21,24 @@ public class RobotCommandRunner : MonoBehaviour
     [SerializeField] private bool _isRandomCommands;
     [SerializeField] private int _countOfRandomCommands = 10;
 
-    [SerializeField] private CommandsProviderBase _commandsProvider;
+    [SerializeField] private CommandsProviderBase _instantCommandsProvider;
 
-    private void Start()
+    private void Awake()
     {
-        if (_commandsProvider != null)
+        //For tests
+        if (_instantCommandsProvider)
         {
-            Initialize(_commandsProvider.GetCommands(_robot));
+            Initialize(_instantCommandsProvider.GetCommands());
         }
     }
-
+    
     public void InitializeRobot(Player player)
     {
         _robot.Initialize(player);
         _robot.InitializeRobotStatus(player.Properties);
     }
     
-    public void Initialize(IEnumerable<CommandType> commandTypes)
+    public void Initialize(List<CommandType> commandTypes)
     {
         if (!_isEnabled)
             return;
@@ -49,7 +50,7 @@ public class RobotCommandRunner : MonoBehaviour
         }
         else
         {
-            if (commandTypes == null)
+            if (commandTypes.Count == 0)
             {
                 commands = GetRandomCommands();
             }

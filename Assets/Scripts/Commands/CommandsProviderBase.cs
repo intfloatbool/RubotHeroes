@@ -3,5 +3,7 @@ using UnityEngine;
 
 public abstract class CommandsProviderBase : MonoBehaviour
 {
-    public abstract IEnumerable<CommandType> GetCommands(Robot robot);
+    public abstract void SetCommands(List<CommandType> commands);
+    public abstract List<CommandType> GetCommands();
+    public abstract void ClearCommands();
 }

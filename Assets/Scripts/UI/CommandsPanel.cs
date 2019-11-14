@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -8,6 +6,7 @@ public class CommandsPanel : MonoBehaviour
 {
     [SerializeField] private CommandBlock _commandBlockPrefab;
     [SerializeField] private List<CommandBlock> _commandBlocks;
+    [SerializeField] private CommandsProviderBase _commandProvider;
     public void AddCommand(CommandType cmdType)
     {
         Debug.Log($"Add command! {cmdType}!");
@@ -46,12 +45,13 @@ public class CommandsPanel : MonoBehaviour
     private void UpdateCommands()
     {
         List<CommandType> commandTypes = _commandBlocks.Select(block => block.CommandType).ToList();
-        PlayerCommands.SetCommands(commandTypes);
+        _commandProvider.SetCommands(commandTypes);
     }
 
     private void OnDisable()
     {
         _commandBlocks.ForEach(b => Destroy(b.gameObject));
         _commandBlocks.Clear();
+        _commandProvider.ClearCommands();
     }
 }

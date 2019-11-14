@@ -3,20 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class ScenesSwitcher : MonoBehaviour
 {
+    
     public void GoToBattleScene()
     {
-        SceneManager.LoadScene(1);
+        GameScenes.LoadScene(Scenes.BATTLE_SCENE);
     }
 
     public void GoToMenuScene()
     {
-        SceneManager.LoadScene(0);
-
+        GameScenes.LoadScene(Scenes.MAIN_MENU);
     }
 
     public void GoToEditCommandsScene()
     {
-        SceneManager.LoadScene(2);
-
+        GameScenes.LoadScene(Scenes.COMMANDS_CONSTRUCTOR);
     }
 }

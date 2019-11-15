@@ -6,7 +6,8 @@ public class CommandsPanel : MonoBehaviour
 {
     [SerializeField] private CommandBlock _commandBlockPrefab;
     [SerializeField] private List<CommandBlock> _commandBlocks;
-    [SerializeField] private CommandsProviderBase _commandProvider;
+    private CommandsProviderBase UserCommandProvider => UserPlayerInfo.Instance.GetGlobalUser().CommandsProvider;
+
     public void AddCommand(CommandType cmdType)
     {
         Debug.Log($"Add command! {cmdType}!");
@@ -45,13 +46,12 @@ public class CommandsPanel : MonoBehaviour
     private void UpdateCommands()
     {
         List<CommandType> commandTypes = _commandBlocks.Select(block => block.CommandType).ToList();
-        _commandProvider.SetCommands(commandTypes);
+        UserCommandProvider.SetCommands(commandTypes);
     }
 
     private void OnDisable()
     {
         _commandBlocks.ForEach(b => Destroy(b.gameObject));
         _commandBlocks.Clear();
-        _commandProvider.ClearCommands();
     }
 }

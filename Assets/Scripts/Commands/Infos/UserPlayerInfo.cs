@@ -3,94 +3,99 @@ using UnityEngine;
 
 public class UserPlayerInfo : SingletonDoL<UserPlayerInfo>
 {
-   [SerializeField] private CommandsProviderBase _playerCommandsProviderPrefab;
-   private CommandsProviderBase _playerCommandsProvider;
-
-   [SerializeField] private CommandsProviderBase _enemyCommandsProviderPrefab;
-   private CommandsProviderBase _enemyCommandsProvider;
+   [SerializeField] private PlayerOwner _globalPlayerUser = PlayerOwner.PLAYER_1;
+   public PlayerOwner GlobalPlayerOwner => _globalPlayerUser;
    
-   private Player _userPlayer;
-   private Player UserPlayer
+   [SerializeField] private PlayerOwner _enemyPlayer = PlayerOwner.PLAYER_2;
+   public PlayerOwner EnemyPlayerOwner => _enemyPlayer;
+
+   [SerializeField] private List<PlayerInfoContainer> _playerInfos;
+   private Dictionary<PlayerOwner, PlayerInfoContainer> _playerInfoDict = new Dictionary<PlayerOwner, PlayerInfoContainer>();
+
+   protected override void Awake()
    {
-      get
-      {
-         if(_userPlayer == null)
-            _userPlayer = new Player();
-         return _userPlayer;
-      }
-      set => _userPlayer = value;
+      InitializeDict();
+      base.Awake();
    }
 
-   private Player _enemyPlayer;
-   private Player EnemyPlayer
+   protected void Start()
    {
-      get
-      {
-         if(_enemyPlayer == null)
-            _enemyPlayer = new Player();
-         return _enemyPlayer;
-      }
-      set => _enemyPlayer = value;
+      InitializeGlobalUser();
+      InitializeEnemyAsBotByDefault();
    }
 
-
-   public CommandsProviderBase PlayerCommandsProvider
+   /// <summary>
+   /// Default user (PLAYER) initialization
+   /// </summary>
+   private void InitializeGlobalUser()
    {
-      get
-      {
-         if (_playerCommandsProvider == null)
-         {
-            _playerCommandsProvider = Instantiate(_playerCommandsProviderPrefab, transform);
-            _playerCommandsProvider.Player = UserPlayer;
-         }
-         return _playerCommandsProvider;
-      }
-      set
-      {
-         if (_playerCommandsProvider != null)
-         {
-            Destroy(_playerCommandsProvider.gameObject);
-            _playerCommandsProvider = null;
-         }
+      InitializePlayerByDefault<RandomCommandsProvider>(_globalPlayerUser);
+   }
 
-         _playerCommandsProvider = SetCommandProviderByPlayer(value, UserPlayer);
+   private void InitializeEnemyAsBotByDefault()
+   {
+      InitializePlayerByDefault<BotRandomCommandsProvider>(_enemyPlayer);
+   }
+
+   private void InitializePlayerByDefault<T>(PlayerOwner owner) where T : CommandsProviderBase
+   {
+      if (_playerInfoDict.ContainsKey(owner))
+      {
+         SetCommandProviderByOwner<T>(owner);
       }
+      else
+      {
+         Debug.LogError($"fail to initialize default player ({owner.ToString()}) not exists!");
+      }
+   }
+
+   private void InitializeDict()
+   {
+      foreach (PlayerInfoContainer playerInfo in _playerInfos)
+      {
+         if (!_playerInfoDict.ContainsKey(playerInfo.Owner))
+         {
+            _playerInfoDict.Add(playerInfo.Owner, playerInfo);
+         }
+         else
+         {
+            Debug.LogError($"Cannot add playerinfo with owner {playerInfo.Owner}, already exists!");
+         }
+      }
+   }
+
+   public PlayerInfoContainer GetGlobalUser()
+   {
+      return _playerInfoDict[_globalPlayerUser];
+   }
+
+   public PlayerInfoContainer GetEnemyUser()
+   {
+      return _playerInfoDict[_enemyPlayer];
    }
    
-   public CommandsProviderBase EnemyCommandsProvider
+   public PlayerInfoContainer GetPlayerInfoByOwner(PlayerOwner owner)
    {
-      get
-      {
-         if (_enemyCommandsProvider == null)
-         {
-            _enemyCommandsProvider = Instantiate(_enemyCommandsProviderPrefab, transform);
-            _enemyCommandsProvider.Player = EnemyPlayer;
-         }
-         return _enemyCommandsProvider;
-      }
-
-      set
-      {
-         if (_enemyCommandsProvider != null)
-         {
-            Destroy(_enemyCommandsProvider.gameObject);
-            _enemyCommandsProvider = null;
-         }
-
-         _enemyCommandsProvider = SetCommandProviderByPlayer(value, EnemyPlayer);
-      }
+      if(_playerInfoDict.ContainsKey(owner))
+         return _playerInfoDict[owner];
+      return null;
    }
 
-   private CommandsProviderBase SetCommandProviderByPlayer(CommandsProviderBase source, Player player)
+   public void SetCommandProviderByOwner<T>(PlayerOwner owner) where T : CommandsProviderBase
    {
-      CommandsProviderBase clone = Instantiate(source, transform);
-      clone.Player = player;
-      return clone;
+      PlayerInfoContainer infoOwner = GetPlayerInfoByOwner(owner);
+      if (infoOwner.CommandsProvider != null)
+      {
+         Destroy(infoOwner.CommandsProvider.gameObject);
+         infoOwner.CommandsProvider = null;
+      }
+      CommandsProviderBase provider = CommandProviderCreator.Instance.GetProvider<T>();
+      provider.transform.parent = this.transform;
+      infoOwner.CommandsProvider = provider;
    }
 
    protected override UserPlayerInfo GetLink()
    {
       return this;
    }
-
 }

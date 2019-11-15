@@ -13,6 +13,7 @@ public class GameStarter : MonoBehaviour
     public class PlayerContainer
     {
         public Player Player;
+        public CommandsProviderBase CommandProvider;
         public RobotCommandRunner CommandRunner;
         public PlayerStatusPanel StatusPanel;
     }
@@ -82,16 +83,20 @@ public class GameStarter : MonoBehaviour
 
     private void InitializePlayerContainers()
     {
+        PlayerInfoContainer globalPlayerContainer = UserPlayerInfo.Instance.GetGlobalUser();
+        PlayerInfoContainer enemyPlayerContainer = UserPlayerInfo.Instance.GetEnemyUser();
         _playersDict.Add(PlayerOwner.PLAYER_1, new PlayerContainer()
         {
-            Player =  UserPlayerInfo.Instance.PlayerCommandsProvider.Player,
+            Player =  globalPlayerContainer.Player,
+            CommandProvider =  globalPlayerContainer.CommandsProvider,
             CommandRunner = _userCommandRunner,
             StatusPanel =  _userStatusPanel
         });
         
         _playersDict.Add(PlayerOwner.PLAYER_2, new PlayerContainer()
         {
-            Player =  UserPlayerInfo.Instance.EnemyCommandsProvider.Player,
+            Player =  enemyPlayerContainer.Player, 
+            CommandProvider =  enemyPlayerContainer.CommandsProvider,
             CommandRunner = _enemyCommandRunner,
             StatusPanel =  _enemyStatusPanel
         });
@@ -112,7 +117,7 @@ public class GameStarter : MonoBehaviour
     {
         foreach (var playerContainer in _playersDict.Values)
         {
-            playerContainer.CommandRunner.Initialize(playerContainer.Player.RobotCommands);
+            playerContainer.CommandRunner.Initialize(playerContainer.CommandProvider.GetCommands());
             playerContainer.StatusPanel.InitializeStatusPanel(playerContainer.Player);
         }
     }

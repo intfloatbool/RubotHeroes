@@ -17,10 +17,6 @@ public class RobotCommandRunner : MonoBehaviour
     private Coroutine _runCommandsCoroutine;
 
     [SerializeField] private bool _isEnabled;
-    
-    [SerializeField] private bool _isRandomCommands;
-    [SerializeField] private int _countOfRandomCommands = 10;
-
     [SerializeField] private CommandsProviderBase _instantCommandsProvider;
 
     private void Awake()
@@ -29,6 +25,7 @@ public class RobotCommandRunner : MonoBehaviour
         if (_instantCommandsProvider)
         {
             Initialize(_instantCommandsProvider.GetCommands());
+            _isEnabled = false;
         }
     }
     
@@ -42,25 +39,7 @@ public class RobotCommandRunner : MonoBehaviour
     {
         if (!_isEnabled)
             return;
-        
-        IEnumerable<ICommand> commands = null;
-        if (_isRandomCommands)
-        {
-            commands = CommandHelper.GetRandomCommands(_countOfRandomCommands,_robot);
-        }
-        else
-        {
-            if (commandTypes.Count == 0)
-            {
-                commands = CommandHelper.GetRandomCommands(_countOfRandomCommands, _robot);
-            }
-            else
-            {
-                commands = CommandHelper.GetCommandsByTypes(commandTypes, _robot);
-            }
-        }
-        
-        RunCommands(commands);
+        RunCommands(CommandHelper.GetCommandsByTypes(commandTypes, _robot));
     }
     
     public void RunCommands(IEnumerable<ICommand> commands)
@@ -91,7 +70,8 @@ public class RobotCommandRunner : MonoBehaviour
 
             yield return null;
         }
-
+        
+        Debug.LogWarning($"Commands has been ended on robot: {_robot.gameObject.name}!");
         _runCommandsCoroutine = null;
     }
 

@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-
-public class ScenesSwitcher : MonoBehaviour
+﻿public class ScenesSwitcher : SingletonDoL<ScenesSwitcher>
 {
     
     public void GoToBattleScene()
@@ -17,5 +14,10 @@ public class ScenesSwitcher : MonoBehaviour
     public void GoToEditCommandsScene()
     {
         GameScenes.LoadScene(Scenes.COMMANDS_CONSTRUCTOR);
+    }
+
+    protected override ScenesSwitcher GetLink()
+    {
+        return this;
     }
 }

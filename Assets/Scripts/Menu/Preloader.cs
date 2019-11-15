@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Preloader : MonoBehaviour
@@ -19,4 +20,5 @@ public class Preloader : MonoBehaviour
         OnGameDataReady();
         IsReady = true;
     }
+    
 }

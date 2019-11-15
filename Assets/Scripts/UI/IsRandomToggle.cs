@@ -20,10 +20,5 @@ public class IsRandomToggle : MonoBehaviour
     {
         _blocksPanel.SetActive(!isActive);
         _commandsPanel.SetActive(!isActive);
-
-        if (isActive)
-        {
-            
-        }
     }
 }

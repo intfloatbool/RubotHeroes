@@ -7,6 +7,7 @@ public class ConstructorCommandsProvider : CommandsProviderBase
     public override void SetCommands(List<CommandType> commands)
     {
         _currentCommands = commands;
+        base.SetCommands(commands);
     }
 
     public override List<CommandType> GetCommands() => _currentCommands;
@@ -14,5 +15,6 @@ public class ConstructorCommandsProvider : CommandsProviderBase
     public override void ClearCommands()
     {
         _currentCommands.Clear();
+        base.ClearCommands();
     }
 }

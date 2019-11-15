@@ -46,17 +46,17 @@ public class RobotCommandRunner : MonoBehaviour
         IEnumerable<ICommand> commands = null;
         if (_isRandomCommands)
         {
-            commands = GetRandomCommands();
+            commands = CommandHelper.GetRandomCommands(_countOfRandomCommands,_robot);
         }
         else
         {
             if (commandTypes.Count == 0)
             {
-                commands = GetRandomCommands();
+                commands = CommandHelper.GetRandomCommands(_countOfRandomCommands, _robot);
             }
             else
             {
-                commands = GetCommandsByTypes(commandTypes);
+                commands = CommandHelper.GetCommandsByTypes(commandTypes, _robot);
             }
         }
         
@@ -112,67 +112,6 @@ public class RobotCommandRunner : MonoBehaviour
         }
     }
     
-    private IEnumerable<ICommand> GetRandomCommands()
-    {
-        for (int i = 0; i < _countOfRandomCommands; i++)
-        {
-            yield return GetRandomCommand();
-        }
-
-    }
-
-    private IEnumerable<ICommand> GetCommandsByTypes(IEnumerable<CommandType> commandTypes)
-    {
-        foreach (CommandType type in commandTypes)
-        {
-            yield return GetCommandByType(type);
-        }
-    }
-    private ICommand GetCommandByType(CommandType commandType)
-    {
-        switch (commandType)
-        {
-            case CommandType.JUMP:
-            {
-               return new JumpCommand(_robot); 
-            }
-            case CommandType.RANDOM_MOVE:
-            {
-                return new RandomMoveCommand(_robot); 
-            }
-            case CommandType.MEELE_ATTACK:
-            {
-                return new MeeleAttackCommand(_robot); 
-            }
-            case CommandType.LAUNCH_MISSLE:
-            {
-                return new LaunchMissleCommand(_robot); 
-            }
-            case CommandType.PROTECTED_SHIELD:
-            {
-                return new ProtectionShieldCommand(_robot); 
-            }
-            case CommandType.OVERLOAD:
-            {
-                return new ProtectionShieldCommand(_robot); 
-            }
-            case CommandType.REBOOT:
-            {
-                return new ProtectionShieldCommand(_robot); 
-            }
-            default:
-                throw new Exception($"Command with type {commandType} not found!!!");
-        }
-    }
     
-    private ICommand GetRandomCommand()
-    {
-        //TODO realize more commands!
-        //READY COMMANDS!
-        int commandsSize = Enum.GetNames(typeof(CommandType)).Length;
-        CommandType randomType = (CommandType) Random.Range(0, commandsSize);
-
-        return GetCommandByType(randomType);
-    }
 
 }

@@ -84,14 +84,14 @@ public class GameStarter : MonoBehaviour
     {
         _playersDict.Add(PlayerOwner.PLAYER_1, new PlayerContainer()
         {
-            Player =  new Player(),
+            Player =  UserPlayerInfo.Instance.PlayerCommandsProvider.Player,
             CommandRunner = _userCommandRunner,
             StatusPanel =  _userStatusPanel
         });
         
         _playersDict.Add(PlayerOwner.PLAYER_2, new PlayerContainer()
         {
-            Player =  new BotPlayer(),
+            Player =  UserPlayerInfo.Instance.EnemyCommandsProvider.Player,
             CommandRunner = _enemyCommandRunner,
             StatusPanel =  _enemyStatusPanel
         });

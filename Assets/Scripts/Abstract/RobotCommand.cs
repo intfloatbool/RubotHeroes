@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine;
 
 namespace Abstract
 {
@@ -13,6 +14,7 @@ namespace Abstract
 
         public virtual void Execute()
         {
+            Debug.Log($"COMMANDS: {_robot.gameObject.name} starting to execute command : {CommandType.ToString()}");
             this._robot.IsCommandsRunning = true;
             _robot.SetCurrentCommand(CommandEnumerator(), this);
         }

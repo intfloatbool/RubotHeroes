@@ -14,12 +14,12 @@ namespace Commands
         protected override IEnumerator CommandEnumerator()
         {
             _robot.IsRandomMove = true;
-            Vector3 lastRandomPos = _robot.RandomPos;
-            Vector3 randomPos = WorldPositionsGenerator.Instance.RandomPosition;
-            while (lastRandomPos == randomPos)
+            Vector3[] expectionsPos =
             {
-                randomPos = WorldPositionsGenerator.Instance.RandomPosition;
-            }
+                _robot.RandomPos,
+                _robot.EnemyRobot.RandomPos
+            };
+            Vector3 randomPos = WorldPositionsGenerator.Instance.GetRandomPosExcept(expectionsPos);
             _robot.RandomPos = randomPos;
             //TODO Complete func
             yield return new WaitForSeconds(3);

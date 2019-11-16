@@ -143,16 +143,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e543721baa278f5ea78973400277239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bodyCollider: {fileID: 1414821525714997451}
+  _objectBody: {fileID: 5887275397059980329}
+  _blowEffect: {fileID: 3158633558629274863}
+  _explodePower: 600
+  _maxExplodeRandomizeMultiplier: 2
+  _lifeTimeAfterBlow: 2
   _meshRenderer: {fileID: 5300485817837951221}
   _maxDamage: 27
   _randomedDamage: 0
-  _missleBody: {fileID: 5887275397059980329}
-  _missleExposionEffect: {fileID: 3158633558629274863}
   _maxSpeed: 8
   _randomedSpeed: 0
   _detectionDistance: 1
   _lifeTime: 10
-  _explodePower: 300
 --- !u!82 &1581583117
 AudioSource:
   m_ObjectHideFlags: 0

@@ -1515,8 +1515,6 @@ MonoBehaviour:
   _robot: {fileID: 984311763}
   _robotPult: {fileID: 491976508}
   _isEnabled: 1
-  _isRandomCommands: 0
-  _countOfRandomCommands: 30
   _instantCommandsProvider: {fileID: 0}
 --- !u!114 &491976508
 MonoBehaviour:
@@ -1881,8 +1879,6 @@ MonoBehaviour:
   _robot: {fileID: 2724525586086404180}
   _robotPult: {fileID: 873514318}
   _isEnabled: 1
-  _isRandomCommands: 0
-  _countOfRandomCommands: 30
   _instantCommandsProvider: {fileID: 0}
 --- !u!114 &873514318
 MonoBehaviour:
@@ -2768,7 +2764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a76b4a73310c877af8693a3b8f3e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _commands: 01000000
+  _commands: 02000000
 --- !u!1 &1379283848
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WorldPositionsGenerator : MonoBehaviour
@@ -23,6 +25,12 @@ public class WorldPositionsGenerator : MonoBehaviour
         }
         
         GenerateRandomPositions();
+    }
+
+    public Vector3 GetRandomPosExcept(IEnumerable<Vector3> exceptions)
+    {
+        Vector3[] exceptionPositions = _randomPositions.Where(p => exceptions.All(e => e != p)).ToArray();
+        return exceptionPositions[Random.Range(0, exceptionPositions.Length)];
     }
 
     private void GenerateRandomPositions()

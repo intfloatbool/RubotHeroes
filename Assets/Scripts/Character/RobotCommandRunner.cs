@@ -19,7 +19,7 @@ public class RobotCommandRunner : MonoBehaviour
     [SerializeField] private bool _isEnabled;
     [SerializeField] private CommandsProviderBase _instantCommandsProvider;
 
-    private void Awake()
+    private void Start()
     {
         //For tests
         if (_instantCommandsProvider)

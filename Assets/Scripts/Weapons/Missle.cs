@@ -1,34 +1,30 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Missle : MonoBehaviour
+public class Missle : BlowedObject
 {
     [SerializeField] private MeshRenderer _meshRenderer;
     
     [SerializeField] private float _maxDamage = 25f;
     [SerializeField] private float _randomedDamage;
-    [SerializeField] private GameObject _missleBody;
-    [SerializeField] private GameObject _missleExposionEffect;
-
     [SerializeField] private float _maxSpeed = 7f;
     [SerializeField] private float _randomedSpeed;
 
     [SerializeField] private float _detectionDistance = 0.5f;
-
     [SerializeField] private float _lifeTime = 15f;
 
-    [SerializeField] private float _explodePower = 60f;
     private Collider _collider;
     private bool _isExploded;
     private Vector3 _lastPosition;
-    
+
+    private GameObject _lastTargetObj;
+    private float _basicY;
     private void Awake()
     {
         _collider = GetComponent<Collider>();
         CalculateRandomValues();
+        _basicY = transform.position.y;
     }
 
     public void SetColor(Color color)
@@ -124,28 +120,35 @@ public class Missle : MonoBehaviour
 
     private void OnExplode(Robot robot)
     {
-        _collider.enabled = false;
         _isExploded = true;
         if (robot != null)
         {
             robot.RobotStatus.AddDamage(_randomedDamage);
-            Vector3 relativePos = _lastPosition - transform.position;
-            Vector3 positionToForce = new Vector3(transform.position.x, robot.transform.position.y, transform.position.z).normalized;
             robot.MakeStun();
-            robot.Rigidbody.AddForce(relativePos.normalized * _explodePower * _randomedDamage);
         }
-            
-        _missleBody.SetActive(false);
-        _missleExposionEffect.SetActive(true);
+
+        Explosion(robot ? robot.Rigidbody : null, _lastPosition);
         Destroy(this.gameObject, 2f);
     }
 
     private void Inverse(GameObject target)
     {
-        Quaternion targetLookRot = Quaternion.LookRotation(transform.forward);
-        transform.rotation = Quaternion.Inverse(targetLookRot);
-
-        _randomedSpeed *= 1.5f;
+        //To avoid rotation in each frame
+        if (_lastTargetObj == target)
+            return;
+        Vector3 detectPos = new Vector3(_lastPosition.z, transform.position.y, _lastPosition.z);
+        Vector3 mirrored = Vector3.Reflect(transform.forward, detectPos);
+        Vector3 posToLook = new Vector3(mirrored.x,
+            _basicY,
+            mirrored.z);
+        transform.rotation = Quaternion.LookRotation(posToLook);
+        transform.position = new Vector3(
+            transform.position.x,
+            _basicY,
+            transform.position.z
+            );
+        _lastTargetObj = target;
+        _randomedSpeed *= 1.1f;
     }
     
     

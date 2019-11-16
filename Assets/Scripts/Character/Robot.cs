@@ -53,7 +53,7 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer
         set => _isRandomMove = value;
     }
 
-    private Vector3 _randomPos;
+    [SerializeField] private Vector3 _randomPos;
     public Vector3 RandomPos
     {
         get => _randomPos;

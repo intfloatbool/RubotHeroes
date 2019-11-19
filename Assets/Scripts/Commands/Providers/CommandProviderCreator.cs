@@ -8,7 +8,7 @@ public class CommandProviderCreator : SingletonDoL<CommandProviderCreator>
     {
         foreach (CommandsProviderBase provider in _providerPrefabs)
         {
-            if (provider is T)
+            if (provider.GetType() == typeof(T))
             {
                 return (T) Instantiate(provider);
             }

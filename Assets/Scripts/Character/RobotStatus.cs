@@ -1,9 +1,10 @@
 ﻿using System;
 using Abstract;
+using Interfaces.Triggers;
 using UnityEngine;
 
 [RequireComponent(typeof(Robot))]
-public class RobotStatus : MonoBehaviour, IProtectable
+public class RobotStatus : MonoBehaviour, IProtectable, IDamageble
 {
     private Robot _robot;
     [SerializeField] private PlayerOwner _owner;

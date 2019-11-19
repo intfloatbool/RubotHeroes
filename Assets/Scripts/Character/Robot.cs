@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Abstract;
 using Enums;
+using Interfaces.Triggers;
 using UnityEngine;
 
 [RequireComponent(typeof(RobotStatus))]
-public class Robot : MonoBehaviour, IDeadable, IPlayer
+public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable
 {
     [SerializeField] private AudioSource _audioSource;
     public AudioSource AudioSource => _audioSource;

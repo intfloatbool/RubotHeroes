@@ -9,17 +9,22 @@ public abstract class BlowedObject : MonoBehaviour
     [SerializeField] protected float _maxExplodeRandomizeMultiplier = 1.5f;
     [SerializeField] protected float _lifeTimeAfterBlow = 2f;
     private float RandomExplodeMultipler => Random.Range(1f, _maxExplodeRandomizeMultiplier);
-    protected void Explosion(Rigidbody affected = null, Vector3 lastPosition = default)
+    public virtual void Explosion(Rigidbody affected = null, Vector3 lastPosition = default)
     {
-        _bodyCollider.enabled = false;
-        _objectBody.SetActive(false);
-        _blowEffect.SetActive(true);
-        
         if (affected != null)
         {
             Vector3 relativePos = lastPosition - transform.position;
             affected.AddForce(relativePos.normalized * _explodePower * RandomExplodeMultipler);
         }
+
+        Explode();
+    }
+
+    protected virtual void Explode()
+    {
+        _bodyCollider.enabled = false;
+        _objectBody.SetActive(false);
+        _blowEffect.SetActive(true);
         Destroy(this.gameObject, _lifeTimeAfterBlow);
     }
 }

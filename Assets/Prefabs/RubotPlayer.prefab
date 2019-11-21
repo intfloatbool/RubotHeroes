@@ -24431,10 +24431,10 @@ GameObject:
   - component: {fileID: 2724525586086404181}
   - component: {fileID: 1618053896}
   - component: {fileID: 1847959807983819339}
-  - component: {fileID: 6923666765582619954}
   - component: {fileID: 6836343781366585861}
   - component: {fileID: 5460767372857679953}
   - component: {fileID: 7536477599801720217}
+  - component: {fileID: 5218106080966515584}
   m_Layer: 8
   m_Name: RubotPlayer
   m_TagString: Player_2
@@ -24483,6 +24483,7 @@ MonoBehaviour:
   _botBody: {fileID: 2435803873142678868}
   _botHead: {fileID: 64107943912117922}
   _shieldEffect: {fileID: 5688369558275287340}
+  _randomPos: {x: 0, y: 0, z: 0}
   _weapons:
   - {fileID: 6348327125523365931}
   - {fileID: 8607625721097625566}
@@ -24633,19 +24634,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!135 &6923666765582619954
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8982486076417385634}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.8
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &6836343781366585861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24696,6 +24684,19 @@ MonoBehaviour:
   - {fileID: 9006932771902484108}
   - {fileID: 9006490617534900942}
   - {fileID: 9006197437673883936}
+--- !u!65 &5218106080966515584
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982486076417385634}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.98177063, y: 1.4670832, z: 1}
+  m_Center: {x: 0.009114683, y: 0.9353732, z: 0}
 --- !u!1 &8982487441426315482
 GameObject:
   m_ObjectHideFlags: 0

@@ -69,7 +69,7 @@ public class Missle : BlowedObject
         Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
         if (Physics.SphereCast(ray, 0.3f, out hit, _detectionDistance))
         {
-            _lastPosition = hit.point;
+            _lastPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             if (hit.collider.tag.Contains("MISSLE"))
             {

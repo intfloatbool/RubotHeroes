@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Robot))]
 public class RobotStatus : MonoBehaviour, IProtectable, IDamageble
 {
+    public GameObject GameObject => gameObject;
     private Robot _robot;
     [SerializeField] private PlayerOwner _owner;
     public PlayerOwner Owner => _owner;

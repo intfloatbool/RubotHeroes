@@ -11,9 +11,9 @@ public class LandMine : TriggeringCollide
     [SerializeField] protected float _damage = 45f;
     [SerializeField] protected float _timeToActivate = 3f;
     [SerializeField] protected bool _isActivated;
-    [SerializeField] protected float _damageRadius = 5.5f;
+    [SerializeField] protected float _damageRadius = 2.5f;
     [SerializeField] protected BlowedObject _blowedObject;
-    protected Collider[] _collidersBuffer;
+    protected Collider[] _collidersBuffer = new Collider[10];
 
     protected virtual IEnumerator Start()
     {
@@ -28,8 +28,9 @@ public class LandMine : TriggeringCollide
         
         if(_blowedObject != null)
             _blowedObject.Explosion(collidable.Rigidbody, transform.position);
-
-        int size = Physics.OverlapSphereNonAlloc(transform.position, _damageRadius, _collidersBuffer);
+        int layerMask = 1 << 8;
+        
+        int size = Physics.OverlapSphereNonAlloc(transform.position, _damageRadius, _collidersBuffer, layerMask);
         if (size > 0)
             TryDamageTargets();
     }
@@ -37,11 +38,20 @@ public class LandMine : TriggeringCollide
     protected void TryDamageTargets()
     {
         //TODO: Where is damage!?
-        IEnumerable<IDamageble> damagebles = 
-            _collidersBuffer.Select(t => t.GetComponent<IDamageble>());
+        IEnumerable<IDamageble> damagebles =
+            _collidersBuffer
+                .Where(e => e != null)
+                .Select(t => t.GetComponent<IDamageble>())
+                .Distinct();
+                
         foreach (IDamageble damageble in damagebles)
         {
+            if(damageble == null)
+                continue;
             damageble.AddDamage(_damage);
+            Debug.Log($"MINE DAMAGE! to {damageble.GameObject.name}");
         }
+
+        _isActivated = false;
     } 
 }

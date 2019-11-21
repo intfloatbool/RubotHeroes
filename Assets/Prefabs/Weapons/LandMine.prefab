@@ -364,7 +364,7 @@ MonoBehaviour:
   _damage: 45
   _timeToActivate: 3
   _isActivated: 0
-  _damageRadius: 6
+  _damageRadius: 2
   _blowedObject: {fileID: 3164522340973676775}
 --- !u!135 &3885054364315296918
 SphereCollider:

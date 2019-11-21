@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Abstract;
 using Commands;
+using Enums;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Weapons;
 using Random = UnityEngine.Random;
 
 public class RobotCommandRunner : MonoBehaviour
@@ -32,7 +34,15 @@ public class RobotCommandRunner : MonoBehaviour
     public void InitializeRobot(Player player)
     {
         _robot.Initialize(player);
-        _robot.InitializeRobotStatus(player.Properties);
+        PlayerProperties properties = player.Properties;
+        
+        _robot.InitializeRobotStatus(properties);
+        _robot.InitializeWeapons(new[]
+        {
+            properties.GetWeaponByType(WeaponType.ROCKET_LAUNCHER),
+            properties.GetWeaponByType(WeaponType.FIREGUN)
+            //TODO realize landmine!
+        });
     }
     
     public void Initialize(List<CommandType> commandTypes)

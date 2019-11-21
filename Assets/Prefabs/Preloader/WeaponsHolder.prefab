@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1852403965391461252
+--- !u!1 &5380466724723030293
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1925642556065348529}
-  - component: {fileID: 8601344520795949777}
+  - component: {fileID: 3363353034603006530}
+  - component: {fileID: 8181531025443510379}
   m_Layer: 0
-  m_Name: Preloader
+  m_Name: WeaponsHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1925642556065348529
+--- !u!4 &3363353034603006530
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852403965391461252}
+  m_GameObject: {fileID: 5380466724723030293}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,21 +31,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8601344520795949777
+--- !u!114 &8181531025443510379
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852403965391461252}
+  m_GameObject: {fileID: 5380466724723030293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f1cfaaeea07eda08bca7be535107e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fa10a2aa659d7ed7aeb248b072f8989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabs:
-  - {fileID: 3310769349581326369, guid: 8a84ceb21d438c3e48e1d3a7c0eddcda, type: 3}
-  - {fileID: 3603475955194505963, guid: 090b7fd0fe80ea62c9aeaec94ce0cae5, type: 3}
-  - {fileID: 7448410462179199903, guid: 9e105f51f081fc8e4b88f658fc751293, type: 3}
-  - {fileID: 963990572677327230, guid: 6759946c0a3c3d6e68e7569f0a333ad4, type: 3}
-  - {fileID: 8181531025443510379, guid: a43387c1db6699a82a9a8e1e41bfe3ae, type: 3}
+  _weaponContainers:
+  - LauncherPrefab: {fileID: 6737100480615431152, guid: 00d629277582a2f3e9dae78af32ef170,
+      type: 3}
+    WeaponType: 0
+    WeaponID: 1
+  - LauncherPrefab: {fileID: 6573292265970745099, guid: 54e33a31b4d8e597894f79e9ea3b8c96,
+      type: 3}
+    WeaponType: 1
+    WeaponID: 3
+  - LauncherPrefab: {fileID: 0}
+    WeaponType: 2
+    WeaponID: 2

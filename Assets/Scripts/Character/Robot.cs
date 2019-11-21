@@ -6,10 +6,12 @@ using Abstract;
 using Enums;
 using Interfaces.Triggers;
 using UnityEngine;
+using Weapons;
 
 [RequireComponent(typeof(RobotStatus))]
 public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable
 {
+    [SerializeField] private Transform _weaponsParent;
     [SerializeField] private AudioSource _audioSource;
     public AudioSource AudioSource => _audioSource;
 
@@ -60,8 +62,7 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable
         get => _randomPos;
         set => _randomPos = value;
     }
-
-    [SerializeField] private List<WeaponLauncherBase> _weapons;
+    
     private Dictionary<WeaponType, WeaponLauncherBase> _weaponsDict = new Dictionary<WeaponType, WeaponLauncherBase>();
 
     private bool _isStunned = false;
@@ -75,17 +76,19 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable
         this.Rigidbody = GetComponent<Rigidbody>();
         this._collider = GetComponent<Collider>();
         this._robotStatus.OnDamaged += DeadControlListening;
-
-        InitializeWeaponsDict();
+        
     }
 
-    private void InitializeWeaponsDict()
+    public void InitializeWeapons(WeaponID[] weaponIdentifiers)
     {
-        foreach (WeaponLauncherBase weapon in _weapons)
+        foreach (WeaponID weaponId in weaponIdentifiers)
         {
-            if (!_weaponsDict.Keys.Contains(weapon.WeaponType))
+            WeaponContainer container = WeaponsHolder.Instance.GetWeaponContainerByID(weaponId);
+            WeaponLauncherBase launcherPrefab = container.LauncherPrefab;
+            if (!_weaponsDict.Keys.Contains(container.WeaponType))
             {
-                _weaponsDict.Add(weapon.WeaponType, weapon);
+                WeaponLauncherBase weaponInstance = Instantiate(launcherPrefab, _weaponsParent);
+                _weaponsDict.Add(container.WeaponType, weaponInstance);
             }
         }
     }
@@ -119,8 +122,15 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable
     private void OnDead()
     {
         StopActionIfExists();
-        SphereCollider col = (SphereCollider) this._collider;
-        col.radius /= 3f;
+        try
+        {
+            BoxCollider boxCol = (BoxCollider) _collider;
+            boxCol.size /= 3f;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"{ex.Message} \n {ex.StackTrace}");
+        }
     }
 
     private void FixedUpdate()

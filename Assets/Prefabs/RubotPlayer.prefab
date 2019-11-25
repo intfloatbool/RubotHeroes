@@ -24318,7 +24318,7 @@ MonoBehaviour:
   _audioSource: {fileID: 3603422184951232286}
   _actionsOnStart:
   - {fileID: 7536477599801720217}
-  _moveSpeed: 150
+  _moveSpeed: 16
   _rotSpeed: 6
   _distanceFromDestiny: 0
   _enemyRobot: {fileID: 0}
@@ -24533,7 +24533,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.98177063, y: 1.77, z: 1}
+  m_Size: {x: 1.5, y: 1.77, z: 1.5}
   m_Center: {x: 0.009114683, y: 0.83, z: 0}
 --- !u!114 &7658612457491570023
 MonoBehaviour:

@@ -172,8 +172,8 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable
         {
             return;
         }
-            
-        Rigidbody.velocity = direction * _moveSpeed * Time.fixedDeltaTime;
+        
+        Rigidbody.velocity += direction * _moveSpeed * Time.fixedDeltaTime;
 
         //face bot body to position
         Vector3 relativeBodyPos = targetPos - transform.position;

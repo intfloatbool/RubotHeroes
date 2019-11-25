@@ -35,7 +35,7 @@ public class WorldPositionsGenerator : MonoBehaviour
 
     private void GenerateRandomPositions()
     {
-        Vector2 fieldSize = new Vector2Int(-5, 5);
+        Vector2 fieldSize = new Vector2Int(-6, 6);
         for (int x = (int) fieldSize.x; x < fieldSize.y + 1; x++)
         {
             for (int z = (int) fieldSize.x; z < fieldSize.y + 1; z++)

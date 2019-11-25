@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class LandMineLauncher : WeaponLauncherBase
 {
-    public override WeaponType WeaponType { get; }
+    [SerializeField] private float _plantDelay = 1.5f;
+    [SerializeField] private LandMine _landMinePrefab;
+    public override WeaponType WeaponType { get; } = WeaponType.LANDMINE;
     protected override IEnumerator OnLaunchedCoroutine(GameObject sender)
     {
-        throw new System.NotImplementedException();
+        yield return new WaitForSeconds(_plantDelay);
+        PlantLandMine();
+        yield return new WaitForSeconds(_plantDelay);
+    }
+
+    private void PlantLandMine()
+    {
+        LandMine mine = Instantiate(_landMinePrefab, _sourceOfLaunch);
+        Colorize(mine);
+        
     }
 }

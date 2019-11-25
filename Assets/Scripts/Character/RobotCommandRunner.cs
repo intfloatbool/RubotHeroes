@@ -40,8 +40,8 @@ public class RobotCommandRunner : MonoBehaviour
         _robot.InitializeWeapons(new[]
         {
             properties.GetWeaponByType(WeaponType.ROCKET_LAUNCHER),
-            properties.GetWeaponByType(WeaponType.FIREGUN)
-            //TODO realize landmine!
+            properties.GetWeaponByType(WeaponType.FIREGUN),
+            properties.GetWeaponByType(WeaponType.LANDMINE)
         });
     }
     

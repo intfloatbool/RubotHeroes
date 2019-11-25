@@ -8,11 +8,7 @@ public class RobotStatus : MonoBehaviour, IProtectable, IDamageble
 {
     public GameObject GameObject => gameObject;
     private Robot _robot;
-    [SerializeField] private PlayerOwner _owner;
-    public PlayerOwner Owner => _owner;
-
     [SerializeField] private float _healthPoints = 200;
-
     public float HealthPoints
     {
         get => _healthPoints;
@@ -20,7 +16,6 @@ public class RobotStatus : MonoBehaviour, IProtectable, IDamageble
     }
 
     [SerializeField] private int _energyCount;
-
     public int BasicEnergyCount { get; set; }
     public int EnergyCount
     {

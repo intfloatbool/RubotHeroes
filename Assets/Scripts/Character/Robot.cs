@@ -89,6 +89,7 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable
             {
                 WeaponLauncherBase weaponInstance = Instantiate(launcherPrefab, _weaponsParent);
                 _weaponsDict.Add(container.WeaponType, weaponInstance);
+                weaponInstance.SetOwner(this);
             }
         }
     }

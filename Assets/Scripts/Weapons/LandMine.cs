@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Interfaces.Triggers;
+using Interfaces.Views;
 using UnityEngine;
 
 
-public class LandMine : TriggeringCollide
+public class LandMine : TriggeringCollide, IColorizable
 {
+    [SerializeField] private MeshRenderer _meshRenderer;
     [SerializeField] protected float _damage = 45f;
     [SerializeField] protected float _timeToActivate = 3f;
     [SerializeField] protected bool _isActivated;
@@ -53,5 +55,15 @@ public class LandMine : TriggeringCollide
         }
 
         _isActivated = false;
-    } 
+    }
+
+    public void SetColor(Color color)
+    {
+        if (_meshRenderer == null)
+            return;
+        foreach (Material mat in _meshRenderer.materials)
+        {
+            mat.SetColor("_Color", color);
+        }
+    }
 }

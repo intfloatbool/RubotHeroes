@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Enums;
+using Interfaces.Views;
 using UnityEngine;
 
 public abstract class WeaponLauncherBase : MonoBehaviour
@@ -8,17 +9,23 @@ public abstract class WeaponLauncherBase : MonoBehaviour
     public abstract WeaponType WeaponType { get; }
     [SerializeField] protected Transform _sourceOfLaunch;
     [SerializeField] protected bool _isInProcess;
-
+    protected Robot _owner;
+    public Robot Owner => _owner;
+    
     protected Coroutine _currentCoroutine;
-
+    
     public bool IsInProcess
     {
         get => _isInProcess;
         protected set => _isInProcess = value;
-    }
+    } 
 
     private GameObject _sender;
 
+    public void SetOwner(Robot robot)
+    {
+        _owner = robot;
+    }
     public virtual void LaunchWeapon(GameObject sender)
     {
         this._sender = sender;
@@ -47,5 +54,10 @@ public abstract class WeaponLauncherBase : MonoBehaviour
             StopCoroutine(_currentCoroutine);
         IsInProcess = false;
         
+    }
+
+    protected void Colorize(IColorizable colorizable)
+    {
+        colorizable.SetColor(_owner.RobotColor);
     }
 }

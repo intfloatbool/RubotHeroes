@@ -3,8 +3,9 @@
     JUMP = 0,
     LAUNCH_MISSLE = 1,
     PROTECTED_SHIELD = 2,
-    MEELE_ATTACK = 3,
-    RANDOM_MOVE = 4,
-    REBOOT = 5,
-    OVERLOAD = 6
+    PUT_LANDMINE = 3,
+    MEELE_ATTACK = 4,
+    RANDOM_MOVE = 5,
+    REBOOT = 6,
+    OVERLOAD = 7
 }

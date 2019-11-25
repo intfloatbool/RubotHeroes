@@ -52,6 +52,7 @@ MonoBehaviour:
       type: 3}
     WeaponType: 1
     WeaponID: 3
-  - LauncherPrefab: {fileID: 0}
+  - LauncherPrefab: {fileID: 1297569708928172429, guid: fe75ac514af52c498b1aa5d214883656,
+      type: 3}
     WeaponType: 2
     WeaponID: 2

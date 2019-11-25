@@ -1,8 +1,9 @@
 ﻿using System.Collections;
+using Interfaces.Views;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Missle : BlowedObject
+public class Missle : BlowedObject, IColorizable
 {
     [SerializeField] private MeshRenderer _meshRenderer;
     

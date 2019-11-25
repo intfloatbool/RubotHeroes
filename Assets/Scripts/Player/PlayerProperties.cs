@@ -18,7 +18,7 @@ public class PlayerProperties
             //Defaults basic waeapons
             {WeaponType.FIREGUN, WeaponID.MA_FireThrowler},
             {WeaponType.LANDMINE, WeaponID.LS_InfantryMine},
-            {WeaponType.ROCKET_LAUNCHER, WeaponID.RL_Butterfly}
+            {WeaponType.ROCKET_LAUNCHER, WeaponID.RL_Butterfly},
         };
     
     public int EnergyCount

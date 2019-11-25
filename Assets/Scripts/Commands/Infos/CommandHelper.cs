@@ -51,6 +51,10 @@ public static class CommandHelper
             {
                 return new LaunchMissleCommand(robot); 
             }
+            case CommandType.PUT_LANDMINE:
+            {
+                return new PutLandmineCommand(robot);
+            }
             case CommandType.PROTECTED_SHIELD:
             {
                 return new ProtectionShieldCommand(robot); 

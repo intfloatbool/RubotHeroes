@@ -6,6 +6,7 @@ namespace Commands
 {
     public class RandomMoveCommand: RobotCommand
     {
+        private float _timeToReachTarget = 2f;
         public RandomMoveCommand(Robot robot) : base(robot)
         {
             this.CommandType = CommandType.RANDOM_MOVE;
@@ -22,7 +23,10 @@ namespace Commands
             Vector3 randomPos = WorldPositionsGenerator.Instance.GetRandomPosExcept(expectionsPos);
             _robot.RandomPos = randomPos;
             //TODO Complete func
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(_timeToReachTarget);
+            if(!_robot.IsDestinationReach)
+                yield return new WaitForSeconds(_timeToReachTarget);
+            
             _robot.IsRandomMove = false;
             _robot.ResetCommandsRunning();
         }

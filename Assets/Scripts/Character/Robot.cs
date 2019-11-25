@@ -50,6 +50,10 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable
     public Transform BotHead => _botHead;
     private bool _isRandomMove;
 
+    [SerializeField] private float _pathDistanceMinValue = 0.6f;
+    private bool _isDestinationReach = false;
+    public bool IsDestinationReach => _isDestinationReach;
+
     public bool IsRandomMove
     {
         get => _isRandomMove;
@@ -168,7 +172,8 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable
         Vector3 targetPos = new Vector3(target.x, _botBody.position.y, target.z);
         Vector3 direction = (targetPos - _botBody.position).normalized;
         _distanceFromDestiny = Vector3.Distance(_botBody.position, targetPos);
-        if (_distanceFromDestiny <= 0.5f)
+        _isDestinationReach = _distanceFromDestiny <= _pathDistanceMinValue;
+        if (_isDestinationReach)
         {
             return;
         }

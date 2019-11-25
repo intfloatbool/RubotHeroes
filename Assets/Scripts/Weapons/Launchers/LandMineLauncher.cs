@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LandMineLauncher : WeaponLauncherBase
 {
+    [SerializeField] private Vector3 _launchForce = Vector3.forward * 50;
     [SerializeField] private float _plantDelay = 1.5f;
     [SerializeField] private LandMine _landMinePrefab;
     public override WeaponType WeaponType { get; } = WeaponType.LANDMINE;
@@ -17,7 +18,9 @@ public class LandMineLauncher : WeaponLauncherBase
     private void PlantLandMine()
     {
         LandMine mine = Instantiate(_landMinePrefab);
+        mine.transform.rotation = Quaternion.identity;
         mine.transform.position = _sourceOfLaunch.position;
+        mine.Rigidbody.AddForce(_launchForce);
         Colorize(mine);
     }
 }

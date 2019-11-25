@@ -190,6 +190,37 @@ Transform:
   m_Father: {fileID: 8989114974135694866}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3450508177130473681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5781136310929040916}
+  m_Layer: 8
+  m_Name: Guns
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5781136310929040916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3450508177130473681}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8980645406219009254}
+  m_Father: {fileID: 8988816987751830712}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3982806493816855520
 GameObject:
   m_ObjectHideFlags: 0
@@ -24522,6 +24553,10 @@ MonoBehaviour:
     AnimationClip: {fileID: 7400000, guid: 5c517928551a721298643832a67e3bbd, type: 2}
   - CommandType: 1
     AnimationClip: {fileID: 7400000, guid: 4118ca06f9e18a07490dce97aed5addf, type: 2}
+  - CommandType: 6
+    AnimationClip: {fileID: 7400000, guid: 16f33e34222292758a0f0218524e14d2, type: 2}
+  - CommandType: 7
+    AnimationClip: {fileID: 7400000, guid: c1ecfd0e10573d8cc871175504d2476e, type: 2}
 --- !u!95 &8414128335603058329
 Animator:
   serializedVersion: 3
@@ -24804,7 +24839,7 @@ Transform:
   m_LocalPosition: {x: 0.0055158436, y: 0.055580854, z: 0.08953786}
   m_LocalScale: {x: 0.20000023, y: 0.19999999, z: 0.20000023}
   m_Children:
-  - {fileID: 8980645406219009254}
+  - {fileID: 5781136310929040916}
   m_Father: {fileID: 64107943912117922}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -24866,7 +24901,7 @@ GameObject:
   - component: {fileID: 8995499600340922508}
   - component: {fileID: 9006944764087282714}
   m_Layer: 8
-  m_Name: guns
+  m_Name: guns_local
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24879,11 +24914,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8983299991233071608}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.44768882, y: -4.177905, z: 0.02757919}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.44768882, y: -4.177905, z: 0.027579224}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8988816987751830712}
+  m_Father: {fileID: 5781136310929040916}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8995499600340922508

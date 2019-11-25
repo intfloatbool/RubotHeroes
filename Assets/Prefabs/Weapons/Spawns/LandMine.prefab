@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 594925322286589770}
   - component: {fileID: 594925322286589771}
   - component: {fileID: 594925322286589812}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mineBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8034957561909287795}
   - component: {fileID: 8596623994325276698}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mineBlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 3885054363463887712}
   - component: {fileID: 3885054363463887727}
   - component: {fileID: 3885054363463887726}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 3885054363666600581}
   - component: {fileID: 3885054363666600580}
   - component: {fileID: 3885054363666600579}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 3885054364315296918}
   - component: {fileID: 3885054364315296938}
   - component: {fileID: 3164522340973676775}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LandMine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 3885054364711289544}
   - component: {fileID: 3885054364711289527}
   - component: {fileID: 3885054364711289526}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5367208576615875754}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: peaks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,6 +651,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -694,6 +698,38 @@ PrefabInstance:
     - target: {fileID: 400004, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}

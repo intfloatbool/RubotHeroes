@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4510331408149661584}
   - component: {fileID: 1581583117}
   - component: {fileID: 1414821525714997451}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rocket
   m_TagString: MISSLE
   m_Icon: {fileID: 0}
@@ -276,6 +276,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WFX_FlameThrower Looped
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 21f6aea0c9b788c4b9b6275efc33d0f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 21f6aea0c9b788c4b9b6275efc33d0f9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -332,6 +336,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.036581676
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 21f6aea0c9b788c4b9b6275efc33d0f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21f6aea0c9b788c4b9b6275efc33d0f9, type: 3}
 --- !u!1001 &2491089683869037856
@@ -345,6 +353,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AVMT300
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: ff4732b4c60f1a27fbe9e6f2edf2128c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: ff4732b4c60f1a27fbe9e6f2edf2128c,
         type: 3}
@@ -466,6 +479,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 4575df893a6e3f64a8283dee38413a34, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 4575df893a6e3f64a8283dee38413a34, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -509,6 +526,26 @@ PrefabInstance:
     - target: {fileID: 400006, guid: 4575df893a6e3f64a8283dee38413a34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 4575df893a6e3f64a8283dee38413a34, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 4575df893a6e3f64a8283dee38413a34, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4575df893a6e3f64a8283dee38413a34, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 4575df893a6e3f64a8283dee38413a34, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 4575df893a6e3f64a8283dee38413a34, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4575df893a6e3f64a8283dee38413a34, type: 3}

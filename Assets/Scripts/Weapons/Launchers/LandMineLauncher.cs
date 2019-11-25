@@ -18,9 +18,9 @@ public class LandMineLauncher : WeaponLauncherBase
     private void PlantLandMine()
     {
         LandMine mine = Instantiate(_landMinePrefab);
-        mine.transform.rotation = Quaternion.identity;
+        mine.transform.rotation = _sourceOfLaunch.rotation;
         mine.transform.position = _sourceOfLaunch.position;
-        mine.Rigidbody.AddForce(_launchForce);
+        mine.Rigidbody.AddForce(_sourceOfLaunch.forward * _launchForce.magnitude);
         Colorize(mine);
     }
 }

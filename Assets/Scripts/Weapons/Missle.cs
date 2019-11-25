@@ -67,19 +67,12 @@ public class Missle : BlowedObject, IColorizable
     private void DetectionLoop()
     {
         RaycastHit hit;
+        int layerMask = 1 << 8;
         Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-        if (Physics.SphereCast(ray, 0.3f, out hit, _detectionDistance))
+        if (Physics.SphereCast(ray, 0.3f, out hit, _detectionDistance, layerMask))
         {
             _lastPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            if (hit.collider.tag.Contains("MISSLE"))
-            {
-                Missle crossMissle = hit.collider.GetComponent<Missle>();
-                
-                crossMissle.OnExplode(null);
-                OnExplode(null);
-                return;
-            }
 
             GameObject colGo = hit.collider.gameObject;
             if (IsShielded(colGo))
@@ -92,7 +85,10 @@ public class Missle : BlowedObject, IColorizable
             if (robot != null)
             {
                 OnExplode(robot);
+                return;
             }
+            
+            OnExplode(null);
         }
         else
         {

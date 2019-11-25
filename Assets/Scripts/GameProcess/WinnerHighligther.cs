@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class WinnerHighligther : OnGameEndTrigger
 {
+    [SerializeField] private float _camDelay = 2f;
     private float _speed = 0.2f;
     private Vector3 _neededLocalPos = new Vector3(5, 12, 0);
     private Vector3 _neededLocalEulers = new Vector3(60, -90, 0);
@@ -17,7 +19,13 @@ public class WinnerHighligther : OnGameEndTrigger
         Robot winnerRobot = winner.Robot;
         CamTransform.parent = winnerRobot.transform;
         _imgResizer.IsActive = true;
-        _isActivated = true;
+        StartCoroutine(ActivateWinCameraByTime(_camDelay));
+    }
+
+    private IEnumerator ActivateWinCameraByTime(float delay, bool isActive = true)
+    {
+        yield return new WaitForSeconds(delay);
+        _isActivated = isActive;
     }
 
     private void FixedUpdate()

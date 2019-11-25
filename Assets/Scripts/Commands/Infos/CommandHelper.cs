@@ -7,6 +7,19 @@ using Random = UnityEngine.Random;
 
 public static class CommandHelper
 {
+    private static List<CommandType> _readyCommands = new List<CommandType>()
+    {
+        CommandType.JUMP,
+        CommandType.REBOOT,
+        CommandType.RANDOM_MOVE,
+        CommandType.MEELE_ATTACK,
+        CommandType.PROTECTED_SHIELD,
+        CommandType.LAUNCH_MISSLE,
+        CommandType.PUT_LANDMINE
+    };
+
+    public static List<CommandType> ReadyCommands => _readyCommands;
+
     public static IEnumerable<ICommand> GetRandomCommands(int countOfRandomCommands,Robot robot)
     {
         for (int i = 0; i < countOfRandomCommands; i++)
@@ -61,11 +74,11 @@ public static class CommandHelper
             }
             case CommandType.OVERLOAD:
             {
-                return new ProtectionShieldCommand(robot); 
+                return new OverloadCommand(robot); 
             }
             case CommandType.REBOOT:
             {
-                return new ProtectionShieldCommand(robot); 
+                return new RebootCommand(robot); 
             }
             default:
                 throw new Exception($"Command with type {commandType} not found!!!");
@@ -83,8 +96,6 @@ public static class CommandHelper
 
     private static CommandType GetRandomCommandType()
     {
-        int commandsSize = Enum.GetNames(typeof(CommandType)).Length;
-        CommandType randomType = (CommandType) Random.Range(0, commandsSize);
-        return randomType;
+        return _readyCommands[Random.Range(0, _readyCommands.Count)];
     }
 }

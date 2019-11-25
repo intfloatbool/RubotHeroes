@@ -7,7 +7,7 @@ using Interfaces.Views;
 using UnityEngine;
 
 
-public class LandMine : TriggeringCollide, IColorizable
+public class LandMine : TriggeringCollide, IColorizable, ICollidable
 {
     [SerializeField] private MeshRenderer _meshRenderer;
     [SerializeField] protected float _damage = 45f;
@@ -16,6 +16,8 @@ public class LandMine : TriggeringCollide, IColorizable
     [SerializeField] protected float _damageRadius = 2.5f;
     [SerializeField] protected BlowedObject _blowedObject;
     protected Collider[] _collidersBuffer = new Collider[10];
+    [SerializeField] protected Rigidbody _rigidbody;
+    public Rigidbody Rigidbody => _rigidbody;
 
     protected virtual IEnumerator Start()
     {

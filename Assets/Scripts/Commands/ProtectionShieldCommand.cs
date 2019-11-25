@@ -6,7 +6,7 @@ namespace Commands
 {
     public class ProtectionShieldCommand: RobotCommand, IChargable
     {
-        public int ChargeCost { get; } = 1;
+        public int ChargeCost { get; } = 3;
 
         private float _duration = 2.5f;
         public ProtectionShieldCommand(Robot robot) : base(robot)

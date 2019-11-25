@@ -13,7 +13,7 @@ public class RebootCommand : RobotCommand
     protected override IEnumerator CommandEnumerator()
     {
         _robot.RobotStatus.ResetEnergy();
-        _robot.ResetCommandsRunning();
         yield return new WaitForSeconds(_rebootDelay);
+        _robot.ResetCommandsRunning();
     }
 }

@@ -16,8 +16,8 @@ public class LandMineLauncher : WeaponLauncherBase
 
     private void PlantLandMine()
     {
-        LandMine mine = Instantiate(_landMinePrefab, _sourceOfLaunch);
+        LandMine mine = Instantiate(_landMinePrefab);
+        mine.transform.position = _sourceOfLaunch.position;
         Colorize(mine);
-        
     }
 }

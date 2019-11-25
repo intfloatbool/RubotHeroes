@@ -367,6 +367,7 @@ MonoBehaviour:
   _isActivated: 0
   _damageRadius: 2
   _blowedObject: {fileID: 3164522340973676775}
+  _rigidbody: {fileID: 3885054364315296938}
 --- !u!135 &3885054364315296918
 SphereCollider:
   m_ObjectHideFlags: 0

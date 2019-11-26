@@ -45,6 +45,7 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable
     
     [SerializeField] private Transform _botBody;
     [SerializeField] private Transform _botHead;
+
     [SerializeField] private GameObject _shieldEffect;
     public GameObject ShieldEffect => _shieldEffect;
     public Transform BotHead => _botHead;

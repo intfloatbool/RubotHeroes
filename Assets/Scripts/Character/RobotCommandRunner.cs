@@ -19,12 +19,14 @@ public class RobotCommandRunner : MonoBehaviour
     private Coroutine _runCommandsCoroutine;
 
     [SerializeField] private bool _isEnabled;
+
+    [SerializeField] private bool _useExternalCommandsProviders = false;
     [SerializeField] private CommandsProviderBase _instantCommandsProvider;
 
     private void Start()
     {
         //For tests
-        if (_instantCommandsProvider)
+        if (_instantCommandsProvider != null && _useExternalCommandsProviders)
         {
             Initialize(_instantCommandsProvider.GetCommands());
             _isEnabled = false;

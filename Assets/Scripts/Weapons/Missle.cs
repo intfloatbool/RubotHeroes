@@ -19,6 +19,8 @@ public class Missle : BlowedObject, IColorizable
     private bool _isExploded;
     private Vector3 _lastPosition;
 
+    private Vector3 _launchPosition;
+
     private GameObject _lastTargetObj;
     private float _basicY;
     private void Awake()
@@ -38,6 +40,7 @@ public class Missle : BlowedObject, IColorizable
 
     private IEnumerator Start()
     {
+        _launchPosition = transform.position;
         yield return new WaitForSeconds(_lifeTime);
         OnExplode(null);
     }
@@ -133,20 +136,11 @@ public class Missle : BlowedObject, IColorizable
         //To avoid rotation in each frame
         if (_lastTargetObj == target)
             return;
-        Vector3 detectPos = new Vector3(_lastPosition.z, transform.position.y, _lastPosition.z);
-        Vector3 mirrored = Vector3.Reflect(transform.forward, detectPos);
-        Vector3 posToLook = new Vector3(mirrored.x,
-            _basicY,
-            mirrored.z);
-        transform.rotation = Quaternion.LookRotation(posToLook);
-        transform.position = new Vector3(
-            transform.position.x,
-            _basicY,
-            transform.position.z
-            );
-        _lastTargetObj = target;
-        _randomedSpeed *= 1.1f;
+
+        Vector3 relativePos = _launchPosition - _lastPosition;
+        Quaternion rot = Quaternion.LookRotation(relativePos, Vector3.up);
+        transform.rotation = rot;
+
     }
-    
-    
+
 }

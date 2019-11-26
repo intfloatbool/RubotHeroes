@@ -26,14 +26,14 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 9af527704df03ae4794562070544c949, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
+  m_DefaultReflectionResolution: 32
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
@@ -266,11 +266,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1348d88cf7f6ddf1a146a36fcd04c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spaceRenderer: {fileID: 967515706}
   _environmentParent: {fileID: 2073300384145335318}
   _presets:
   - EnvironmentPrefab: {fileID: 0}
-    SpaceSprite: {fileID: 21300000, guid: 5a5dc13c884151eeca294007b91c9810, type: 3}
+    SkyBoxMat: {fileID: 2100000, guid: edad4bfe0df85fd4bbf8671798717e2d, type: 2}
+  - EnvironmentPrefab: {fileID: 0}
+    SkyBoxMat: {fileID: 2100000, guid: 0f4edca89ef8aac4e9ef8231e680124c, type: 2}
+  - EnvironmentPrefab: {fileID: 0}
+    SkyBoxMat: {fileID: 2100000, guid: 9af527704df03ae4794562070544c949, type: 2}
 --- !u!4 &265077676 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4887499273897511744, guid: a968e5d192bf96ac4951cab495dc6029,
@@ -594,7 +597,7 @@ Camera:
   m_GameObject: {fileID: 393531851}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -610,7 +613,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 30
+  field of view: 33
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -721,7 +724,8 @@ MonoBehaviour:
   _robot: {fileID: 984311763}
   _robotPult: {fileID: 491976508}
   _isEnabled: 1
-  _instantCommandsProvider: {fileID: 0}
+  _useExternalCommandsProviders: 1
+  _instantCommandsProvider: {fileID: 2098898358}
 --- !u!114 &491976508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,7 +798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &540165630
 Transform:
   m_ObjectHideFlags: 0
@@ -1009,7 +1013,7 @@ PrefabInstance:
     - target: {fileID: 3849853221586233186, guid: 5797ecc79f6e7519394b557a3a0bd80b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 349.305
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3849853221586233186, guid: 5797ecc79f6e7519394b557a3a0bd80b,
         type: 3}
@@ -1219,7 +1223,8 @@ MonoBehaviour:
   _robot: {fileID: 2724525586086404180}
   _robotPult: {fileID: 873514318}
   _isEnabled: 1
-  _instantCommandsProvider: {fileID: 0}
+  _useExternalCommandsProviders: 1
+  _instantCommandsProvider: {fileID: 1355254397}
 --- !u!114 &873514318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2062,7 +2067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a76b4a73310c877af8693a3b8f3e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _commands: 0200000002000000020000000200000006000000
+  _commands: 050000000100000001000000050000000200000002000000
 --- !u!1 &1401190117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2810,7 +2815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a76b4a73310c877af8693a3b8f3e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _commands: 05000000
+  _commands: 020000000200000005000000010000000100000005000000
 --- !u!4 &2098898359
 Transform:
   m_ObjectHideFlags: 0
@@ -4072,7 +4077,7 @@ PrefabInstance:
     - target: {fileID: 3849853221586233186, guid: 5797ecc79f6e7519394b557a3a0bd80b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 349.305
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3849853221586233186, guid: 5797ecc79f6e7519394b557a3a0bd80b,
         type: 3}

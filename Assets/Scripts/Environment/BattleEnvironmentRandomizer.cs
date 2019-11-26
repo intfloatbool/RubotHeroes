@@ -5,23 +5,22 @@ using UnityEngine;
 
 public class BattleEnvironmentRandomizer : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer _spaceRenderer;
     [SerializeField] private Transform _environmentParent;
     
     [System.Serializable]
     private class EnvironmentPreset
     {
         public GameObject EnvironmentPrefab;
-        public Sprite SpaceSprite;
+        public Material SkyBoxMat;
 
-        public void Create(SpriteRenderer rend, Transform parent)
+        public void Create(Transform parent)
         {
-            if (rend != null)
+            if (SkyBoxMat != null)
             {
-                rend.sprite = SpaceSprite;
+                RenderSettings.skybox = SkyBoxMat;
             }
 
-            if (parent != null)
+            if (parent != null && EnvironmentPrefab != null)
             {
                 Instantiate(EnvironmentPrefab, parent);
             }
@@ -40,6 +39,6 @@ public class BattleEnvironmentRandomizer : MonoBehaviour
         if (!_presets.Any())
             return;
         EnvironmentPreset randPreset = _presets[Random.Range(0, _presets.Count)];
-        randPreset?.Create(_spaceRenderer, _environmentParent);
+        randPreset?.Create(_environmentParent);
     }
 }

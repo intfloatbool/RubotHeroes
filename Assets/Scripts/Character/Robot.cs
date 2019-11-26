@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Abstract;
 using Enums;
+using Interfaces;
 using Interfaces.Triggers;
 using UnityEngine;
 using Weapons;
 
 [RequireComponent(typeof(RobotStatus))]
-public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable
+public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable, ICommandExecutor, IAudioPlayable
 {
     [SerializeField] private Transform _weaponsParent;
     [SerializeField] private AudioSource _audioSource;
@@ -18,7 +19,7 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable
     [SerializeField] private List<InvokedActionByInitializeBase> _actionsOnStart;
     public event Action OnDeath = () => { };
     public event Action<RobotCommand> OnCommandExecuted = (cmd) => {};
-    
+    public event Action<CommandType> OnCommandTypeExecuted = (cmdType) => {};
     [SerializeField] private float _moveSpeed = 0.4f;
     [SerializeField] private float _rotSpeed = 4f;
 
@@ -204,6 +205,7 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable
         StopActionIfExists();
         this._currentAction = StartCoroutine(commandEnumerator);
         OnCommandExecuted(cmd);
+        OnCommandTypeExecuted(cmd.CommandType);
     }
     
     public void ResetCommandsRunning()

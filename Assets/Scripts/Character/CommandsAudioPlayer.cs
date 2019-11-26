@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class CommandsAudioPlayer : MonoBehaviour
+public class CommandsAudioPlayer : SingletonDoL<CommandsAudioPlayer>
 {
-    [SerializeField] private Robot[] _robots;
-
     [System.Serializable]
     private class CommandWithSound
     {
@@ -18,16 +16,12 @@ public class CommandsAudioPlayer : MonoBehaviour
     [SerializeField] private List<CommandWithSound> _commandsWithSounds;
     private Dictionary<CommandType, AudioClip> _soundsDict = new Dictionary<CommandType, AudioClip>();
 
-    private void Awake()
+    protected override CommandsAudioPlayer GetLink() => this;
+
+    protected override void Awake()
     {
+        base.Awake();
         InitializeDict();
-        foreach (Robot robot in _robots)
-        {
-            robot.OnCommandExecuted += (command) =>
-            {
-                PlayClipByCommand(robot.AudioSource,command.CommandType);
-            };
-        }
     }
 
     private void InitializeDict()
@@ -41,12 +35,14 @@ public class CommandsAudioPlayer : MonoBehaviour
         }
     }
 
-    private void PlayClipByCommand(AudioSource audioSource,CommandType commandType)
+    public void PlayCommandSoundByType(AudioSource source, CommandType cmdType)
     {
-        if (_soundsDict.ContainsKey(commandType))
-        {
-            audioSource.PlayOneShot(_soundsDict[commandType]);
-        }
+        AudioClip audioClip = _soundsDict.ContainsKey(cmdType) ? _soundsDict[cmdType] : null;
+        if (audioClip == null)
+            return;
+        if (source == null)
+            return;
+        source.PlayOneShot(audioClip);
     }
-    
+
 }

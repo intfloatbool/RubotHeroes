@@ -25,10 +25,12 @@ public class RobotDeadController : MonoBehaviour, IDeadController
     
     public void HandleDeath()
     {
+        float basicMass = 3f;
         List<Rigidbody> robotBody = GetRobotBody().ToList();
         robotBody.Add(_robot.Rigidbody); //add head too
         foreach (Rigidbody rb in robotBody)
         {
+            rb.mass = basicMass;
             Vector3 randomVector = new Vector3(RandomVal, RandomVal, RandomVal);
             rb.AddForce(randomVector * BlowPower);
         }

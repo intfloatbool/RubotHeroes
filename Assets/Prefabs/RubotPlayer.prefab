@@ -24277,6 +24277,7 @@ GameObject:
   - component: {fileID: 5218106080966515584}
   - component: {fileID: 7658612457491570023}
   - component: {fileID: 8414128335603058329}
+  - component: {fileID: 6462324463327543899}
   m_Layer: 8
   m_Name: RubotPlayer
   m_TagString: Player_2
@@ -24325,6 +24326,7 @@ MonoBehaviour:
   _botBody: {fileID: 2435803873142678868}
   _botHead: {fileID: 64107943912117922}
   _shieldEffect: {fileID: 5688369558275287340}
+  _pathDistanceMinValue: 0.6
   _randomPos: {x: 0, y: 0, z: 0}
 --- !u!54 &2724525586086404182
 Rigidbody:
@@ -24484,7 +24486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a7b9bb4d7787875b63638f2e31c695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxBlowPower: 600
+  _maxBlowPower: 1500
   _exposionClip: {fileID: 8300000, guid: 1550694d7bb48cebcbc930b6c250473d, type: 3}
   _audioSource: {fileID: 1847959807983819339}
   _robot: {fileID: 7154617012696959509}
@@ -24503,7 +24505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _robot: {fileID: 7154617012696959509}
   _distance: 2
-  _power: 500
+  _power: 400
 --- !u!114 &7536477599801720217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24576,6 +24578,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6462324463327543899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982486076417385634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b04adfc7186dea4faa4f18d7773f4a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8982487441426315482
 GameObject:
   m_ObjectHideFlags: 0

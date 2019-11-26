@@ -1013,7 +1013,7 @@ PrefabInstance:
     - target: {fileID: 3849853221586233186, guid: 5797ecc79f6e7519394b557a3a0bd80b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 349.305
       objectReference: {fileID: 0}
     - target: {fileID: 3849853221586233186, guid: 5797ecc79f6e7519394b557a3a0bd80b,
         type: 3}
@@ -1685,7 +1685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce8b3d54c33fcbbbbadc189512d1f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneToGo: 0
+  _sceneToGo: 1
 --- !u!1 &1037734900
 GameObject:
   m_ObjectHideFlags: 0
@@ -4077,7 +4077,7 @@ PrefabInstance:
     - target: {fileID: 3849853221586233186, guid: 5797ecc79f6e7519394b557a3a0bd80b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 349.305
       objectReference: {fileID: 0}
     - target: {fileID: 3849853221586233186, guid: 5797ecc79f6e7519394b557a3a0bd80b,
         type: 3}

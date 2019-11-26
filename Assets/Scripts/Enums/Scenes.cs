@@ -2,7 +2,8 @@
 
 public enum Scenes
 {
-    MAIN_MENU = 0,
-    BATTLE_SCENE = 1,
-    COMMANDS_CONSTRUCTOR = 2
+    PRELOADER = 0,
+    MAIN_MENU = 1,
+    BATTLE_SCENE = 2,
+    COMMANDS_CONSTRUCTOR = 3
 }

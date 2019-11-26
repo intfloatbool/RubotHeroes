@@ -57,7 +57,10 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 6706a1ec5cda71037b3cdfb95508fe8b, type: 3}
     - {fileID: 2800000, guid: eee5be5a316bf182c9a288d5054e1a99, type: 3}
     - {fileID: 2800000, guid: 4a5c24661584833b0a848ffabaabde93, type: 3}
-    totalSpriteSurfaceArea: 5626204
+    - {fileID: 102900000, guid: 0d3d32de9112f9015999ac4217afcc9b, type: 3}
+    - {fileID: 102900000, guid: 1831f37daaa43ce46ad368fb96dadd4c, type: 3}
+    - {fileID: 102900000, guid: 93c6b19c3b5690662b48caaf6111471d, type: 3}
+    totalSpriteSurfaceArea: 7465804
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
@@ -69,6 +72,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 5f641443756a76207a4d05435f9573ae, type: 3}
   - {fileID: 21300000, guid: 3b319f34414ed3331907d9cee0dd34ab, type: 3}
   - {fileID: 21300000, guid: 091b44a4003b2ed43aa5889cf0dac2a0, type: 3}
+  - {fileID: 21300000, guid: fff9867558df3fba6981304f5a06b019, type: 3}
   - {fileID: 21300000, guid: f9ae05d552a8b77a1b6f5a9760a16831, type: 3}
   - {fileID: 21300000, guid: 4a5c24661584833b0a848ffabaabde93, type: 3}
   - {fileID: 21300000, guid: 629c1d1848a8f95deb7c90a79abe1fbf, type: 3}
@@ -76,15 +80,18 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0565f6c944aab6a2ba65bcc2cf289b9e, type: 3}
   - {fileID: 21300000, guid: eee5be5a316bf182c9a288d5054e1a99, type: 3}
   - {fileID: 21300000, guid: dfe4941cdf51cda0185b88b2028c105d, type: 3}
+  - {fileID: 21300000, guid: 5a5dc13c884151eeca294007b91c9810, type: 3}
   - {fileID: 21300000, guid: bfe0859c75f9902b991e944ecb18c37c, type: 3}
   - {fileID: 21300000, guid: 6706a1ec5cda71037b3cdfb95508fe8b, type: 3}
   - {fileID: 21300000, guid: 8059664faaae48dd390f689e9e2ee5d9, type: 3}
+  - {fileID: 21300000, guid: 4569df9fb02718504a023da3428e89ec, type: 3}
   m_PackedSpriteNamesToIndex:
   - winner
   - grey-circle-icon-8
   - energy
   - panel
   - white_circle
+  - space_2
   - move
   - rocket
   - jump
@@ -92,8 +99,10 @@ SpriteAtlas:
   - remove
   - reload
   - whitr-glossy-rectangle-button-md
+  - space_1
   - overload
   - protection
   - meele
+  - auto_battle_preloader
   m_Tag: UI
   m_IsVariant: 0

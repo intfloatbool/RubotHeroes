@@ -22,16 +22,7 @@ public class RobotCommandRunner : MonoBehaviour
 
     [SerializeField] private bool _useExternalCommandsProviders = false;
     [SerializeField] private CommandsProviderBase _instantCommandsProvider;
-
-    private void Start()
-    {
-        //For tests
-        if (_instantCommandsProvider != null && _useExternalCommandsProviders)
-        {
-            Initialize(_instantCommandsProvider.GetCommands());
-            _isEnabled = false;
-        }
-    }
+    
     
     public void InitializeRobot(Player player)
     {
@@ -51,7 +42,22 @@ public class RobotCommandRunner : MonoBehaviour
     {
         if (!_isEnabled)
             return;
-        RunCommands(CommandHelper.GetCommandsByTypes(commandTypes, _robot));
+
+        List<CommandType> commandTypesForExexute = null;
+        //For tests
+        if (_instantCommandsProvider != null && _useExternalCommandsProviders)
+        {
+            commandTypesForExexute = _instantCommandsProvider.GetCommands();
+            Debug.Log($"Robot pult #{_robot.gameObject.name} running by external command provider!!!");
+        }
+        else
+        {
+            commandTypesForExexute = commandTypes;
+        }
+        
+        RunCommands(CommandHelper.GetCommandsByTypes(commandTypesForExexute, _robot));
+        
+        _isEnabled = false;
     }
     
     public void RunCommands(IEnumerable<ICommand> commands)

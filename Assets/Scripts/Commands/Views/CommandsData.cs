@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommandsData : DontDestroyOnLoad
+public class CommandsData : DontDestroyOnLoadMB
 {
     public static CommandsData Instance { get; private set; }
     [SerializeField] private List<CommandInfo> _commandInfos;

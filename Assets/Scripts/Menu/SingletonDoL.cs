@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public  abstract class SingletonDoL<T> : DontDestroyOnLoad
+public  abstract class SingletonDoL<T> : DontDestroyOnLoadMB
 {
     public static T Instance { get; protected set; }
 

@@ -178,6 +178,9 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable
         {
             return;
         }
+
+        if (Rigidbody.IsSleeping())
+            return;
         
         Rigidbody.velocity += direction * _moveSpeed * Time.fixedDeltaTime;
 

@@ -14,7 +14,9 @@ public abstract class BlowedObject : MonoBehaviour
         if (affected != null)
         {
             Vector3 relativePos = lastPosition - transform.position;
-            affected.AddForce(relativePos.normalized * _explodePower * RandomExplodeMultipler);
+            affected.AddForce(relativePos.normalized * _explodePower * RandomExplodeMultipler, 
+                ForceMode.Force);
+            affected.Sleep();
         }
 
         Explode();

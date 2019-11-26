@@ -10,6 +10,6 @@ public class SceneSwitcherButton : MonoBehaviour
     private void Awake()
     {
         this._button = GetComponent<Button>();
-        this._button.onClick.AddListener(() => GameScenes.LoadScene(_sceneToGo));
+        this._button.onClick.AddListener(() => ScenesSwitcher.Instance.RunSceneByType(_sceneToGo));
     }
 }

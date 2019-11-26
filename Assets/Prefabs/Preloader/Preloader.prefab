@@ -43,7 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f1cfaaeea07eda08bca7be535107e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delayAfterPreloading: 2
+  _sceneAfterLoad: 1
   _prefabs:
+  - {fileID: 1391592133987213284, guid: e8d85f7eb8e132d6aae727d62ef7454c, type: 3}
   - {fileID: 3310769349581326369, guid: 8a84ceb21d438c3e48e1d3a7c0eddcda, type: 3}
   - {fileID: 3603475955194505963, guid: 090b7fd0fe80ea62c9aeaec94ce0cae5, type: 3}
   - {fileID: 7448410462179199903, guid: 9e105f51f081fc8e4b88f658fc751293, type: 3}

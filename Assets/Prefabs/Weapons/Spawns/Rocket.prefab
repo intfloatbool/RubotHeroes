@@ -146,7 +146,7 @@ MonoBehaviour:
   _bodyCollider: {fileID: 1414821525714997451}
   _objectBody: {fileID: 5887275397059980329}
   _blowEffect: {fileID: 3158633558629274863}
-  _explodePower: 900
+  _explodePower: 1300
   _maxExplodeRandomizeMultiplier: 2
   _lifeTimeAfterBlow: 2
   _meshRenderer: {fileID: 5300485817837951221}

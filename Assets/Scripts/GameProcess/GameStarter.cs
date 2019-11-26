@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class GameStarter : MonoBehaviour
 {
+    public event Action OnGameStarting = () => { };
+
     [SerializeField] private float _timeToStart = 4f;
     private float _currentTimer;
 
@@ -47,6 +49,7 @@ public class GameStarter : MonoBehaviour
         }
 
         OnAfterStart();
+        OnGameStarting();
     }
 
     private void OnBeforeStart()

@@ -27,7 +27,7 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable, ICommandExe
     public RobotStatus RobotStatus => _robotStatus;
 
     [SerializeField] private float _distanceFromDestiny;
-    public float DistanceFromDestiny
+    public virtual float DistanceFromDestiny
     {
         get => _distanceFromDestiny;
         set => _distanceFromDestiny = value;
@@ -76,7 +76,7 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable, ICommandExe
     
     public RobotCommand ExternalCommand { get; set; }
     
-    private void Awake()
+    protected virtual void Awake()
     {
         this._robotStatus = GetComponent<RobotStatus>();
         this.Rigidbody = GetComponent<Rigidbody>();
@@ -91,10 +91,19 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable, ICommandExe
         {
             WeaponContainer container = WeaponsHolder.Instance.GetWeaponContainerByID(weaponId);
             WeaponLauncherBase launcherPrefab = container.LauncherPrefab;
-            if (!_weaponsDict.Keys.Contains(container.WeaponType))
+            WeaponType weaponType = container.WeaponType;
+            if (!_weaponsDict.Keys.Contains(weaponType))
             {
                 WeaponLauncherBase weaponInstance = Instantiate(launcherPrefab, _weaponsParent);
                 _weaponsDict.Add(container.WeaponType, weaponInstance);
+                weaponInstance.SetOwner(this);
+            }
+            else
+            {
+                Debug.Log($"Robot already have weapon {weaponType}! Destroy old!");
+                Destroy(_weaponsDict[weaponType].gameObject);
+                WeaponLauncherBase weaponInstance = Instantiate(launcherPrefab, _weaponsParent);
+                _weaponsDict[weaponType] = weaponInstance;
                 weaponInstance.SetOwner(this);
             }
         }
@@ -140,7 +149,7 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable, ICommandExe
         }
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (_robotStatus.IsDead)
             return;
@@ -179,9 +188,6 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable, ICommandExe
         {
             return;
         }
-
-        if (Rigidbody.IsSleeping())
-            return;
         
         Rigidbody.velocity += direction * _moveSpeed * Time.fixedDeltaTime;
 

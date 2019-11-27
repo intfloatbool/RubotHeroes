@@ -697,7 +697,7 @@ MonoBehaviour:
   _robot: {fileID: 984311763}
   _robotPult: {fileID: 491976508}
   _isEnabled: 1
-  _useExternalCommandsProviders: 1
+  _useExternalCommandsProviders: 0
   _instantCommandsProvider: {fileID: 2098898358}
 --- !u!114 &491976508
 MonoBehaviour:
@@ -986,7 +986,7 @@ PrefabInstance:
     - target: {fileID: 3849853221586233186, guid: 5797ecc79f6e7519394b557a3a0bd80b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 349.305
       objectReference: {fileID: 0}
     - target: {fileID: 3849853221586233186, guid: 5797ecc79f6e7519394b557a3a0bd80b,
         type: 3}
@@ -1196,7 +1196,7 @@ MonoBehaviour:
   _robot: {fileID: 2724525586086404180}
   _robotPult: {fileID: 873514318}
   _isEnabled: 1
-  _useExternalCommandsProviders: 1
+  _useExternalCommandsProviders: 0
   _instantCommandsProvider: {fileID: 1355254397}
 --- !u!114 &873514318
 MonoBehaviour:
@@ -4050,7 +4050,7 @@ PrefabInstance:
     - target: {fileID: 3849853221586233186, guid: 5797ecc79f6e7519394b557a3a0bd80b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 349.305
       objectReference: {fileID: 0}
     - target: {fileID: 3849853221586233186, guid: 5797ecc79f6e7519394b557a3a0bd80b,
         type: 3}

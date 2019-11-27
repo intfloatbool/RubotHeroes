@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sourceOfLaunch: {fileID: 7216932118738867518}
   _isInProcess: 0
-  _launchForce: {x: 0, y: 50, z: 100}
+  _launchForce: {x: 0, y: 20, z: 50}
   _plantDelay: 1.5
   _landMinePrefab: {fileID: 185832923533949623, guid: 2a39e066bd29e5bd79742d081fa09d67,
     type: 3}

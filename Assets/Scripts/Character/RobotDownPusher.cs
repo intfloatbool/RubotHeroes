@@ -1,4 +1,5 @@
 ﻿using System;
+using Interfaces.Triggers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -18,13 +19,10 @@ public class RobotDownPusher : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.down));
         Debug.DrawRay(ray.origin, ray.direction,  Color.cyan, 1f);
-        if(Physics.Raycast(ray, out hit, _distance))
+        if (Physics.Raycast(ray, out hit, _distance))
         {
-            if (hit.collider.gameObject == Enemy.gameObject)
-            {
-                Enemy.Rigidbody.AddForce(RandomVector* _power);
-                Enemy.MakeStun();
-            }
+            ICollidable collidable = hit.collider.gameObject.GetComponent<ICollidable>();
+            collidable?.Rigidbody.AddForce(RandomVector* _power);
         }
     }
 }

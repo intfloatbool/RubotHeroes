@@ -43,17 +43,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343d368f5c3aa86afbcfb8295d8e5292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _robots:
-  - {fileID: 0}
-  - {fileID: 0}
   _commandsWithSounds:
   - CommandType: 0
-    AudioClip: {fileID: 8300000, guid: 233fc0adbb227c194a75c1e267f83db9, type: 3}
+    AudioClip: {fileID: 8300000, guid: 48609003031c13edc9d8c78adb350ca5, type: 3}
   - CommandType: 3
-    AudioClip: {fileID: 8300000, guid: c984ce1688394a699b43159d8a6cec9a, type: 3}
+    AudioClip: {fileID: 8300000, guid: 7434582266e3de27a8945be3a98a0b66, type: 3}
   - CommandType: 2
     AudioClip: {fileID: 8300000, guid: c9066b5ce453969a2bad1308eac7a24a, type: 3}
   - CommandType: 6
     AudioClip: {fileID: 8300000, guid: cca3e7c4b1b9650c2a567c7f8182d674, type: 3}
   - CommandType: 7
     AudioClip: {fileID: 8300000, guid: a2febe3245ca6c9b3b8d3692b4110903, type: 3}
+  - CommandType: 4
+    AudioClip: {fileID: 8300000, guid: 070472e6cdd52257ba5b941e0e52e520, type: 3}
+  - CommandType: 1
+    AudioClip: {fileID: 8300000, guid: 5cce8d077c12c016e8a0b98316f7f4e1, type: 3}

@@ -11,15 +11,14 @@ public abstract class BlowedObject : MonoBehaviour
     private float RandomExplodeMultipler => Random.Range(1f, _maxExplodeRandomizeMultiplier);
     public virtual void Explosion(Rigidbody affected = null, Vector3 lastPosition = default)
     {
+        Explode();
         if (affected != null)
         {
-            Vector3 relativePos = lastPosition - transform.position;
-            Vector3 explosionAffect = relativePos.normalized * _explodePower * RandomExplodeMultipler;
+            Vector3 exposiionVector = new Vector3(lastPosition.x, transform.position.y, lastPosition.z);
+            Vector3 explosionAffect = exposiionVector.normalized * _explodePower * RandomExplodeMultipler;
             affected.AddForce(explosionAffect, 
                 ForceMode.Acceleration);
         }
-
-        Explode();
     }
 
     protected virtual void Explode()

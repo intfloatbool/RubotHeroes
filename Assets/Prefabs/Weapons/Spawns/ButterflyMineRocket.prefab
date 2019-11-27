@@ -96,81 +96,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &8111855850685057989
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4784672058391782138}
-  - component: {fileID: 4510331408149661584}
-  - component: {fileID: 1581583117}
-  - component: {fileID: 1414821525714997451}
-  m_Layer: 8
-  m_Name: Rocket
-  m_TagString: MISSLE
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4784672058391782138
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8111855850685057989}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 2.81, z: -6.619}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7487397181226147386}
-  - {fileID: 3158633558629566671}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4510331408149661584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8111855850685057989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e543721baa278f5ea78973400277239, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bodyCollider: {fileID: 1414821525714997451}
-  _objectBody: {fileID: 5887275397059980329}
-  _blowEffect: {fileID: 3158633558629274863}
-  _explodePower: 1300
-  _maxExplodeRandomizeMultiplier: 2
-  _lifeTimeAfterBlow: 2
-  _meshRenderer: {fileID: 5300485817837951221}
-  _maxDamage: 27
-  _randomedDamage: 0
-  _maxSpeed: 8
-  _randomedSpeed: 0
-  _detectionDistance: 1
-  _lifeTime: 10
---- !u!82 &1581583117
+--- !u!82 &7618308284302510209
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8111855850685057989}
+  m_GameObject: {fileID: 5887275397059980329}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5cce8d077c12c016e8a0b98316f7f4e1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b11ce265fbab5813981b9cd9536fb4e6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -252,6 +192,65 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &8111855850685057989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4784672058391782138}
+  - component: {fileID: 4510331408149661584}
+  - component: {fileID: 1414821525714997451}
+  m_Layer: 8
+  m_Name: ButterflyMineRocket
+  m_TagString: MISSLE
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4784672058391782138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8111855850685057989}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3, y: 2.81, z: -6.619}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7487397181226147386}
+  - {fileID: 3158633558629566671}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4510331408149661584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8111855850685057989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e543721baa278f5ea78973400277239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bodyCollider: {fileID: 1414821525714997451}
+  _objectBody: {fileID: 5887275397059980329}
+  _blowEffect: {fileID: 3158633558629274863}
+  _explodePower: 1300
+  _maxExplodeRandomizeMultiplier: 1.3
+  _lifeTimeAfterBlow: 2
+  _meshRenderer: {fileID: 5300485817837951221}
+  _maxDamage: 27
+  _randomedDamage: 0
+  _maxSpeed: 8
+  _randomedSpeed: 0
+  _detectionDistance: 1
+  _lifeTime: 10
 --- !u!65 &1414821525714997451
 BoxCollider:
   m_ObjectHideFlags: 0

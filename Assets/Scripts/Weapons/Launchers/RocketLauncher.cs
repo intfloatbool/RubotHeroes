@@ -22,5 +22,6 @@ public class RocketLauncher : WeaponLauncherBase
     {
         Missle missle = Instantiate(_misslePrefab, source.position, source.rotation);
         Colorize(missle);
+        TryAttachStatusToCarrier(missle);
     }
 }

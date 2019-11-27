@@ -10,7 +10,8 @@ using UnityEngine;
 using Weapons;
 
 [RequireComponent(typeof(RobotStatus))]
-public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable, ICommandExecutor, IAudioPlayable
+public class Robot : MonoBehaviour, IDeadable,
+    IPlayer, ICollidable, ICommandExecutor, IAudioPlayable
 {
     [SerializeField] private Transform _weaponsParent;
     [SerializeField] private AudioSource _audioSource;
@@ -20,7 +21,9 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable, ICommandExe
     public event Action OnDeath = () => { };
     public event Action<RobotCommand> OnCommandExecuted = (cmd) => {};
     public event Action<CommandType> OnCommandTypeExecuted = (cmdType) => {};
-    [SerializeField] private float _moveSpeed = 0.4f;
+    public event Action<WeaponID, WeaponType> OnWeaponChanged = (weaponID, weaponType) => { };
+
+        [SerializeField] private float _moveSpeed = 0.4f;
     [SerializeField] private float _rotSpeed = 4f;
 
     private RobotStatus _robotStatus;
@@ -85,7 +88,7 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable, ICommandExe
         
     }
 
-    public void InitializeWeapons(WeaponID[] weaponIdentifiers)
+    public void SetWeapons(WeaponID[] weaponIdentifiers)
     {
         foreach (WeaponID weaponId in weaponIdentifiers)
         {
@@ -106,6 +109,8 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable, ICommandExe
                 _weaponsDict[weaponType] = weaponInstance;
                 weaponInstance.SetOwner(this);
             }
+
+            OnWeaponChanged(weaponId, weaponType);
         }
     }
 
@@ -219,17 +224,16 @@ public class Robot : MonoBehaviour, IDeadable, IPlayer, ICollidable, ICommandExe
         IsCommandsRunning = false;
     }
 
-    public void MakeStun()
+    public void MakeStun(float timeToStun)
     {
         if (!_isStunned)
-            StartCoroutine(MakeStunCoroutine());
+            StartCoroutine(MakeStunCoroutine(timeToStun));
     }
 
-    private IEnumerator MakeStunCoroutine()
+    private IEnumerator MakeStunCoroutine(float timeToStun)
     {
         _isStunned = true;
-        float time = 2f;
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(timeToStun);
         _isStunned = false;
     }
     

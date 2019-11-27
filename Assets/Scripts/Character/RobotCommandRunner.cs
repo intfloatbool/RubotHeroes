@@ -30,7 +30,7 @@ public class RobotCommandRunner : MonoBehaviour
         PlayerProperties properties = player.Properties;
         
         _robot.InitializeRobotStatus(properties);
-        _robot.InitializeWeapons(new[]
+        _robot.SetWeapons(new[]
         {
             properties.GetWeaponByType(WeaponType.ROCKET_LAUNCHER),
             properties.GetWeaponByType(WeaponType.FIREGUN),

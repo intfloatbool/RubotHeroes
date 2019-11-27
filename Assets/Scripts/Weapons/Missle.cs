@@ -1,12 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Interfaces.GameEffects;
+using Interfaces.Triggers;
 using Interfaces.Views;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Missle : BlowedObject, IColorizable
+public class Missle : BlowedObject, IColorizable, IStatusCarrier
 {
+
     [SerializeField] private MeshRenderer _meshRenderer;
-    
     [SerializeField] private float _maxDamage = 25f;
     [SerializeField] private float _randomedDamage;
     [SerializeField] private float _maxSpeed = 7f;
@@ -23,6 +27,9 @@ public class Missle : BlowedObject, IColorizable
 
     private GameObject _lastTargetObj;
     private float _basicY;
+
+    private List<StatusItem.StatusInfo> _effects;
+    
     private void Awake()
     {
         _collider = GetComponent<Collider>();
@@ -84,6 +91,8 @@ public class Missle : BlowedObject, IColorizable
                 return;
             }
 
+            CheckForStatusable(colGo);
+
             Robot robot = hit.collider.GetComponent<Robot>();
             if (robot != null)
             {
@@ -96,6 +105,15 @@ public class Missle : BlowedObject, IColorizable
         else
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+        }
+    }
+
+    private void CheckForStatusable(GameObject target)
+    {
+        IStatusable statusable = target.GetComponent<IStatusable>();
+        if (statusable != null)
+        {
+            OnCarry(statusable);
         }
     }
 
@@ -124,10 +142,10 @@ public class Missle : BlowedObject, IColorizable
         if (robot != null)
         {
             robot.RobotStatus.AddDamage(_randomedDamage);
-            robot.MakeStun();
+            //TODO: Realize status effects!
+            //robot.MakeStun();
         }
-
-        Explosion(robot ? robot.Rigidbody : null, _lastPosition);
+        Explosion(robot != null ? robot.Rigidbody : null, _lastPosition);
         Destroy(this.gameObject, 2f);
     }
 
@@ -143,4 +161,16 @@ public class Missle : BlowedObject, IColorizable
 
     }
 
+    public void InitializeStatusEffects(List<StatusItem.StatusInfo> effects)
+    {
+        _effects = effects;
+    }
+
+    public void OnCarry(IStatusable statusable)
+    {
+        if (statusable == null && _effects == null)
+        {
+            Debug.LogError("Cannot send status!");
+        }
+    }
 }

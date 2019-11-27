@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Enums;
+using Interfaces.GameEffects;
 using Interfaces.Views;
 using UnityEngine;
 
 public abstract class WeaponLauncherBase : MonoBehaviour
 {
+    [SerializeField] protected StatusItem _statusItem;
+    public StatusItem StatusItem => _statusItem;
     public abstract WeaponType WeaponType { get; }
     [SerializeField] protected Transform _sourceOfLaunch;
     [SerializeField] protected bool _isInProcess;
@@ -59,5 +63,15 @@ public abstract class WeaponLauncherBase : MonoBehaviour
     protected void Colorize(IColorizable colorizable)
     {
         colorizable.SetColor(_owner.RobotColor);
+    }
+
+    protected virtual void TryAttachStatusToCarrier(Object target)
+    {
+        if (target is IStatusCarrier carrier)
+        {
+            if (_statusItem == null || !_statusItem.StatusCollection.Any())
+                return;
+            carrier.InitializeStatusEffects(_statusItem.StatusCollection);
+        }
     }
 }

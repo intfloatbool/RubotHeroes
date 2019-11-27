@@ -24278,6 +24278,7 @@ GameObject:
   - component: {fileID: 7658612457491570023}
   - component: {fileID: 8414128335603058329}
   - component: {fileID: 6462324463327543899}
+  - component: {fileID: 8799541132184185664}
   m_Layer: 8
   m_Name: RubotPlayer
   m_TagString: Player_2
@@ -24590,6 +24591,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04adfc7186dea4faa4f18d7773f4a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8799541132184185664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982486076417385634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a31017b5ae3da2a6588aae28a3c9e995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strength: 500
+  _forcedVector: {x: 0, y: 0, z: 1}
 --- !u!1 &8982487441426315482
 GameObject:
   m_ObjectHideFlags: 0

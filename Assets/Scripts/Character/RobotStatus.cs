@@ -4,8 +4,9 @@ using Interfaces.Triggers;
 using UnityEngine;
 
 [RequireComponent(typeof(Robot))]
-public class RobotStatus : MonoBehaviour, IProtectable, IDamageble
+public class RobotStatus : MonoBehaviour, IProtectable, IDamageble, IStatusable
 {
+    public event Action<StatusEffectType> OnStatusEffected = (effType) => { };
     public GameObject GameObject => gameObject;
     private Robot _robot;
     [SerializeField] private float _healthPoints = 200;
@@ -99,5 +100,39 @@ public class RobotStatus : MonoBehaviour, IProtectable, IDamageble
     {
         EnergyCount = BasicEnergyCount;
     }
+    
+    public void OnStatusEffect(StatusItem.StatusInfo statusEffect)
+    {
+        if (statusEffect == null)
+        {
+            Debug.LogError($"Cannot handle status! Is null!");
+            return;
+        }
+        StatusEffectType effectType = statusEffect.StatusEffectType;
+        float statusValue = statusEffect.EffectValue;
+        switch (effectType)
+        {
+            case StatusEffectType.STUN:
+            {
+                _robot.MakeStun(statusValue);
+                break;
+            }
+            case StatusEffectType.HEAL:
+            {
+                throw new NotImplementedException();
 
+                break;
+            }
+            case StatusEffectType.SLOW:
+            {
+                throw new NotImplementedException();
+                break;
+            }
+            default:
+            {
+                Debug.LogError($"Cannot handle status with type {statusEffect.StatusEffectType}!");
+                break;
+            }
+        }
+    }
 }

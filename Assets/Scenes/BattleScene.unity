@@ -1334,6 +1334,10 @@ PrefabInstance:
       propertyPath: _isDead
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1618053896, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca, type: 3}
+      propertyPath: _unit
+      value: 
+      objectReference: {fileID: 984311763}
     - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1394,6 +1398,11 @@ PrefabInstance:
       propertyPath: _enemyRobot
       value: 
       objectReference: {fileID: 2724525586086404180}
+    - target: {fileID: 7154617012696959509, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: _unitStatus
+      value: 
+      objectReference: {fileID: 1189766872}
     - target: {fileID: 1847959807983819339, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
       propertyPath: m_Volume
@@ -3170,6 +3179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RubotPlayer1
       objectReference: {fileID: 0}
+    - target: {fileID: 1618053896, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca, type: 3}
+      propertyPath: _unit
+      value: 
+      objectReference: {fileID: 2724525586086404180}
     - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3230,6 +3243,11 @@ PrefabInstance:
       propertyPath: _enemyRobot
       value: 
       objectReference: {fileID: 984311763}
+    - target: {fileID: 7154617012696959509, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: _unitStatus
+      value: 
+      objectReference: {fileID: 1189766872}
     - target: {fileID: 1847959807983819339, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
       propertyPath: m_Volume

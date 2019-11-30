@@ -10,7 +10,7 @@ using UnityEngine;
 using Weapons;
 
 [RequireComponent(typeof(RobotStatus))]
-public class Robot : MonoBehaviour, IDeadable,
+public class Robot : Unit, IDeadable,
     IPlayer, ICollidable, ICommandExecutor, IAudioPlayable
 {
     [SerializeField] private Transform _weaponsParent;
@@ -74,9 +74,6 @@ public class Robot : MonoBehaviour, IDeadable,
     
     private Dictionary<WeaponType, WeaponLauncherBase> _weaponsDict = new Dictionary<WeaponType, WeaponLauncherBase>();
 
-    private bool _isStunned = false;
-    public bool IsStunned => _isStunned;
-    
     public RobotCommand ExternalCommand { get; set; }
     
     protected virtual void Awake()
@@ -84,7 +81,7 @@ public class Robot : MonoBehaviour, IDeadable,
         this._robotStatus = GetComponent<RobotStatus>();
         this.Rigidbody = GetComponent<Rigidbody>();
         this._collider = GetComponent<Collider>();
-        this._robotStatus.OnDamaged += DeadControlListening;
+        this._robotStatus.OnHealthChanged += DeadControlListening;
         
     }
 
@@ -224,18 +221,7 @@ public class Robot : MonoBehaviour, IDeadable,
         IsCommandsRunning = false;
     }
 
-    public void MakeStun(float timeToStun)
-    {
-        if (!_isStunned)
-            StartCoroutine(MakeStunCoroutine(timeToStun));
-    }
-
-    private IEnumerator MakeStunCoroutine(float timeToStun)
-    {
-        _isStunned = true;
-        yield return new WaitForSeconds(timeToStun);
-        _isStunned = false;
-    }
+    
     
     public void Initialize(Player player)
     {

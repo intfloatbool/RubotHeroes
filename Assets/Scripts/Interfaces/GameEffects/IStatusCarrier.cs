@@ -4,7 +4,7 @@ namespace Interfaces.GameEffects
 {
     public interface IStatusCarrier
     {
-        void InitializeStatusEffects(List<StatusItem.StatusInfo> effects);
+        void InitializeStatusEffects(List<StatusInfo> effects);
         void OnCarry(IStatusable statusable);
     }
 }

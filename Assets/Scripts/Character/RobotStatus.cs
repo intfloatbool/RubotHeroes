@@ -4,17 +4,9 @@ using Interfaces.Triggers;
 using UnityEngine;
 
 [RequireComponent(typeof(Robot))]
-public class RobotStatus : MonoBehaviour, IProtectable, IDamageble, IStatusable
+public class RobotStatus : UnitStatus, IProtectable
 {
-    public event Action<StatusEffectType> OnStatusEffected = (effType) => { };
-    public GameObject GameObject => gameObject;
     private Robot _robot;
-    [SerializeField] private float _healthPoints = 200;
-    public float HealthPoints
-    {
-        get => _healthPoints;
-        set => _healthPoints = value;
-    }
 
     [SerializeField] private int _energyCount;
     public int BasicEnergyCount { get; set; }
@@ -31,7 +23,7 @@ public class RobotStatus : MonoBehaviour, IProtectable, IDamageble, IStatusable
             OnChargesChanged(_energyCount);
         }
     }
-
+    
     public event Action<int> OnChargesChanged = (chargeCount) => { };
 
     [SerializeField] private bool _isOnShield;
@@ -42,22 +34,10 @@ public class RobotStatus : MonoBehaviour, IProtectable, IDamageble, IStatusable
         set => _isOnShield = value;
     }
 
-    [SerializeField] private bool _isDead;
-
-    public bool IsDead
+    protected override void Awake()
     {
-        get
-        {
-            _isDead = _healthPoints <= 0f;
-            return _isDead;
-        }
-    }
-    
-    public event Action<float> OnDamaged = (currHp) => { };
-
-    private void Awake()
-    {
-        _robot = GetComponent<Robot>();
+        base.Awake();
+        _robot = _unit as Robot;
     }
     
     private void Start()
@@ -87,52 +67,10 @@ public class RobotStatus : MonoBehaviour, IProtectable, IDamageble, IStatusable
             EnergyCount -= chargable.ChargeCost;
         }
     }
-    
-    public void AddDamage(float dmg)
-    {
-        if (IsDead)
-            return;
-        this._healthPoints -= dmg;
-        OnDamaged.Invoke(_healthPoints);
-    }
 
     public void ResetEnergy()
     {
         EnergyCount = BasicEnergyCount;
     }
-    
-    public void OnStatusEffect(StatusItem.StatusInfo statusEffect)
-    {
-        if (statusEffect == null)
-        {
-            Debug.LogError($"Cannot handle status! Is null!");
-            return;
-        }
-        StatusEffectType effectType = statusEffect.StatusEffectType;
-        float statusValue = statusEffect.EffectValue;
-        switch (effectType)
-        {
-            case StatusEffectType.STUN:
-            {
-                _robot.MakeStun(statusValue);
-                break;
-            }
-            case StatusEffectType.HEAL:
-            {
-                throw new NotImplementedException();
 
-                break;
-            }
-            case StatusEffectType.SLOW:
-            {
-                throw new NotImplementedException();
-                break;
-            }
-            default:
-            {
-                Debug.LogError($"Cannot handle status with type {statusEffect.StatusEffectType}!");
-                break;
-            }
-        }
-    }
 }

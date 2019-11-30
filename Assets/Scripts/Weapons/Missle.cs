@@ -28,7 +28,7 @@ public class Missle : BlowedObject, IColorizable, IStatusCarrier
     private GameObject _lastTargetObj;
     private float _basicY;
 
-    private List<StatusItem.StatusInfo> _effects;
+    private List<StatusInfo> _effects;
     
     private void Awake()
     {
@@ -161,7 +161,7 @@ public class Missle : BlowedObject, IColorizable, IStatusCarrier
 
     }
 
-    public void InitializeStatusEffects(List<StatusItem.StatusInfo> effects)
+    public void InitializeStatusEffects(List<StatusInfo> effects)
     {
         _effects = effects;
     }

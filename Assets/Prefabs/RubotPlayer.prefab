@@ -24316,6 +24316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89444b3fbf22a1161951b9789026f667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _unitStatus: {fileID: 1618053896}
   _weaponsParent: {fileID: 1712802686488725763}
   _audioSource: {fileID: 3603422184951232286}
   _actionsOnStart:
@@ -24375,10 +24376,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3375f74c59c72520fa5b4770dd53a43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _unit: {fileID: 7154617012696959509}
   _healthPoints: 200
+  _isDead: 0
   _energyCount: 0
   _isOnShield: 0
-  _isDead: 0
 --- !u!82 &1847959807983819339
 AudioSource:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ public class PlayerStatusPanel : MonoBehaviour
         _nickName.text = player.NickName;
         _robotMaxHP = _robotStatus.HealthPoints;
         _colorIdentyIcon.color = player.Color;
-        this._robotStatus.OnDamaged += OnHpChanged;
+        this._robotStatus.OnHealthChanged += OnHpChanged;
         this._robotStatus.OnChargesChanged += OnChargesChanged;
 
     }

@@ -142,8 +142,7 @@ public class Robot : Unit, IDeadable,
         StopActionIfExists();
         try
         {
-            BoxCollider boxCol = (BoxCollider) _collider;
-            boxCol.size /= 3f;
+            _collider.enabled = false;
         }
         catch (Exception ex)
         {

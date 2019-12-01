@@ -44,4 +44,23 @@ public class WorldPositionsGenerator : MonoBehaviour
             }
         }
     }
+
+    public Vector3 GetLongestPosition(Vector3 target)
+    {
+        Vector3 groundedTarget = new Vector3(
+            target.x, 0, target.z);
+        Vector3 longestPosition = Vector3.zero;
+        float maxDistance = 0;
+        _randomPositions.ForEach(p =>
+        {
+            float distance = Vector3.Distance(p, groundedTarget);
+            if (distance > maxDistance)
+            {
+                maxDistance = distance;
+                longestPosition = p;
+            }
+        });
+
+        return longestPosition;
+    }
 }

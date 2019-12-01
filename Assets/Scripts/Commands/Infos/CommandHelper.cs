@@ -17,7 +17,10 @@ public static class CommandHelper
         CommandType.LAUNCH_MISSLE,
         CommandType.PUT_LANDMINE
     };
-
+    
+    /// <summary>
+    /// Commands which can be able to select from UI!
+    /// </summary>
     public static List<CommandType> ReadyCommands => _readyCommands;
 
     public static IEnumerable<ICommand> GetRandomCommands(int countOfRandomCommands,Robot robot)

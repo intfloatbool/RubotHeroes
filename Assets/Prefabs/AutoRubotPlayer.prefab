@@ -24279,8 +24279,9 @@ GameObject:
   - component: {fileID: 6462324463327543899}
   - component: {fileID: 8799541132184185664}
   - component: {fileID: 8191083246979971436}
+  - component: {fileID: 139659395133389449}
   m_Layer: 8
-  m_Name: RubotPlayer
+  m_Name: AutoRubotPlayer
   m_TagString: Player_2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24321,7 +24322,7 @@ MonoBehaviour:
   _audioSource: {fileID: 3603422184951232286}
   _actionsOnStart:
   - {fileID: 7536477599801720217}
-  _moveSpeed: 16
+  _moveSpeed: 6
   _rotSpeed: 6
   _distanceFromDestiny: 0
   _enemyRobot: {fileID: 0}
@@ -24339,8 +24340,8 @@ Rigidbody:
   m_GameObject: {fileID: 8982486076417385634}
   serializedVersion: 2
   m_Mass: 5
-  m_Drag: 1
-  m_AngularDrag: 1
+  m_Drag: 0
+  m_AngularDrag: 5
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -24377,7 +24378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unit: {fileID: 7154617012696959509}
-  _healthPoints: 200
+  _healthPoints: 300
   _isDead: 0
   _energyCount: 0
   _isOnShield: 0
@@ -24509,6 +24510,7 @@ MonoBehaviour:
   _robot: {fileID: 7154617012696959509}
   _distance: 2
   _power: 400
+  _posToPush: {x: 0, y: 0, z: 0}
 --- !u!114 &7536477599801720217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24604,10 +24606,25 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Height: 1.8080001
   m_Direction: 1
   m_Center: {x: 0, y: 0.78240967, z: 0}
+--- !u!114 &139659395133389449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982486076417385634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa36fc1d28e9da9784ec753dd64f222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distanceOfDanger: 2
+  _robot: {fileID: 7154617012696959509}
+  _isRobotRunFromEnemy: 0
 --- !u!1 &8982487441426315482
 GameObject:
   m_ObjectHideFlags: 0

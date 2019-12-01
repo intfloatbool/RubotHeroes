@@ -647,6 +647,8 @@ Transform:
   m_Children:
   - {fileID: 2114738801}
   - {fileID: 1191072022}
+  - {fileID: 1470652223}
+  - {fileID: 1724173553}
   m_Father: {fileID: 1249724566033273398}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -697,7 +699,7 @@ MonoBehaviour:
   _robot: {fileID: 984311763}
   _robotPult: {fileID: 491976508}
   _isEnabled: 1
-  _useExternalCommandsProviders: 1
+  _useExternalCommandsProviders: 0
   _instantCommandsProvider: {fileID: 2098898358}
 --- !u!114 &491976508
 MonoBehaviour:
@@ -1196,7 +1198,7 @@ MonoBehaviour:
   _robot: {fileID: 2724525586086404180}
   _robotPult: {fileID: 873514318}
   _isEnabled: 1
-  _useExternalCommandsProviders: 1
+  _useExternalCommandsProviders: 0
   _instantCommandsProvider: {fileID: 1355254397}
 --- !u!114 &873514318
 MonoBehaviour:
@@ -1312,16 +1314,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
-        type: 3}
-      propertyPath: m_Name
-      value: RubotPlayer2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1618053896, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca, type: 3}
       propertyPath: _owner
       value: 1
@@ -1338,6 +1330,16 @@ PrefabInstance:
       propertyPath: _unit
       value: 
       objectReference: {fileID: 984311763}
+    - target: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_Name
+      value: RubotPlayer2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2049,7 +2051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a76b4a73310c877af8693a3b8f3e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _commands: 0100000005000000
+  _commands: 0500000001000000
 --- !u!1 &1401190117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2141,6 +2143,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &1470652222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1470652223}
+  - component: {fileID: 1470652224}
+  m_Layer: 8
+  m_Name: bot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1470652223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470652222}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 5.98, y: 0, z: -1.17}
+  m_LocalScale: {x: 21.703041, y: 13.956908, z: 1.2575}
+  m_Children: []
+  m_Father: {fileID: 461187879}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &1470652224
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470652222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1515325465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,6 +2297,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 10, z: 12}
   m_Center: {x: 0, y: 3, z: 0}
+--- !u!1 &1724173552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1724173553}
+  - component: {fileID: 1724173554}
+  m_Layer: 8
+  m_Name: top
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1724173553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724173552}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -11.52, y: 0, z: -1.17}
+  m_LocalScale: {x: 21.703041, y: 13.956908, z: 1.2575}
+  m_Children: []
+  m_Father: {fileID: 461187879}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &1724173554
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724173552}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1729797997
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,7 +2887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a76b4a73310c877af8693a3b8f3e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _commands: 0000000005000000
+  _commands: 0100000004000000
 --- !u!4 &2098898359
 Transform:
   m_ObjectHideFlags: 0
@@ -3174,15 +3264,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1618053896, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca, type: 3}
+      propertyPath: _unit
+      value: 
+      objectReference: {fileID: 2724525586086404180}
     - target: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
       propertyPath: m_Name
       value: RubotPlayer1
       objectReference: {fileID: 0}
-    - target: {fileID: 1618053896, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca, type: 3}
-      propertyPath: _unit
-      value: 
-      objectReference: {fileID: 2724525586086404180}
     - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
       propertyPath: m_LocalPosition.x

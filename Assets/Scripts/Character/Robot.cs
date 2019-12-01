@@ -23,7 +23,7 @@ public class Robot : Unit, IDeadable,
     public event Action<CommandType> OnCommandTypeExecuted = (cmdType) => {};
     public event Action<WeaponID, WeaponType> OnWeaponChanged = (weaponID, weaponType) => { };
 
-        [SerializeField] private float _moveSpeed = 0.4f;
+    [SerializeField] private float _moveSpeed = 0.4f;
     [SerializeField] private float _rotSpeed = 4f;
 
     private RobotStatus _robotStatus;
@@ -54,11 +54,27 @@ public class Robot : Unit, IDeadable,
     public GameObject ShieldEffect => _shieldEffect;
     public Transform BotHead => _botHead;
     private bool _isRandomMove;
-
+    
+    public GameObject TargetToMove { get; set; }
+    
     [SerializeField] private float _pathDistanceMinValue = 0.6f;
     private bool _isDestinationReach = false;
     public bool IsDestinationReach => _isDestinationReach;
 
+    private CommandType _currentCommand;
+    public CommandType CurrentCommand => _currentCommand;
+    public float DistanceToEnemy
+    {
+        get
+        {
+            float distance = _enemyRobot != null
+                ? Vector3.Distance(transform.position,
+                    _enemyRobot.transform.position)
+                : 0f;
+            return distance;
+        }
+    }
+    
     public bool IsRandomMove
     {
         get => _isRandomMove;
@@ -73,8 +89,9 @@ public class Robot : Unit, IDeadable,
     }
     
     private Dictionary<WeaponType, WeaponLauncherBase> _weaponsDict = new Dictionary<WeaponType, WeaponLauncherBase>();
-
     public RobotCommand ExternalCommand { get; set; }
+
+    public bool IsMoving => _isRandomMove || TargetToMove != null;
     
     protected virtual void Awake()
     {
@@ -152,6 +169,9 @@ public class Robot : Unit, IDeadable,
 
     protected virtual void FixedUpdate()
     {
+        if (_isStunned)
+            return;
+        
         if (_robotStatus.IsDead)
             return;
         
@@ -168,12 +188,15 @@ public class Robot : Unit, IDeadable,
             //Rotate a robot head becouse the enemy is dead and its funny!!
             _botHead.Rotate(Vector3.up * (_rotSpeed * 50f) * Time.deltaTime);
         }
+
+        if (TargetToMove != null)
+        {
+            MoveLoop(TargetToMove.transform.position);
+            return;
+        }
         
         if (_isRandomMove)
         {
-            if (_isStunned)
-                return;
-
             MoveLoop(_randomPos);
         }
         
@@ -181,6 +204,9 @@ public class Robot : Unit, IDeadable,
 
     public void MoveLoop(Vector3 target)
     {
+        if (_isStunned)
+            return;
+
         Vector3 targetPos = new Vector3(target.x, _botBody.position.y, target.z);
         Vector3 direction = (targetPos - _botBody.position).normalized;
         _distanceFromDestiny = Vector3.Distance(_botBody.position, targetPos);
@@ -189,9 +215,8 @@ public class Robot : Unit, IDeadable,
         {
             return;
         }
-        
-        Rigidbody.velocity += direction * _moveSpeed * Time.fixedDeltaTime;
 
+        Rigidbody.MovePosition(transform.position + direction * _moveSpeed * Time.fixedDeltaTime);
         //face bot body to position
         Vector3 relativeBodyPos = targetPos - transform.position;
         Quaternion bodyRotation = Quaternion.LookRotation(relativeBodyPos, Vector3.up);
@@ -212,7 +237,7 @@ public class Robot : Unit, IDeadable,
         StopActionIfExists();
         this._currentAction = StartCoroutine(commandEnumerator);
         OnCommandExecuted(cmd);
-        
+        _currentCommand = cmd.CommandType;
     }
 
     public void NotifyThatCommandRun(CommandType cmdType)

@@ -11,26 +11,20 @@ public class RobotWheelController : MonoBehaviour
     [SerializeField] private Transform _rightWheel;
 
     [SerializeField] private AudioSource _engineSource;
+    [SerializeField] private float _defaultVolume = 0.5f;
     
 
     [SerializeField] private float _speed = 4f;
-    [SerializeField] private float _forwardVelocity;
     private void FixedUpdate()
     {
         if (_robot.RobotStatus.IsDead)
             return;
-        
-        _engineSource.volume = Mathf.Abs(_robot.Rigidbody.velocity.normalized.z);
-        _forwardVelocity = _robot.Rigidbody.velocity.z;
-        if (Mathf.Approximately(_forwardVelocity, 0f))
-        {
-            return;
-        }
 
-        _forwardVelocity = _robot.Rigidbody.velocity.z > 0 ? -1f : 1f;
-        
-        _leftWheel.Rotate(Vector3.up * _speed * _forwardVelocity * Time.fixedDeltaTime);
-        _rightWheel.Rotate(Vector3.up * _speed * _forwardVelocity * Time.fixedDeltaTime);
+        _engineSource.volume = _robot.IsMoving ? _defaultVolume : 0;
+        if (!_robot.IsMoving)
+            return;
+        _leftWheel.Rotate(Vector3.up * _speed  * Time.fixedDeltaTime);
+        _rightWheel.Rotate(Vector3.up * _speed * Time.fixedDeltaTime);
         
         
     }

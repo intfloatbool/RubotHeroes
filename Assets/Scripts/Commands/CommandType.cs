@@ -7,5 +7,6 @@
     MEELE_ATTACK = 4,
     RANDOM_MOVE = 5,
     REBOOT = 6,
-    OVERLOAD = 7
+    OVERLOAD = 7,
+    RUN_FROM_ENEMY = 8
 }

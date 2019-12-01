@@ -8,9 +8,8 @@ public class RobotDownPusher : MonoBehaviour
     [SerializeField] private Robot _robot;
     [SerializeField] private float _distance = 2f;
     [SerializeField] private float _power = 500f;
+    [SerializeField] private Vector3 _posToPush;
     private Robot Enemy => _robot.EnemyRobot;
-    private float RandomValue => Random.Range(-1f, 1f);
-    private Vector3 RandomVector => new Vector3(RandomValue, 0f, RandomValue);
     private void FixedUpdate()
     {
         if (Enemy == null)
@@ -24,9 +23,8 @@ public class RobotDownPusher : MonoBehaviour
             ICollidable collidable = hit.collider.gameObject.GetComponent<ICollidable>();
             if (collidable != null)
             {
-                Vector3 posToPush = transform.position.normalized;
-                posToPush.y = 0;
-                collidable?.Rigidbody.AddForce(posToPush * _power); 
+                _posToPush = (transform.position - collidable.Rigidbody.transform.position).normalized;
+                _robot.Rigidbody.AddForce(_posToPush * _power); 
             }
         }
     }

@@ -16,8 +16,7 @@ public abstract class BlowedObject : MonoBehaviour
         {
             Vector3 exposiionVector = new Vector3(lastPosition.x, transform.position.y, lastPosition.z);
             Vector3 explosionAffect = exposiionVector.normalized * _explodePower * RandomExplodeMultipler;
-            affected.AddForce(explosionAffect, 
-                ForceMode.Acceleration);
+            affected.AddForce(explosionAffect);
         }
     }
 

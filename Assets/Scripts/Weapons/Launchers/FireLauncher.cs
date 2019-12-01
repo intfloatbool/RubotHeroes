@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireLauncher : WeaponLauncherBase
 {
     [SerializeField] private float _fixedDamage = 20f;
-    [SerializeField] private float _distance = 4f;
+    [SerializeField] private float _distance = 6f;
     [SerializeField] private GameObject _flameEffect;
     public override WeaponType WeaponType { get; } = WeaponType.FIREGUN;
 

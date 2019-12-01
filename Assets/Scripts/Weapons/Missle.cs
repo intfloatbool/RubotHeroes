@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameStatus.Static;
 using Interfaces.GameEffects;
 using Interfaces.Triggers;
 using Interfaces.Views;
@@ -28,6 +29,7 @@ public class Missle : BlowedObject, IColorizable, IStatusCarrier
     private GameObject _lastTargetObj;
     private float _basicY;
 
+    public List<StatusInfo> Effects => _effects;
     private List<StatusInfo> _effects;
     
     private void Awake()
@@ -168,9 +170,10 @@ public class Missle : BlowedObject, IColorizable, IStatusCarrier
 
     public void OnCarry(IStatusable statusable)
     {
-        if (statusable == null && _effects == null)
+        bool isPossible = statusable != null && _effects != null && _effects.Count >= 0;
+        if (isPossible)
         {
-            Debug.LogError("Cannot send status!");
+            this.SendStatusToTarget(statusable);
         }
     }
 }

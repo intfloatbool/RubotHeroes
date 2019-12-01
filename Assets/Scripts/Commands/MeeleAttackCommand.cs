@@ -16,12 +16,14 @@ namespace Commands
 
         protected override IEnumerator CommandEnumerator()
         {
+            yield return base.CommandEnumerator();
             _robot.DistanceFromDestiny = _range;
             while (_robot.DistanceFromDestiny >= _range)
             {
                 _robot.MoveLoop(_robot.EnemyRobot.transform.position);
                 yield return null;
             }
+            OnUndelayedCommandRunning();
             _weapon.LaunchWeapon(_robot.gameObject);
             while (_weapon.IsInProcess)
             {

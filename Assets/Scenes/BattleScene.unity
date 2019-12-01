@@ -697,7 +697,7 @@ MonoBehaviour:
   _robot: {fileID: 984311763}
   _robotPult: {fileID: 491976508}
   _isEnabled: 1
-  _useExternalCommandsProviders: 0
+  _useExternalCommandsProviders: 1
   _instantCommandsProvider: {fileID: 2098898358}
 --- !u!114 &491976508
 MonoBehaviour:
@@ -1196,7 +1196,7 @@ MonoBehaviour:
   _robot: {fileID: 2724525586086404180}
   _robotPult: {fileID: 873514318}
   _isEnabled: 1
-  _useExternalCommandsProviders: 0
+  _useExternalCommandsProviders: 1
   _instantCommandsProvider: {fileID: 1355254397}
 --- !u!114 &873514318
 MonoBehaviour:
@@ -2049,7 +2049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a76b4a73310c877af8693a3b8f3e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _commands: 050000000100000001000000050000000200000002000000
+  _commands: 0100000005000000
 --- !u!1 &1401190117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,7 +2797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a76b4a73310c877af8693a3b8f3e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _commands: 020000000200000005000000010000000100000005000000
+  _commands: 0000000005000000
 --- !u!4 &2098898359
 Transform:
   m_ObjectHideFlags: 0

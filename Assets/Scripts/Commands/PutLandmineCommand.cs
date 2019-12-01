@@ -14,6 +14,8 @@ public class PutLandmineCommand : WeaponCommand, IChargable
 
     protected override IEnumerator CommandEnumerator()
     {
+        yield return base.CommandEnumerator();
+        OnUndelayedCommandRunning();
         _weapon.LaunchWeapon(_robot.gameObject);
         while (_weapon.IsInProcess)
         {

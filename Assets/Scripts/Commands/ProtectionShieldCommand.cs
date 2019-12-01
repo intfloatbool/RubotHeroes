@@ -16,9 +16,11 @@ namespace Commands
         
         protected override IEnumerator CommandEnumerator()
         {
+            yield return base.CommandEnumerator();
             yield return new WaitForEndOfFrame();
             _robot.RobotStatus.IsOnShield = true;
             _robot.ShieldEffect.SetActive(true);
+            OnUndelayedCommandRunning();
             yield return new WaitForSeconds(_duration);
             _robot.ShieldEffect.SetActive(false);
             _robot.RobotStatus.IsOnShield = false;

@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3853fdd68f27e509fe539caba7dff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _statusItem: {fileID: 0}
+  _statusItem: {fileID: -5452171987580288545}
   _sourceOfLaunch: {fileID: 389337976514616223}
   _isInProcess: 0
   _secondSourceOfLaunch: {fileID: 389337976910620228}

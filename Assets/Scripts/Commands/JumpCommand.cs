@@ -14,12 +14,13 @@ namespace Commands
 
         protected override IEnumerator CommandEnumerator()
         {
+            yield return base.CommandEnumerator();
             _robot.Rigidbody.AddForce(Vector3.up * _jumpStrength);
         
             //TODO Complete func
             yield return new WaitForFixedUpdate();
             yield return new WaitForFixedUpdate();
-
+            OnUndelayedCommandRunning();
             while (!Mathf.Approximately(_robot.Rigidbody.velocity.y, 0f))
             {
                 yield return null;

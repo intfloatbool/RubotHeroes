@@ -14,6 +14,8 @@ namespace Commands
         
         protected override IEnumerator CommandEnumerator()
         {
+            yield return base.CommandEnumerator();
+            OnUndelayedCommandRunning();
             _robot.IsRandomMove = true;
             Vector3[] expectionsPos =
             {

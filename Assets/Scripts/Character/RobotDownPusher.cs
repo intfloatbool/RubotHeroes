@@ -22,8 +22,12 @@ public class RobotDownPusher : MonoBehaviour
         if (Physics.Raycast(ray, out hit, _distance))
         {
             ICollidable collidable = hit.collider.gameObject.GetComponent<ICollidable>();
-            Vector3 relativePos = hit.collider.transform.position - transform.position;
-            collidable?.Rigidbody.AddForce(relativePos.normalized * _power);
+            if (collidable != null)
+            {
+                Vector3 posToPush = transform.position.normalized;
+                posToPush.y = 0;
+                collidable?.Rigidbody.AddForce(posToPush * _power); 
+            }
         }
     }
 }

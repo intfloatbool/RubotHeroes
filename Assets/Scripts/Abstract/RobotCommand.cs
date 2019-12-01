@@ -19,6 +19,30 @@ namespace Abstract
             _robot.SetCurrentCommand(CommandEnumerator(), this);
         }
 
-        protected abstract IEnumerator CommandEnumerator();
+        protected virtual IEnumerator CommandEnumerator()
+        {
+            yield return WaitIfRobotStunned();
+        }
+
+        protected IEnumerator WaitIfRobotStunned()
+        {
+            if(_robot.IsStunned)
+                Debug.Log($"{_robot.gameObject.name} is stunned! Wait...");
+            while (_robot.IsStunned)
+            {
+                yield return null;
+            }
+        }
+        
+        
+        /// <summary>
+        /// Use this method to notify robot about Command exactly running,
+        /// to avoid issues with delay on some commands. For example sound listener
+        /// of robot should know when command excatly running, but not with delay.
+        /// </summary>
+        protected virtual void OnUndelayedCommandRunning()
+        {
+            _robot.NotifyThatCommandRun(CommandType);
+        }
     }
 }

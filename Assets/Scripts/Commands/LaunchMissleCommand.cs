@@ -16,7 +16,9 @@ namespace Commands
 
         protected override IEnumerator CommandEnumerator()
         {
+            yield return base.CommandEnumerator();
             _weapon.LaunchWeapon(_robot.gameObject);
+            OnUndelayedCommandRunning();
             while (_weapon.IsInProcess)
             {
                 yield return null;

@@ -213,7 +213,12 @@ public class Robot : Unit, IDeadable,
         StopActionIfExists();
         this._currentAction = StartCoroutine(commandEnumerator);
         OnCommandExecuted(cmd);
-        OnCommandTypeExecuted(cmd.CommandType);
+        
+    }
+
+    public void NotifyThatCommandRun(CommandType cmdType)
+    {
+        OnCommandTypeExecuted(cmdType);
     }
     
     public void ResetCommandsRunning()

@@ -1524,6 +1524,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_Name
+      value: RubotPlayer2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1618053896, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca, type: 3}
       propertyPath: _owner
       value: 1
@@ -1540,16 +1550,6 @@ PrefabInstance:
       propertyPath: _unit
       value: 
       objectReference: {fileID: 984311763}
-    - target: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
-        type: 3}
-      propertyPath: m_Name
-      value: RubotPlayer2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2029,6 +2029,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1168521056}
+  - component: {fileID: 1168521057}
   m_Layer: 5
   m_Name: CommandsShower
   m_TagString: Untagged
@@ -2056,6 +2057,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1168521057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168521055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c265b12c63952348f9fbcbe08181c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiType: 0
 --- !u!114 &1189766872 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1618053896, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
@@ -3584,15 +3598,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1618053896, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca, type: 3}
-      propertyPath: _unit
-      value: 
-      objectReference: {fileID: 2724525586086404180}
     - target: {fileID: 8982486076417385634, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
       propertyPath: m_Name
       value: RubotPlayer1
       objectReference: {fileID: 0}
+    - target: {fileID: 1618053896, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca, type: 3}
+      propertyPath: _unit
+      value: 
+      objectReference: {fileID: 2724525586086404180}
     - target: {fileID: 8989114974135694866, guid: 1d3957aedd0dfe1dfb0ff60d580d50ca,
         type: 3}
       propertyPath: m_LocalPosition.x

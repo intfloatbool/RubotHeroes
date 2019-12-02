@@ -22,7 +22,8 @@ public class RobotCommandRunner : MonoBehaviour
 
     [SerializeField] private bool _useExternalCommandsProviders = false;
     [SerializeField] private CommandsProviderBase _instantCommandsProvider;
-    
+
+    public event Action<Robot> OnExecuteRobot = (robot) => { }; 
     
     public void InitializeRobot(Player player)
     {
@@ -69,6 +70,7 @@ public class RobotCommandRunner : MonoBehaviour
         }
 
         _runCommandsCoroutine = StartCoroutine(RunCommandsCoroutine(commands));
+        OnExecuteRobot(_robot);
     }
 
     private IEnumerator RunCommandsCoroutine(IEnumerable<ICommand> commands)

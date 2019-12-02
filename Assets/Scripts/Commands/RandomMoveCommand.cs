@@ -26,9 +26,11 @@ namespace Commands
             _robot.RandomPos = randomPos;
             //TODO Complete func
             yield return new WaitForSeconds(_timeToReachTarget);
-            if(!_robot.IsDestinationReach)
-                yield return new WaitForSeconds(_timeToReachTarget);
-            
+            while (!_robot.IsDestinationReach)
+            {
+                yield return null; 
+            }
+
             _robot.IsRandomMove = false;
             _robot.ResetCommandsRunning();
         }

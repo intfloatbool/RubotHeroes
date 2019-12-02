@@ -18,11 +18,11 @@ namespace Commands
         {
             yield return base.CommandEnumerator();
             _weapon.LaunchWeapon(_robot.gameObject);
-            OnUndelayedCommandRunning();
             while (_weapon.IsInProcess)
             {
                 yield return null;
             }
+            OnUndelayedCommandRunning();
             yield return new WaitForEndOfFrame();
             _robot.ResetCommandsRunning();
         }

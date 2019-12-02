@@ -7,7 +7,7 @@ namespace Commands
 {
     public class MeeleAttackCommand: WeaponCommand
     {
-        private float _range = 5f;
+        private float _range = 6f;
         private float _delayAfterAttack = 1f;
         public MeeleAttackCommand(Robot robot) : base(robot, WeaponType.FIREGUN)
         {
@@ -17,12 +17,14 @@ namespace Commands
         protected override IEnumerator CommandEnumerator()
         {
             yield return base.CommandEnumerator();
-            _robot.DistanceFromDestiny = _range;
             _robot.TargetToMove = _robot.EnemyRobot.gameObject;
-            while (_robot.DistanceFromDestiny >= _range)
+            while (_robot.DistanceToEnemy >= _weapon.WeaponRange)
             {
                 yield return null;
             }
+
+            _robot.TargetToMove = null;
+            
             OnUndelayedCommandRunning();
             _weapon.LaunchWeapon(_robot.gameObject);
             while (_weapon.IsInProcess)

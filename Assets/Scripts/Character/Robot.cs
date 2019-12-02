@@ -57,7 +57,7 @@ public class Robot : Unit, IDeadable,
     
     public GameObject TargetToMove { get; set; }
     
-    [SerializeField] private float _pathDistanceMinValue = 0.6f;
+    [SerializeField] private float _pathDistanceMinValue = 1f;
     private bool _isDestinationReach = false;
     public bool IsDestinationReach => _isDestinationReach;
 
@@ -189,38 +189,58 @@ public class Robot : Unit, IDeadable,
             _botHead.Rotate(Vector3.up * (_rotSpeed * 50f) * Time.deltaTime);
         }
 
+        //avoid moving when stun
+        if (_isStunned)
+            return;
+        
         if (TargetToMove != null)
         {
-            MoveLoop(TargetToMove.transform.position);
+            MoveToTarget(TargetToMove.transform.position);
             return;
         }
         
         if (_isRandomMove)
         {
-            MoveLoop(_randomPos);
+            MoveToPoint(_randomPos);
         }
         
     }
 
-    public void MoveLoop(Vector3 target)
+    private void MoveToPoint(Vector3 target)
     {
-        if (_isStunned)
-            return;
-
         Vector3 targetPos = new Vector3(target.x, _botBody.position.y, target.z);
-        Vector3 direction = (targetPos - _botBody.position).normalized;
         _distanceFromDestiny = Vector3.Distance(_botBody.position, targetPos);
         _isDestinationReach = _distanceFromDestiny <= _pathDistanceMinValue;
         if (_isDestinationReach)
         {
             return;
         }
+        
+        MoveLoop(targetPos);
+    }
 
-        Rigidbody.MovePosition(transform.position + direction * _moveSpeed * Time.fixedDeltaTime);
+    private void MoveToTarget(Vector3 target)
+    {
+        Vector3 targetPos = new Vector3(target.x, _botBody.position.y, target.z);
+        MoveLoop(targetPos);
+    }
+
+    private void MoveLoop(Vector3 target)
+    {
+        
+        Vector3 direction = (target - _botBody.position).normalized;
+        
+        MoveRobotByDirection(direction);
+        
         //face bot body to position
-        Vector3 relativeBodyPos = targetPos - transform.position;
+        Vector3 relativeBodyPos = target - transform.position;
         Quaternion bodyRotation = Quaternion.LookRotation(relativeBodyPos, Vector3.up);
         _botBody.rotation = Quaternion.Lerp(_botBody.rotation, bodyRotation, _rotSpeed * Time.fixedDeltaTime);
+    }
+
+    private void MoveRobotByDirection(Vector3 direction)
+    {
+        Rigidbody.MovePosition(transform.position + direction * _moveSpeed * Time.fixedDeltaTime); 
     }
     
     private void StopActionIfExists()

@@ -6,6 +6,7 @@ public class FireLauncher : WeaponLauncherBase
 {
     [SerializeField] private float _fixedDamage = 20f;
     [SerializeField] private float _distance = 6f;
+    public override float WeaponRange => _distance;
     [SerializeField] private GameObject _flameEffect;
     public override WeaponType WeaponType { get; } = WeaponType.FIREGUN;
 
@@ -25,6 +26,6 @@ public class FireLauncher : WeaponLauncherBase
         
         yield return new WaitForSeconds(1);
         _flameEffect.SetActive(false);
-        
+
     }
 }

@@ -8,6 +8,7 @@ using UnityEngine;
 
 public abstract class WeaponLauncherBase : MonoBehaviour
 {
+    public virtual float WeaponRange { get; protected set; }
     [SerializeField] protected StatusItem _statusItem;
     public StatusItem StatusItem => _statusItem;
     public abstract WeaponType WeaponType { get; }
@@ -22,7 +23,7 @@ public abstract class WeaponLauncherBase : MonoBehaviour
     {
         get => _isInProcess;
         protected set => _isInProcess = value;
-    } 
+    }
 
     private GameObject _sender;
 

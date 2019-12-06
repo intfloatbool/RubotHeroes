@@ -23,6 +23,10 @@ public static class CommandHelper
     /// </summary>
     public static List<CommandType> ReadyCommands => _readyCommands;
 
+    public static bool IsReadyCommand(CommandType cmdType)
+    {
+        return _readyCommands.Contains(cmdType);
+    }
     public static IEnumerable<ICommand> GetRandomCommands(int countOfRandomCommands,Robot robot)
     {
         for (int i = 0; i < countOfRandomCommands; i++)
@@ -47,7 +51,7 @@ public static class CommandHelper
             yield return GetCommandByType(type, robot);
         }
     }
-    private static ICommand GetCommandByType(CommandType commandType, Robot robot)
+    public static ICommand GetCommandByType(CommandType commandType, Robot robot)
     {
         switch (commandType)
         {

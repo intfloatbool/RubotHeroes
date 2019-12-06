@@ -35,7 +35,7 @@ namespace UI.BattleScene.Commands
 
         private void OnRobotCommand(CommandType cmdType)
         {
-            if (!CommandHelper.ReadyCommands.Contains(cmdType))
+            if (!CommandHelper.IsReadyCommand(cmdType))
                 return;
             
             _lastCommand = cmdType;

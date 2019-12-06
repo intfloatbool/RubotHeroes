@@ -17,6 +17,9 @@ public class RobotWheelController : MonoBehaviour
     [SerializeField] private float _speed = 4f;
     private void FixedUpdate()
     {
+        if (_robot == null)
+            return;
+        
         if (_robot.RobotStatus.IsDead)
             return;
 

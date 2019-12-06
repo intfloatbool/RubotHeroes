@@ -1,20 +1,29 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Robot))]
-public class CustomRobotCommandRunner : MonoBehaviour
+namespace GameProcess
 {
-    [SerializeField] private CommandType _command;
-    public CommandType Command
+    [RequireComponent(typeof(Robot))]
+    public class CustomRobotCommandRunner : MonoBehaviour
     {
-        get => _command;
-        set => _command = value;
-    }
+        [SerializeField] protected CommandType _command;
+        public CommandType Command
+        {
+            get => _command;
+            set => _command = value;
+        }
 
-    [SerializeField] private Robot _robot;
+        [SerializeField] protected Robot _robot;
 
-    public void RunCommand()
-    {
-        ICommand command = CommandHelper.GetCommandByType(_command, _robot);
-        command.Execute();
+        public virtual void RunCommand()
+        {
+            ICommand command = CommandHelper.GetCommandByType(_command, _robot);
+            command.Execute();
+        }
+
+        public virtual void RunSpecificCommand(CommandType commandType)
+        {
+            ICommand command = CommandHelper.GetCommandByType(commandType, _robot);
+            command.Execute();
+        }
     }
 }

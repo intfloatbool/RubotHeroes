@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Interfaces.Triggers;
@@ -31,12 +30,24 @@ public class LandMine : TriggeringCollide, IColorizable, ICollidable
             return;
         
         if(_blowedObject != null)
-            _blowedObject.Explosion(collidable.Rigidbody, transform.position);
+            _blowedObject.Explosion(collidable?.Rigidbody, transform.position);
         int layerMask = 1 << 8;
         
         int size = Physics.OverlapSphereNonAlloc(transform.position, _damageRadius, _collidersBuffer, layerMask);
         if (size > 0)
             TryDamageTargets();
+    }
+
+    public void SetTimerForBlow(float time)
+    {
+        StartCoroutine(TimerBlowCoroutine(time));
+    }
+
+    private IEnumerator TimerBlowCoroutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _isActivated = true;
+        OnCollide(null);
     }
 
     protected void TryDamageTargets()

@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using GameProcess;
+using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(CustomRobotCommandRunner))]
+[CustomEditor(typeof(CustomRobotCommandRunner),true)]
 public class RobotCommandEditor : Editor
 {
     public override void OnInspectorGUI()

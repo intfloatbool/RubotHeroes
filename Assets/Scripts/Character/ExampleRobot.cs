@@ -5,7 +5,6 @@ using UnityEngine;
 public class ExampleRobot : Robot
 {
     private PlayerInfoContainer _playerInfoContainer;
-    private Dictionary<CommandType, ICommand> _commandsForDummyDict = new Dictionary<CommandType, ICommand>();
     protected override void Awake()
     {
         base.Awake();
@@ -36,16 +35,7 @@ public class ExampleRobot : Robot
         });
     }
 
-    private ICommand CorrectCommandByDummyState(ICommand command)
-    {
-        if (_commandsForDummyDict.ContainsKey(command.CommandType))
-        {
-            
-        }
 
-        return command;
-    }
-    
     protected override void FixedUpdate()
     {
         //its just a example bot without update logic   

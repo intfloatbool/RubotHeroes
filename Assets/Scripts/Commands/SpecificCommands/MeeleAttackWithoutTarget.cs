@@ -12,9 +12,9 @@ namespace Commands
         
         protected override IEnumerator CommandEnumerator()
         {
-            
             OnUndelayedCommandRunning();
             _weapon.LaunchWeapon(_robot.gameObject);
+
             while (_weapon.IsInProcess)
             {
                 yield return null;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class WinnerHighligther : OnGameEndTrigger
 {
     [SerializeField] private float _camDelay = 2f;
-    private float _speed = 0.2f;
+    private float _speed = 3f;
     private Vector3 _neededLocalPos = new Vector3(2, 4, -2);
     private Vector3 _neededLocalEulers = new Vector3(45, -45, 0);
     [SerializeField] private Camera _mainCam;

@@ -6,21 +6,22 @@ namespace UI.BattleScene.Commands
 {
     public class CommandsMonitorUI : CustomizableUI
     {
+        private GameProcessStatus _gameProcessStatus;
         [SerializeField] private Robot _robot;
-        [SerializeField] private CommandView _commandViewPrefab;
+        [SerializeField] private UIView _commandViewPrefab;
         [SerializeField] private Transform _parentToSpawnCommandViews;
-        [SerializeField] private List<CommandType> _executedCommands;
-        
-        
         private int _maxViews = 3;
-
-        private Dictionary<int, CommandView> _commandViewDict = new Dictionary<int, CommandView>();
+        private int _currentViewId = 0;
         
+        private Dictionary<int, UIView> _commandViewDict = new Dictionary<int, UIView>();
+        private CommandType _lastCommand;
         private void Awake()
         {
+            _gameProcessStatus = FindObjectOfType<GameProcessStatus>();
             this.CheckLinks(new Object[]
             {
-                _robot
+                _robot,
+                _gameProcessStatus
             });
         
             SubscribeToEvents();
@@ -29,32 +30,50 @@ namespace UI.BattleScene.Commands
         private void SubscribeToEvents()
         {
             _robot.OnCommandTypeExecuted += OnRobotCommand;
+            _gameProcessStatus.OnWinnerDetected += (runner) => { gameObject.SetActive(false); };
         }
 
         private void OnRobotCommand(CommandType cmdType)
         {
+            if (!CommandHelper.ReadyCommands.Contains(cmdType))
+                return;
+            
+            _lastCommand = cmdType;
             //TODO realize views on command!
-            AddCommand(cmdType);
+            InitializeView();
         }
 
-        private void AddCommand(CommandType cmdType)
-        { 
-            if (_executedCommands.Count >= _maxViews)
-            {
-                CommandType firstView = _executedCommands.FirstOrDefault();
-                _executedCommands.Remove(firstView);
-            }
-        }
-
-        private void UpdateCommandViews()
+        private void InitializeView()
         {
-            foreach (CommandType cmdType in _executedCommands)
+            if (_currentViewId > _maxViews - 1)
+                ResetViews();
+            
+            UIView currentView;
+            if (_commandViewDict.ContainsKey(_currentViewId))
             {
-                
+                currentView = _commandViewDict[_currentViewId];
+                currentView.gameObject.SetActive(true);
             }
+            else
+            {
+                currentView = CreateView();
+                _commandViewDict.Add(_currentViewId, currentView);
+            }
+            
+            currentView.SetText(GameLocalization.GetLocalization(_lastCommand.ToString()));
+            _currentViewId++;
         }
 
-        private CommandView CreateView()
+        private void ResetViews()
+        {
+            _currentViewId = 0;
+            
+            foreach (var view in _commandViewDict.Values)
+            {
+                view.gameObject.SetActive(false);
+            }
+        }
+        private UIView CreateView()
         {
             return Instantiate(_commandViewPrefab, _parentToSpawnCommandViews);
         }

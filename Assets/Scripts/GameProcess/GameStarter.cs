@@ -103,6 +103,11 @@ public class GameStarter : MonoBehaviour
             CommandRunner = _enemyCommandRunner,
             StatusPanel =  _enemyStatusPanel
         });
+
+        foreach (var ownerKey in _playersDict.Keys)
+        {
+            _playersDict[ownerKey].CommandRunner.Owner = ownerKey;
+        }
     }
 
     private void InitializeGameEvents()

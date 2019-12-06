@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class UnitStatus : MonoBehaviour, IDamageble, IStatusable
 {
-    [SerializeField] protected Unit _unit;
+    [SerializeField] protected bool _isImmortal;
+    public bool IsImmortal
+    {
+        get => _isImmortal;
+        set => _isImmortal = value;
+    }
+
+    protected Unit _unit;
     public event Action<float> OnHealthChanged = (currHp) => { };
     public event Action<StatusEffectType> OnStatusEffected = (effType) => { };
     public GameObject GameObject => gameObject;
@@ -27,12 +34,15 @@ public class UnitStatus : MonoBehaviour, IDamageble, IStatusable
 
     protected virtual void Awake()
     {
+        _unit = GetComponent<Unit>();
        if(_unit == null)
            Debug.LogError("Unit is missing!");
     }
     
-    public void AddDamage(float dmg)
+    public virtual void AddDamage(float dmg)
     {
+        if (_isImmortal)
+            return;
         if (IsDead)
             return;
         this._healthPoints -= dmg;
@@ -41,6 +51,9 @@ public class UnitStatus : MonoBehaviour, IDamageble, IStatusable
     
     public void OnStatusEffect(StatusInfo statusEffect)
     {
+        if (_isImmortal)
+            return;
+        
         if (statusEffect == null)
         {
             Debug.LogError($"Cannot handle status! Is null!");

@@ -11,6 +11,14 @@ using Random = UnityEngine.Random;
 
 public class RobotCommandRunner : MonoBehaviour
 {
+    [SerializeField] private PlayerOwner _owner;
+
+    public PlayerOwner Owner
+    {
+        get => _owner;
+        set { this._owner = value; }
+    }
+    
     [SerializeField] private Robot _robot;
     public Robot Robot => _robot;
 

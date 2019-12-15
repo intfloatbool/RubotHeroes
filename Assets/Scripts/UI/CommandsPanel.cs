@@ -42,11 +42,29 @@ public class CommandsPanel : MonoBehaviour
 
         UpdateCommands();
     }
+    
+    
 
     private void UpdateCommands()
     {
         List<CommandType> commandTypes = _commandBlocks.Select(block => block.CommandType).ToList();
         UserCommandProvider.SetCommands(commandTypes);
+    }
+
+    public void SaveCommands()
+    {
+        //Bad design.
+        Debug.Log("Try to write commands data for player..");
+        if (_commandBlocks.Count > 0)
+        {
+            var playerInfo = UserPlayerInfo.Instance.GetPlayerInfoByOwner(PlayerOwner.PLAYER_1);
+            UserPlayerInfo.Instance.SetCommandProviderByOwner<ConstructorCommandsProvider>(PlayerOwner.PLAYER_1);
+            playerInfo.CommandsProvider.SetCommands(
+                _commandBlocks.Select(block => block.CommandType).ToList()
+                );
+            Debug.Log($"Commands changed and write into {playerInfo.CommandsProvider.name} !");
+        }
+        
     }
 
     private void OnDisable()
